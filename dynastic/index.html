@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8"> 
+		<link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
+		<link rel="stylesheet" type="text/css" href="/static/styles/highlight.css">
+		<title>The First Article - Foobuzz</title>
+	</head>
+	
+	<body>
+	<div id="main_wrapper">
+	
+		<header>
+			<div id="head_text_wrapper">
+				<div id="head_text_bro"></div>
+				<div id="head_text">
+					<h1><a href="/">Foobuzz</a></h1>
+					<p>Programming and other stuff</p>
+				</div>
+			</div>
+		</header>
+		
+		<nav>
+			<ul id="navigation">
+				<li><a href="/">Front</a></li><!--
+			 --><li><a href="/archives">Archives</a></li><!--
+			 --><li><a href="/about">About</a></li>
+			</ul>
+
+		 	<ul id="networking">
+				<li><a href="https://twitter.com/_foobuzz">Twitter</a></li>
+			</ul>
+		</nav>
+		
+		<div id="main">
+		
+			<div id="content">
+
+				
+
+<article>
+
+	<div class="entete">by Valentin, <span title="2015-06-04T12:33:00Z">June 04 2015</span>, in
+		
+		<a href="/cat/meta">Meta</a>, 
+		
+		<a href="/cat/python">Python</a>
+		
+	</div>
+
+	<div class="i18n">
+		
+		Lang: <img src="/static/gb.png" alt="english" title="english"> | <a href="/dynastic/fra" title="Read in French">Lire en français</a>
+		
+	</div>
+
+	<h1><a href="/dynastic">The First Article</a></h1>
+
+	<p>Welcome to my blog! You're reading its first article. I will mainy write about computer stuff and my programming projects, but I may talk about more general subjects as well when I feel like it. In this first article, I explain how my blog is built.</p>
+<p>As you probably noticed, it is hosted on <a href="https://pages.github.com/">GitHub Pages</a> and thus is entirely static. For those who don't know, when you create a repo on GitHub whose name is {your_username}.github.io, it creates a static website with this address, provided that there exists an index.html at the repo root.</p>
+<p>There exist many static website generator, that is, programs that with data (a bunch of text file containing the articles content, usually using some sort of formatting markup language like <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>) and templates, can generate the whole website in one go. The one that comes with GitHub Pages is named Jekyll and is written in Ruby. There are also many of them written in Python. But I decided that for my blog I would write an handmade script myself, in Python.</p>
+<h2>Dynastic</h2>
+<p>I named my script Dynastic (that sounds pretentious for such a simple thing). This name is a mix between <em>dynamic</em> and <em>static</em>. When coding a dynamic website, we generally define a list of URIs which we associate to handlers: functions or classes that somehow return the content (html) of the page that will be delivered at the given URI. Some parts of the URI are variable and the values of these variables are given as parameters to the URI's handler.</p>
+<p>This is this process I used for Dynastic. The only difference is that since it's not dynamic, we need to provide each variable of an URI with all the possible values for this variable.</p>
+<h3>Simple example</h3>
+<p>For example, let's imagine we want to generate a very simple website: it has N pages numbered from 0 to N-1. Page k displays the text "Hello, I'm page k", contains a link "Next page" which points to the page k+1 (if it exists) and a link "Previous page" which points to the page k-1 (if it exists). There also is a front page that displays a list of links to all N pages. The home page sits at the URI '/' while page k sits at the URI '/page/k'</p>
+<p>This is how we can define those URIs:</p>
+<div class="codehilite"><pre class="source"><code><span class="n">routes</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;/&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="p">{}),</span>
+    <span class="s">&#39;/page/{page}&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">permalink</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;page&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))})</span>
+    <span class="p">}</span>
+</code></pre></div>
+<p><em>routes</em> is a Python dictionary which associates an URI to a tuple of length 2 which contains the two following elements:</p>
+<ul>
+<li>
+<p>the first element is a function, the handler of the URI</p>
+</li>
+<li>
+<p>the second element is another Python dictionary which, for each variable of the URI, gives a list of values we want to generate the URI for. In this example, the variable 'page' (in curly braces in the URI) is associated to the list of integers from 0 to N-1. Note that this is Python 3, where <em>range</em> doesn't return a list, but an iterator, hence the need to call <em>list</em> to convert this iterator to a list. When there are no variable in the URI, the second element is the empty dictionary.</p>
+</li>
+</ul>
+<p>Here is the rest of the code, with the actual handlers <em>main</em> and <em>permalink</em>:</p>
+<div class="codehilite"><pre class="source"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">pages</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s">&#39;front_page.html&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">pages</span><span class="o">=</span><span class="n">pages</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">permalink</span><span class="p">(</span><span class="n">page</span><span class="p">):</span>
+    <span class="n">max_page</span> <span class="o">=</span> <span class="n">N</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s">&#39;page.html&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">max_page</span><span class="o">=</span><span class="n">max_page</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="n">page</span><span class="p">)</span>
+</code></pre></div>
+<p>As you can see, <em>permalink</em> accepts a parameter 'page' that corresponds to the variable in the URI it is associated with.</p>
+<p>In this code, we suppose we use some templating system (jinja2, in this case) and that the variable <em>env</em> is just some object set up earlier that helps us retrieve easily our templates. Here are the templates <em>front_page.html</em> and <em>page.html</em>:</p>
+<p>front_page.html</p>
+<div class="codehilite"><pre class="source"><code><span class="nt">&lt;p&gt;</span>This website contains the following pages:<span class="nt">&lt;/p&gt;</span>
+
+<span class="nt">&lt;ul&gt;</span>
+    {% for p in pages %}
+        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/page/{{ p }}&quot;</span><span class="nt">&gt;</span>Page {{ p }}<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+    {% endfor %}
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre></div>
+<p>page.html</p>
+<div class="codehilite"><pre class="source"><code><span class="nt">&lt;p&gt;</span>Hello, I&#39;m page {{ page }}.<span class="nt">&lt;/p&gt;</span>
+
+{% if page &gt; 0 %}
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/page/{{ page - 1 }}&quot;</span><span class="nt">&gt;</span>Previous page<span class="nt">&lt;/a&gt;</span> - 
+{% endif %}
+{% if page <span class="nt">&lt; max_page-1</span> <span class="err">%}</span>
+    <span class="err">&lt;</span><span class="na">a</span> <span class="na">href=</span><span class="s">&quot;/page/{{ page + 1 }}&quot;</span><span class="nt">&gt;</span>Next page<span class="nt">&lt;/a&gt;</span>
+{% endif %}
+</code></pre></div>
+<p>Now my script Dynastic works as the following: I put the Python handlers and the <em>routes</em> variable in a Python file called <em>get.py</em>, I go into the directory containing get.py and I call:</p>
+<pre class="terminal"><code>dynastic generate
+</code></pre>
+<p>And boom, the magic happens and Dynastic is generating the website:</p>
+<pre class="terminal"><code>getting combinations for route template: /
+Creating files for this route... 1 file created
+getting combinations for route template: /page/{page}
+Creating files for this route... 10 files created
+Done.
+</code></pre>
+<p>The tree view of the files created for N = 10 looks like this:</p>
+<pre class="terminal"><code>www
+  |- index.html
+  |
+  |- page
+      |- 0
+      |  |- index.html
+      |
+      |- 1
+      |  |- index.html
+      |
+      |- 2
+      |  |- index.html
+      |
+      |- 3
+      |  |- index.html
+      |
+      |- 4
+      |  |- index.html
+      |
+      |- 5
+      |  |- index.html
+      |
+      |- 6
+      |  |- index.html
+      |
+      |- 7
+      |  |- index.html
+      |
+      |- 8
+      |  |- index.html
+      |
+      |- 9
+         |- index.html
+</code></pre>
+<p>By default, the website is generated into a directory named 'www' but I can choose another one by setting the name in a variable named <em>directory</em> in get.py</p>
+<p>What happens at the generation is that for each URI in <em>routes</em>, Dynastic computes all the combinations of the values for the variables. For each one of these combinations, it calls the handler with the values as parameters and create a new file whose path is based on the URI formatted with the values. In this file it writes the content returned by the handler.</p>
+<p>I also integrated a very basic http server (i.e. I copy-pasted the code snippet on the SimpleHTTPServer documentation page) so that I can test the website on the local host just by calling</p>
+<pre class="terminal"><code>dynastic run
+</code></pre>
+<h2>Foobuzz</h2>
+<p>Dynastic is cool, but doesn't really account for a static website generator in the sense that I still had to write all the handlers, which is, in fact, the bulk of the work. I won't go in depth explaining how this blog is actually coded, but just briefly explain what choices I made to store and handle the data.</p>
+<p>I chose an hybrid way between:</p>
+<ul>
+<li>
+<p>An SQLite database which contains all the meta-data such as: article's title, date, category, author, etc</p>
+</li>
+<li>
+<p>Markdown files on disk for the articles' actual content</p>
+</li>
+</ul>
+<p>This way, fetching content is easy: I just have to do some SQL queries (using the standard sqlite3 module) and there is no text parsing nor walks through directories. Editing content is also easy: I just manually open the markdown file and write into it.</p>
+<p>The drawback is that I have to manage consistency between the data in the database and the data on the disk. That's why I wrote another script that manages operation such as the publication or deletion of a new article, the addition of a new category, etc, and that takes care of the cohesion.</p>
+<h2>Links</h2>
+<p>For the curious, this is the <a href="https://github.com/foobuzz/dynastic">repo in which you can find Dynastic</a> (a simple Python file). And to finish, here are the non standards Python module that I use to generate the blog:</p>
+<ul>
+<li>
+<p><a href="http://jinja.pocoo.org/docs/dev/">jinja2</a>, for templating</p>
+</li>
+<li>
+<p><a href="https://pypi.python.org/pypi/Markdown">markdown</a> to convert markdown to html</p>
+</li>
+<li>
+<p><a href="http://pygments.org/">pygments</a> for syntactic coloration of code</p>
+</li>
+</ul>
+	
+</article>
+
+<div id="comments">
+
+	<p class="post_comment">Something to say? Send your comment in an <a href="mailto:dprosium@gmail.com?Subject=foobuzz_comment" title="dprosium@gmail.com">email to the author</a> (dprosium@gmail.com). If you want it to be published, please specify so in your email. You can specify under what name you want your comment to be published and a link to your website.</p>
+
+	<h2>Comments</h2>
+
+	
+	
+		No comment yet.
+
+	
+
+</div>
+
+
+
+			</div>
+			
+			<aside>
+				<section id="recent">
+					<h1>Last articles</h1>
+
+					<ul>
+						
+							<li><a href="/dynastic">The First Article</a></li>
+						
+					</ul>
+				</section>
+				
+				<section id="categories">
+					<h1>Categories</h1>
+					
+					<ul>
+						
+							<li><a href="/cat/python">Python</a></li>
+						
+							<li><a href="/cat/meta">Meta</a></li>
+						
+					</ul>
+				</section>
+			</aside>
+		
+		</div>
+		
+		<footer>
+			This blog and its articles are licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International</a> license. This basically means that you can copy, share and remix the articles, provided that you give appropriate credit, indicate if changes were made, and that it is not for commercial use.
+		</footer>
+	
+	</div>
+	</body>
+
+</html>
