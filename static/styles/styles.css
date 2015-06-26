@@ -12,8 +12,35 @@ body{
 	margin-top:0;
 }
 
+@media (max-width:480px){
+
+	body{
+		margin:0;
+	}
+
+	#main_wrapper{
+		width:100%,;
+	}
+
+}
+
+@media (min-width:480px) and (max-width:900px){
+
+	#main_wrapper{
+		width: 98%;
+	}
+
+}
+
+@media (min-width:900px){
+
+	#main_wrapper{
+		width: 70%;
+	}
+
+}
+
 #main_wrapper{
-	width: 70%;
 	margin: auto;
 	box-shadow: 0 0 20px gray;
 }
@@ -21,38 +48,69 @@ body{
 
 /* HEADER */
 
+@media (max-width:480px){
+
+	header{
+		height:5%;
+		min-height: 50px;
+		padding-bottom: 10px;
+	}
+
+	header h1{
+		font-size: 1.5em;
+		text-align: center;
+	}
+
+	header p{
+		text-align: center;
+		margin-bottom: 0;
+	}
+
+}
+
+@media (min-width:480px){
+
+	header{
+		background: url('/static/clouds.svg') no-repeat;
+		background-position: bottom left;
+		height:19%;
+		min-height: 120px;
+	}
+
+	#head_text_wrapper{
+		position: absolute;
+		height: 100%;
+		right: 10%;
+	}
+
+	#head_text_bro{
+		display: inline-block;
+		height:55%;
+	}
+
+	#head_text{
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	header h1{
+		font-size: 3em;
+	}
+
+	header p{
+		text-shadow:1px 1px 1px white;
+		padding-left:10px;
+	}
+
+}
+
 header{
-	background: url('/static/clouds.svg') no-repeat;
-	background-position: bottom left;
-	height:19%;
-	min-height: 120px;
 	background-color: #779ecf;
 	position:relative;
 }
 
-#head_text_wrapper{
-	position: absolute;
-	height: 100%;
-	right: 10%;
-}
-
-#head_text_bro{
-	display: inline-block;
-	height:55%;
-}
-
-#head_text{
-	display: inline-block;
-	vertical-align: middle;
-}
-
-header img{
-	float:left;
-}
-
 header h1{
 	font-family: 'Open Sans', Arial, Sans Serif, sans serif;
-	font-size: 3em;
 	margin:0;
 }
 
@@ -66,24 +124,20 @@ header h1 a{
 }
 
 header p{
-	text-shadow:1px 1px 1px white;
 	font-family: Georgia, 'Times New Roman', sans serif;
 	font-style: italic;
 	margin-top:0;
-	padding-left:10px;
 }
 
 /* MENU */
 
 nav{
+	display: flex;
+	justify-content: space-between;
 	background: #E3E3E3;
 	text-shadow: 1px 1px 1px white;
 	border-bottom: 1px solid #989898;
-}
-
-#navigation, #networking{
-	display: inline-block;
-	width: 49.5%;
+	padding: 1%;
 }
 
 #navigation{
@@ -99,7 +153,6 @@ nav ul{
 	margin:0;
 	padding:0;
 	font-family:arial;
-	padding:1%;
 }
 
 nav ul li{
@@ -138,10 +191,17 @@ nav ul li a:hover{
 }
 
 
+@media (max-width:900px){
+
+	#main{
+		flex-direction: column;
+	}
+
+}
+
 /* CONTENT */
 
 #content{
-	width:77%;
 	background-color: white;
 	padding:3%;
 	padding-top: 1.5em;
@@ -149,8 +209,35 @@ nav ul li a:hover{
 	border-right:1px solid #D6D9D9;
 }
 
+@media (min-width: 480px){
+
+	.entete{
+		float: left;
+	}
+
+	.i18n{
+		float:right;
+	}
+
+}
+
+@media (max-width:900px){
+
+	#content{
+		width: 100%;
+	}
+
+}
+
+@media (min-width:900px){
+
+	#content{
+		width:77%;
+	}
+
+}
+
 .entete{
-	float:left;
 	font-family: Arial;
 	color: #676768;
 	font-size: 0.8em;
@@ -189,7 +276,6 @@ nav ul li a:hover{
 }
 
 .i18n{
-	float: right;
 	font-family: Arial, Sans Serif;
 	font-size: 0.8em;
 }	
@@ -248,12 +334,57 @@ nav ul li a:hover{
 /* SIDEBAR */
 
 aside{
-	/*display: inline-block;
-	vertical-align: top;*/
-	width: 23%;
 	padding-left: 2%;
 	padding-right: 2%;
 }
+
+
+@media (max-width:900px){
+
+	aside{
+		width: 100%;
+	}
+
+	aside section h1{
+		display: inline-block;
+		margin-top: 2px;
+	}
+
+	aside section ul{
+		display: inline-block;
+		margin-bottom: 0;
+	}
+
+	aside section ul li{
+		display: inline-block;
+		margin-left: 10px;
+	}
+
+	aside section ul li:before{
+		content:" | ";
+	}
+
+}
+
+@media (min-width:900px){
+
+	aside{
+		width:23%;
+	}
+
+	aside section h1{
+		border-bottom: 1px solid #D8D9D9;
+	}
+
+	aside section ul li{
+		border-bottom: 1px solid #D8D9D9;
+		border-top: 1px solid white;
+		padding-top: 7px;
+		padding-bottom: 7px;
+	}
+
+}
+
 
 aside section h1{
 	font-family: 'Open Sans', Arial, Sans Serif;
@@ -261,7 +392,6 @@ aside section h1{
 	text-shadow: 1px 1px 1px white;
 	margin-bottom:0;
 	padding-bottom: 5px;
-	border-bottom: 1px solid #D8D9D9;
 }
 
 aside section{
@@ -273,13 +403,6 @@ aside section ul{
 	padding-left:0;
 	margin-top:0;
 	font-size: 0.8em;
-}
-
-aside section ul li{
-	border-bottom: 1px solid #D8D9D9;
-	border-top: 1px solid white;
-	padding-top: 7px;
-	padding-bottom: 7px;
 }
 
 aside section ul li a{
