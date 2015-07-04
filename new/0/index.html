@@ -5,7 +5,7 @@
 		<meta charset="UTF-8"> 
 		<link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
 		<link rel="stylesheet" type="text/css" href="/static/styles/highlight.css">
-		<title>The First Article - Foobuzz</title>
+		<title>A full-backup program - Foobuzz</title>
 	</head>
 	
 	<body>
@@ -41,9 +41,9 @@
 
 <article>
 
-	<div class="entete">by Valentin, <span title="2015-06-04T12:33:00Z">June 04 2015</span>, in
+	<div class="entete">by Valentin, <span title="2015-07-04T17:44:57Z">July 04 2015</span>, in
 		
-		<a href="/cat/meta">Meta</a>, 
+		<a href="/cat/programming">Programming</a>, 
 		
 		<a href="/cat/python">Python</a>
 		
@@ -51,153 +51,153 @@
 
 	<div class="i18n">
 		
-		Lang: <img src="/static/gb.png" alt="english" title="english"> | <a href="/dynastic/fra" title="Read in French">Lire en français</a>
+		Lang: <img src="/static/gb.png" alt="english" title="english"> | <a href="/backup/fra" title="Read in French">Lire en français</a>
 		
 	</div>
 
-	<h1><a href="/dynastic">The First Article</a></h1>
+	<h1><a href="/backup">A full-backup program</a></h1>
 
-	<p>Welcome to my blog! You're reading its first article. I will mainly write about computer stuff and my programming projects, but I may talk about more general subjects as well when I feel like it. In this first article, I explain how my blog is built.</p>
-<p>As you probably noticed, it is hosted on <a href="https://pages.github.com/">GitHub Pages</a> and thus is entirely static. For those who don't know, when you create a repo on GitHub whose name is {your_username}.github.io, it creates a static website with this address, provided that there exists an index.html at the repo root.</p>
-<p>There exist many static website generator, that is, programs that with data (a bunch of text file containing the articles content, usually using some sort of formatting markup language like <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>) and templates, can generate the whole website in one go. The one that comes with GitHub Pages is named Jekyll and is written in Ruby. There are also many of them written in Python. But I decided that for my blog I would write an handmade script myself, in Python.</p>
-<h2>Dynastic</h2>
-<p>I named my script Dynastic (that sounds pretentious for such a simple thing). This name is a mix between <em>dynamic</em> and <em>static</em>. When coding a dynamic website, we generally define a list of URIs which we associate to handlers: functions or classes that somehow return the content (html) of the page that will be delivered at the given URI. Some parts of the URI are variable and the values of these variables are given as parameters to the URI's handler.</p>
-<p>This is this process I used for Dynastic. The only difference is that since it's not dynamic, we need to provide each variable of an URI with all the possible values for this variable.</p>
-<h3>Simple example</h3>
-<p>For example, let's imagine we want to generate a very simple website: it has N pages numbered from 0 to N-1. Page k displays the text "Hello, I'm page k", contains a link "Next page" which points to the page k+1 (if it exists) and a link "Previous page" which points to the page k-1 (if it exists). There also is a front page that displays a list of links to all N pages. The home page sits at the URI '/' while page k sits at the URI '/page/k'</p>
-<p>This is how we can define those URIs:</p>
-<div class="codehilite"><pre class="source"><code><span class="n">routes</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;/&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="p">{}),</span>
-    <span class="s">&#39;/page/{page}&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">permalink</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;page&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))})</span>
-    <span class="p">}</span>
-</code></pre></div>
-<p><em>routes</em> is a Python dictionary which associates an URI to a tuple of length 2 which contains the two following elements:</p>
-<ul>
-<li>
-<p>the first element is a function, the handler of the URI</p>
-</li>
-<li>
-<p>the second element is another Python dictionary which, for each variable of the URI, gives a list of values we want to generate the URI for. In this example, the variable 'page' (in curly braces in the URI) is associated to the list of integers from 0 to N-1. Note that this is Python 3, where <em>range</em> doesn't return a list, but an iterator, hence the need to call <em>list</em> to convert this iterator to a list. When there are no variable in the URI, the second element is the empty dictionary.</p>
-</li>
-</ul>
-<p>Here is the rest of the code, with the actual handlers <em>main</em> and <em>permalink</em>:</p>
-<div class="codehilite"><pre class="source"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">pages</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
-    <span class="n">template</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s">&#39;front_page.html&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">pages</span><span class="o">=</span><span class="n">pages</span><span class="p">)</span>
+	<p>I wrote a program to backup my files. I wanted it to do <a href="http://typesofbackup.com/full-backup/">full backups</a>, not incremental ones, and to take advantage of the previous backups that had been done. The idea is that you have a source directory that you want to replicate to a target directory so that after the backup, the two folders are identical. For example, my documents on my laptop and their copy on my external hard drive. The program should only overwrite files in the target that have been modified in the source since the last backup, so that it's way faster than simply copy - pasting the whole directory.</p>
+<p>Eventually I found that Windows has a robust built-in command to do this (<a href="https://en.wikipedia.org/wiki/Robocopy">robocopy</a>), but writing a program to do this myself was very instructive so I share in this article how I worked that one out.</p>
+<h2>Basic algorithm</h2>
+<p>Here is the first algorithm I came with to solve the problem, in pseudo-code:</p>
+<pre class="terminal"><code>function backup(source, target):
+  for each filename in source:
+    loc_path_file = join(source, filename)
+    ext_path_file = join(target, filename)
+    if loc_path_file.isfile():
+      if not exists(ext_path_file):
+        copy(loc_path_file, ext_path_file)
+      else:
+        same = compare_files(loc_path_file, ext_path_file)
+        if not same:
+          overwrite(loc_path_file, ext_path_file)
+    else if loc_path_file.isdirectory():
+      if not exists(ext_path_file):
+        mkdir(ext_path_file)
+      backup(loc_path_file, ext_path_file)
 
-<span class="k">def</span> <span class="nf">permalink</span><span class="p">(</span><span class="n">page</span><span class="p">):</span>
-    <span class="n">max_page</span> <span class="o">=</span> <span class="n">N</span>
-    <span class="n">template</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s">&#39;page.html&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">max_page</span><span class="o">=</span><span class="n">max_page</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="n">page</span><span class="p">)</span>
-</code></pre></div>
-<p>As you can see, <em>permalink</em> accepts a parameter 'page' that corresponds to the variable in the URI it is associated with.</p>
-<p>In this code, we suppose we use some templating system (jinja2, in this case) and that the variable <em>env</em> is just some object set up earlier that helps us retrieve easily our templates. Here are the templates <em>front_page.html</em> and <em>page.html</em>:</p>
-<p>front_page.html</p>
-<div class="codehilite"><pre class="source"><code><span class="nt">&lt;p&gt;</span>This website contains the following pages:<span class="nt">&lt;/p&gt;</span>
+    for each filename in target but not in source:
+      delete(join(target, filename))
+</code></pre>
+<h2>Comparing files</h2>
+<p>I wrote the actual code in Python. To compare two files, I used the standard filecmp module. It has the function <em>cmp</em> which returns a boolean indicating if two files are identical. By default, this function performs a shallow comparison; it uses the files' metadata to tell if they're probably the same. The documentation is quite brief and I wanted to know what was going on exactly so I looked at the source code and this is how it works:</p>
+<p>When required to compare two files, cmp looks at the type (identified by an integer), the size (the number of bytes) and the date of last modification (with a precision of the second) for both files. If those three things are equals then it returns True. Otherwise, if the sizes differ, it return False. Otherwise, it compares the actual content of the two files. In non-shallow mode, the step comparing the triplets (type, size, last modification) is skipped.</p>
+<p>Note that by construction of my program, there is another metadata that must be the same for two files for them to be considered identical: <em>their path</em> (relative to their root source or target directory), including their filename. Indeed, from the begining I only compare files that have the same path. So a shallow comparison is ample. I can hardly imagine two files being different while having the same path, the same type, the same size and the same <acronym title="Date of Last Modification">DLM</acronym>. And clearly the most important metadata in there are the path and the DLM. The only way to mess up would be to alter one of the file less than one second after their common instant of last modification (one second being the granularity we're playing with); and that's not gonna happen since I'm not going the do something with my files while backuping them.</p>
+<p>I still had to make this common date of last modification happen. Indeed, imagine I do a backup at instant T. All the files in the source directory have been last modified at "T minus something". When new files are copied to the target directory, their DLM (in this case, their date of creation) is set to ~T. When performing the next backup, all files in target will hence have a DLM of ~T. And yet, the non-modified-since-last-backup files in the source (the ones that should help us speed up things) will still have a DLM of "T minus something". This is different than ~T, so the shallow comparison fails.</p>
+<p>Since the backup should not alter in any way the files in the source, the only solution was to alter the DLM of the copied files and set it to the ones from the source files ("T minus something"). It is quite logic when you think about it: you copy the file <em>and</em> its metadata. In Python, we can do this using the utime function from the os module.</p>
+<p>This is how you make files travel in space and time.</p>
+<h2>Renaming directories</h2>
+<p>Now imagine this situation: you have done a backup recently. In the source directory, there is this big directory, whose backup copy is up to date, and which is named "Blablabla [2015] - Complete ~foo". You don't like that name so you rename it "blablabla_2015_complete_foo", but you don't touch a single file in it. At its current state, when queried with a backup, the algorithm will search in the target for "blablabla_2015_complete_foo", don't find it, create a brand new directory with this name and copy every files in it. Then, when cleaning up, it will remove "Blablabla [2015] - Complete ~foo". That's a waste. If it was smart, the algorithm would just have renamed "Blablabla [2015] - Complete ~foo" with "blablabla_2015_complete_foo" and called it a day.</p>
+<p>I came with the following solution:</p>
+<p>When we have to backup a dir "dir1" which isn't found in the target, we look for dirs which exist in the target but not in the source (the ones that should be removed at clean-up) and assign them a score based on how much they look like "dir1". If we find directories whose score is higher than some threshold, then we take the one with the greatest score and we rename it with "dir1". If there is no directory in the target which doesn't exist in the source, or if no directory scores above the threshold, we fall back to creating a brand new directory in the target. In any of these two situations, we have a target directory to launch the recursive call on.</p>
+<p>So, I have to explain how is computed this look-alike score. I chose to base it on two parameters: the ratio of similarity between the name of the two directories and the ratio of similarity between the number of files in each one of the directories. The latter is basic arithmetic. The former can be obtained in Python with a SequenceMatcher object instance on which we call the ratio method. I don't studied how this SequenceMatcher magic works, but did some basic tests and was quite satisfied.</p>
+<pre class="terminal"><code>&gt;&gt;&gt; from difflib import SequenceMatcher
+&gt;&gt;&gt; def similar(a, b):
+    """ Returns a ratio indicating the similarity between two strings. """
+    return SequenceMatcher(None, a, b).ratio()
 
-<span class="nt">&lt;ul&gt;</span>
-    {% for p in pages %}
-        <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/page/{{ p }}&quot;</span><span class="nt">&gt;</span>Page {{ p }}<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-    {% endfor %}
-<span class="nt">&lt;/ul&gt;</span>
-</code></pre></div>
-<p>page.html</p>
-<div class="codehilite"><pre class="source"><code><span class="nt">&lt;p&gt;</span>Hello, I&#39;m page {{ page }}.<span class="nt">&lt;/p&gt;</span>
+&gt;&gt;&gt; similar('Blablabla [2015] - Complete ~foo', 'blablabla_2015_complete_foo')
+0.7457627118644068
+&gt;&gt;&gt; similar('Blablabla [2015] - Complete ~foo', 'Really nothing [2011] - In common ~bar')
+0.42857142857142855
+&gt;&gt;&gt; similar('truck', 'Truck')
+0.8
+&gt;&gt;&gt; similar('truck', 'truck')
+1.0
+&gt;&gt;&gt; similar('azertyuiopqsdfghjklmwxcvbn', 'abcdefghijklmnopqrstuvwxyz')
+0.4230769230769231
+&gt;&gt;&gt; similar('some string', 'some other string')
+0.7857142857142857
+&gt;&gt;&gt; similar('coolcoolcool', 'nopenopenope')
+0.25
+</code></pre>
+<p>There is no risk renaming directories because in the worst case the one we're renaming was just not so quite the same than the one we're copiing and the program will take care of deleting useless files in it as well as copiing the right files. It's just that instead of creating a brand new directory we rename a trash one and do our business in it.</p>
+<p>We can't do the same thing with files, because we would have to be sure that the file we're renaming is identical to the one we wanna copy, which would require to compare them, and for real this time, since they wouldn't have the same path. This would take too much time for the few times it would useful. To be honnest I don't really know if it's worth it even for directories (there is a little overhead associated with computing the look-alike score)</p>
+<h2>Final Python program</h2>
+<div class="codehilite"><pre class="source"><code><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">filecmp</span><span class="o">,</span> <span class="nn">stat</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="kn">as</span> <span class="nn">op</span>
+<span class="kn">from</span> <span class="nn">difflib</span> <span class="kn">import</span> <span class="n">SequenceMatcher</span>
 
-{% if page &gt; 0 %}
-    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/page/{{ page - 1 }}&quot;</span><span class="nt">&gt;</span>Previous page<span class="nt">&lt;/a&gt;</span> - 
-{% endif %}
-{% if page <span class="nt">&lt; max_page-1</span> <span class="err">%}</span>
-    <span class="err">&lt;</span><span class="na">a</span> <span class="na">href=</span><span class="s">&quot;/page/{{ page + 1 }}&quot;</span><span class="nt">&gt;</span>Next page<span class="nt">&lt;/a&gt;</span>
-{% endif %}
+
+<span class="n">THRESHOLD</span> <span class="o">=</span> <span class="mi">6</span>
+
+
+<span class="k">def</span> <span class="nf">similar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">SequenceMatcher</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">ratio</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">look_alike</span><span class="p">(</span><span class="n">dir1</span><span class="p">,</span> <span class="n">dir2</span><span class="p">):</span>
+    <span class="n">name1</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">dir1</span><span class="p">))</span>
+    <span class="n">name2</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">dir2</span><span class="p">))</span>
+    <span class="n">sim_names</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">name1</span><span class="p">,</span> <span class="n">name2</span><span class="p">)</span>
+    <span class="n">nb_file1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dir1</span><span class="p">))</span>
+    <span class="n">nb_file2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dir2</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">sim_nbfiles</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">nb_file2</span> <span class="o">-</span> <span class="n">nb_file1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nb_file2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+        <span class="n">sim_nbfiles</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">nb_file1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.1</span>
+    <span class="k">return</span> <span class="n">sim_names</span> <span class="o">/</span> <span class="n">sim_nbfiles</span>
+
+
+<span class="k">def</span> <span class="nf">synchronize_timestamps</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">source_stats</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="n">times</span> <span class="o">=</span> <span class="n">source_stats</span><span class="o">.</span><span class="n">st_atime</span><span class="p">,</span> <span class="n">source_stats</span><span class="o">.</span><span class="n">st_mtime</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">utime</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">times</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">backup</span><span class="p">(</span><span class="n">loc_path</span><span class="p">,</span> <span class="n">ext_path</span><span class="p">):</span>
+    <span class="n">all_loc_files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">loc_path</span><span class="p">)</span>
+    <span class="n">todel</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ext_path</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">ext_path</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">all_loc_files</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">all_loc_files</span><span class="p">:</span>
+        <span class="n">loc_path_file</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">loc_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="n">ext_path_file</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ext_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">op</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ext_path_file</span><span class="p">):</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">filecmp</span><span class="o">.</span><span class="n">cmp</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">):</span>
+                    <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">)</span>
+            <span class="n">synchronize_timestamps</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">op</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">op</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ext_path_file</span><span class="p">):</span>
+                <span class="n">best</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">todel</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+                        <span class="n">score</span> <span class="o">=</span> <span class="n">look_alike</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">THRESHOLD</span> <span class="ow">and</span> <span class="p">(</span><span class="n">best</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">best</span><span class="p">):</span>
+                            <span class="n">best</span> <span class="o">=</span> <span class="n">fname</span>
+                <span class="k">if</span> <span class="n">best</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">renames</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">)</span>
+                    <span class="n">todel</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">ext_path_file</span><span class="p">)</span>
+            <span class="n">backup</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">todel</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">op</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </code></pre></div>
-<p>Now my script Dynastic works as the following: I put the Python handlers and the <em>routes</em> variable in a Python file called <em>get.py</em>, I go into the directory containing get.py and I call:</p>
-<pre class="terminal"><code>dynastic generate
-</code></pre>
-<p>And boom, the magic happens and Dynastic is generating the website:</p>
-<pre class="terminal"><code>getting combinations for route template: /
-Creating files for this route... 1 file created
-getting combinations for route template: /page/{page}
-Creating files for this route... 10 files created
-Done.
-</code></pre>
-<p>The tree view of the files created for N = 10 looks like this:</p>
-<pre class="terminal"><code>www
-  |- index.html
-  |
-  |- page
-      |- 0
-      |  |- index.html
-      |
-      |- 1
-      |  |- index.html
-      |
-      |- 2
-      |  |- index.html
-      |
-      |- 3
-      |  |- index.html
-      |
-      |- 4
-      |  |- index.html
-      |
-      |- 5
-      |  |- index.html
-      |
-      |- 6
-      |  |- index.html
-      |
-      |- 7
-      |  |- index.html
-      |
-      |- 8
-      |  |- index.html
-      |
-      |- 9
-         |- index.html
-</code></pre>
-<p>By default, the website is generated into a directory named 'www' but I can choose another one by setting the name in a variable named <em>directory</em> in get.py</p>
-<p>What happens at the generation is that for each URI in <em>routes</em>, Dynastic computes all the combinations of the values for the variables. For each one of these combinations, it calls the handler with the values as parameters and create a new file whose path is based on the URI formatted with the values. In this file it writes the content returned by the handler.</p>
-<p>I also integrated a very basic http server (i.e. I copy-pasted the code snippet on the SimpleHTTPServer documentation page) so that I can test the website on the local host just by calling</p>
-<pre class="terminal"><code>dynastic run
-</code></pre>
-<h2>Foobuzz</h2>
-<p>Dynastic is cool, but doesn't really account for a static website generator in the sense that I still had to write all the handlers, which is, in fact, the bulk of the work. I won't go in depth explaining how this blog is actually coded, but just briefly explain what choices I made to store and handle the data.</p>
-<p>I chose an hybrid way between:</p>
-<ul>
-<li>
-<p>An SQLite database which contains all the meta-data such as: article's title, date, category, author, etc</p>
-</li>
-<li>
-<p>Markdown files on disk for the articles' actual content</p>
-</li>
-</ul>
-<p>This way, fetching content is easy: I just have to do some SQL queries (using the standard sqlite3 module) and there is no text parsing nor walks through directories. Editing content is also easy: I just manually open the markdown file and write into it.</p>
-<p>The drawback is that I have to manage consistency between the data in the database and the data on the disk. That's why I wrote another script that manages operation such as the publication or deletion of a new article, the addition of a new category, etc, and that takes care of the cohesion.</p>
-<h2>Links</h2>
-<p>For the curious, this is the <a href="https://github.com/foobuzz/dynastic">repo in which you can find Dynastic</a> (a simple Python file). And to finish, here are the non standards Python module that I use to generate the blog:</p>
-<ul>
-<li>
-<p><a href="http://jinja.pocoo.org/docs/dev/">jinja2</a>, for templating</p>
-</li>
-<li>
-<p><a href="https://pypi.python.org/pypi/Markdown">markdown</a> to convert markdown to html</p>
-</li>
-<li>
-<p><a href="http://pygments.org/">pygments</a> for syntactic coloration of code</p>
-</li>
-</ul>
+<h2>Results</h2>
+<p>I tested my program by backuping my music library on an external hard drive connected with USB. It's a 12.5 GB tree containing a total of 136 directories and 1947 files. I performed successive backups without modifying the source between each. The time taken by the program is only the time it needs to <em>compare</em> the source with the target. In real world instances, we should add to that the time to actually copy the new files or the ones updated in the source.</p>
+<p>The first backup, which was basically a raw copy since no previous backup was available, took <strong>17 minutes and 16 seconds</strong>. That's a little more than a vanilla Windows copy which took 16 minutes and 10 seconds.</p>
+<p>I made a second backup with the last modified timestamps non-synchronized. It took <strong>12 minutes and 4 seconds</strong>. There is a little gain comparing files instead of copiing them. But that still takes time because the files need to be opened and their data compared bytes after bytes.</p>
+<p>The third backup was made with the timestamps synchronized, which allow the shallow comparison to succeed. It took <strong>2.68 seconds</strong>.</p>
+<p>It is a lower performance than robocopy (less than one second), but still pretty good for a little artisanal script.</p>
 	
 </article>
 
 <div id="nb_comments">
-	<a href="/dynastic#comments">0 comment</a>
+	<a href="/backup#comments">0 comment</a>
 </div>
 
 <div id="front_nav">
 	
 	
-	
+	<a href="/new/1">Previous</a>
 </div>
 
 
@@ -209,6 +209,8 @@ Done.
 					<h1>Last articles</h1>
 
 					<ul>
+						
+							<li><a href="/backup">A full-backup program</a></li>
 						
 							<li><a href="/dynastic">The First Article</a></li>
 						
@@ -223,6 +225,8 @@ Done.
 							<li><a href="/cat/python">Python</a></li>
 						
 							<li><a href="/cat/meta">Meta</a></li>
+						
+							<li><a href="/cat/programming">Programming</a></li>
 						
 					</ul>
 				</section>

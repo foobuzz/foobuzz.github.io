@@ -5,7 +5,7 @@
 		<meta charset="UTF-8"> 
 		<link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
 		<link rel="stylesheet" type="text/css" href="/static/styles/highlight.css">
-		<title>A full-backup program - Foobuzz</title>
+		<title>Un programme de sauvegarde - Foobuzz</title>
 	</head>
 	
 	<body>
@@ -51,16 +51,16 @@
 
 	<div class="i18n">
 		
-		Lang: <img src="/static/gb.png" alt="english" title="english"> | <a href="/backup/fra" title="Read in French">Lire en français</a>
+		Langue : <img src="/static/fr.png" alt="français" title="français"> | <a href="/backup" title="Lire en anglais">Read in English</a>
 		
 	</div>
 
-	<h1><a href="/backup">A full-backup program</a></h1>
+	<h1><a href="/backup">Un programme de sauvegarde</a></h1>
 
-	<p>I wrote a program to backup my files. I wanted it to do <a href="http://typesofbackup.com/full-backup/">full backups</a>, not incremental ones, and to take advantage of the previous backups that had been done. The idea is that you have a source directory that you want to replicate to a target directory so that after the backup, the two folders are identical. For example, my documents on my laptop and their copy on my external hard drive. The program should only overwrite files in the target that have been modified in the source since the last backup, so that it's way faster than simply copy - pasting the whole directory.</p>
-<p>Eventually I found that Windows has a robust built-in command to do this (<a href="https://en.wikipedia.org/wiki/Robocopy">robocopy</a>), but writing a program to do this myself was very instructive so I share in this article how I worked that one out.</p>
-<h2>Basic algorithm</h2>
-<p>Here is the first algorithm I came with to solve the problem, in pseudo-code:</p>
+	<p>J'ai écris un programme pour créer une sauvegarde de mes fichiers. Je voulais qu'il fasse des sauvegardes <a href="http://typesofbackup.com/full-backup/">totales</a>, non incrémentales, et qu'il utilise à son avantage les anciennes sauvegardes déjà faites. L'idée est que vous avez un dossier source que vous voulez copier vers un dossier cible de manière à ce qu'après la sauvegarde, les deux dossiers soient identiques. Par exemple, mes documents sur mon ordinateur portable et leur copie sur mon disque dur externe. Le programme devrait écraser les fichiers déjà présents dans la cible uniquement s'ils ont été modifiés dans la source depuis la dernière sauvegarde, de manière à ce que le processus soit plus rapide que simplement copier - coller le dossier en entier.</p>
+<p>Finalement j'ai découvert que Windows a un programme robuste en ligne de commande pour faire ceci (<a href="https://fr.wikipedia.org/wiki/Robocopy">robocopy</a>), mais écrire un programme pour le faire moi-même a été très instructif, du coup j'explique dans cet article comment je m'en suis sorti pour ce problème.</p>
+<h2>Algorithme de base</h2>
+<p>Voici le premier algorithme auquel j'ai pensé pour ce problème, en pseudo-code :</p>
 <pre class="terminal"><code>function backup(source, target):
   for each filename in source:
     loc_path_file = join(source, filename)
@@ -80,18 +80,18 @@
     for each filename in target but not in source:
       delete(join(target, filename))
 </code></pre>
-<h2>Comparing files</h2>
-<p>I wrote the actual code in Python. To compare two files, I used the standard filecmp module. It has the function <em>cmp</em> which returns a boolean indicating if two files are identical. By default, this function performs a shallow comparison; it uses the files' metadata to tell if they're probably the same. The documentation is quite brief and I wanted to know what was going on exactly so I looked at the source code and this is how it works:</p>
-<p>When required to compare two files, cmp looks at the type (identified by an integer), the size (the number of bytes) and the date of last modification (with a precision of the second) for both files. If those three things are equals then it returns True. Otherwise, if the sizes differ, it return False. Otherwise, it compares the actual content of the two files. In non-shallow mode, the step comparing the triplets (type, size, last modification) is skipped.</p>
-<p>Note that by construction of my program, there is another metadata that must be the same for two files for them to be considered identical: <em>their path</em> (relative to their root source or target directory), including their filename. Indeed, from the begining I only compare files that have the same path. So a shallow comparison is ample. I can hardly imagine two files being different while having the same path, the same type, the same size and the same <acronym title="Date of Last Modification">DLM</acronym>. And clearly the most important metadata in there are the path and the DLM. The only way to mess up would be to alter one of the file less than one second after their common instant of last modification (one second being the granularity we're playing with); and that's not gonna happen since I'm not going the do something with my files while backuping them.</p>
-<p>I still had to make this common date of last modification happen. Indeed, imagine I do a backup at instant T. All the files in the source directory have been last modified at "T minus something". When new files are copied to the target directory, their DLM (in this case, their date of creation) is set to ~T. When performing the next backup, all files in target will hence have a DLM of ~T. And yet, the non-modified-since-last-backup files in the source (the ones that should help us speed up things) will still have a DLM of "T minus something". This is different than ~T, so the shallow comparison fails.</p>
-<p>Since the backup should not alter in any way the files in the source, the only solution was to alter the DLM of the copied files and set it to the ones from the source files ("T minus something"). It is quite logic when you think about it: you copy the file <em>and</em> its metadata. In Python, we can do this using the utime function from the os module.</p>
-<p>This is how you make files travel in space and time.</p>
-<h2>Renaming directories</h2>
-<p>Now imagine this situation: you have done a backup recently. In the source directory, there is this big directory, whose backup copy is up to date, and which is named "Blablabla [2015] - Complete ~foo". You don't like that name so you rename it "blablabla_2015_complete_foo", but you don't touch a single file in it. At its current state, when queried with a backup, the algorithm will search in the target for "blablabla_2015_complete_foo", don't find it, create a brand new directory with this name and copy every files in it. Then, when cleaning up, it will remove "Blablabla [2015] - Complete ~foo". That's a waste. If it was smart, the algorithm would just have renamed "Blablabla [2015] - Complete ~foo" with "blablabla_2015_complete_foo" and called it a day.</p>
-<p>I came with the following solution:</p>
-<p>When we have to backup a dir "dir1" which isn't found in the target, we look for dirs which exist in the target but not in the source (the ones that should be removed at clean-up) and assign them a score based on how much they look like "dir1". If we find directories whose score is higher than some threshold, then we take the one with the greatest score and we rename it with "dir1". If there is no directory in the target which doesn't exist in the source, or if no directory scores above the threshold, we fall back to creating a brand new directory in the target. In any of these two situations, we have a target directory to launch the recursive call on.</p>
-<p>So, I have to explain how is computed this look-alike score. I chose to base it on two parameters: the ratio of similarity between the name of the two directories and the ratio of similarity between the number of files in each one of the directories. The latter is basic arithmetic. The former can be obtained in Python with a SequenceMatcher object instance on which we call the ratio method. I don't studied how this SequenceMatcher magic works, but did some basic tests and was quite satisfied.</p>
+<h2>Comparer les fichiers</h2>
+<p>J'ai écris le code réel en Python. Pour comparer deux fichiers, j'ai utilisé le module standard filecmp. Il possède la fonction <em>cmp</em> qui retourne un booléen indiquant si deux fichiers sont identiques. Par défaut, cette fonction effectue une comparaison superficielle ; elle utilise les méta-données des fichiers pour dire s'ils sont probablement pareil. La documentation était un peu trop brève à mon goût et je voulais savoir comment ça marchait exactement, alors j'ai regardé le code source et voilà comment ça marche :</p>
+<p>Quand il doit comparer deux fichiers, cmp regarde le type (identifié par un entier), la taille (le nombre d'octets) et la date de dernière modification (et qui a une précision de la seconde) pour les deux fichiers. Si ces trois choses sont égales, alors il retourne True. Sinon, si les tailles diffèrents, alors il retourne False. Sinon, il ouvre les deux fichiers et compare leur contenu. En mode non-superficiel, la fonction saute l'étape de comparaison des triplets (type, taille, date de dernière modification).</p>
+<p>Notez que par construction de mon programme, il y a une autre méta-donnée qui doit être la même pour les deux fichiers pour qu'ils soient considérés comme identiques : <em>leur chemin</em> (relatif à la racine source ou cible), ce qui inclue le nom du fichier. En effet, depuis le début on compare uniquement des fichiers qui ont le même chemin. Du coup, une comparaison superficielle est largement suffisante. J'imagine difficilement deux fichiers ayant des différences alors qu'ils ont le même chemin, le même type, la même taille et la même <acronym title="Date de Dernière Modification">DDM</acronym>. Et clairement les deux méta-données les plus importantes là-dedans sont le chemin et la DDM. La seule possibilité serait de modifier un des fichiers moins d'une seconde après leur instant commun de dernière modification (car on jour avec une granularité de la seconde) ; et ceci ne va pas arriver car je ne compte pas modifier mes fichiers pendant que j'en fais leur sauvegarde.</p>
+<p>Il fallait toujours que je fasse en sorte que cet instant commun de dernière modification arrive. En effet, imaginez que je fais une sauvegarde à l'instant T. Tous les fichiers dans la source ont une DDM de "T moins quelque chose". Quand de nouveaux fichiers sont copiés de la source à la cible, leur DDM dans la cible (dans ce cas, leur date de création) est fixée à ~T. Lors de la prochaine sauvegarde, tous ces fichiers dans la cible auront donc une DDM de ~T. Et pourtant, leur équivalent dans la source qui n'auront pas été modifiés depuis la dernière sauvegarde auront toujours une DDM de "T moins quelque chose". C'est différent de ~T donc la comparaison superficielle échoue.</p>
+<p>Étant donné que la sauvegarde ne doit pas altérer les fichier de la source, la seule solution est de modifier la DDM des fichiers copés et de la remplacer par celle des fichiers originaux. C'est logique quand on y pense : on copie les fichiers et leurs métadonnées. en Python, on fait ça avec la fonction utime du module os.</p>
+<p>C'est ainsi qu'on fait voyager des fichiers dans l'espace, et dans le temps.</p>
+<h2>Renommer des dossiers</h2>
+<p>Maintenant imaginez cette situation : vous avez fait une sauvegarde récemment. Dans le dossier source, il y a ce gros dossier, à jour dans la sauvegarde, et qui s'appelle "Blablabla [2015] - Complete ~foo". Vous n'aimez pas ce nom et renommez ce dossier "blablabla_2015_complete_foo", mais vous ne changez absolument rien à son contenu. Dans son état actuel, quand on lui demande de faire un backup, l'algorithme va chercher dans la cible un dossier nommé "blablabla_2015_complete_foo", il ne va pas le trouver, il va donc en créer un tout nouveau avec ce nom et copier les fichiers dedans. À la fin, lorsqu'il fera le ménage, il supprimera le dossier "Blablabla [2015] - Complete ~foo". C'est une perte de temps. Si le programme était plus intelligent, il renommerait "Blablabla [2015] - Complete ~foo" with "blablabla_2015_complete_foo" et aurait fini.</p>
+<p>J'ai pensé à la solution suivante :</p>
+<p>Quand on doit sauvegarder un dossier "dos1" qui n'existe pas dans la cible, on cherche parmi les dossiers qui existent dans la cible, mais pas dans le source (ceux qu'on devrait supprimer à la fin) et on leur assigne un score basé sur leur ressemblance avec le dossier "dos1". Si on trouve des dossiers dont le score de ressemblance est au-dessus d'un certain seuil, alors on prend celui avec le meilleur score et on le renomme avec le nom du dossier qu'on veut copier. S'il n'y a pas de dossier dans la cible qui n'existe pas dans la source, ou si aucun dossier n'a un score au-dessus du seuil, on en crée un tout nouveau dans la cible. Dans ces deux situations, on a un dossier sous la main pour lancer l'appel récursif.</p>
+<p>Il faut que j'explique comment est calculé ce fameux score "de ressemblance". J'ai choisi de le baser sur deux paramètres : le ratio de similarité entre le nom des deux dossiers, et le ratio de similarité entre le nombre de fichiers dans les deux dossiers. Ce dernier est de l'arithmétique basique. Le premier peut être obtenu en Python avec une instance de l'objet SequenceMatcher sur laquelle on appelle la méthode ratio. Je n'ai pas étudié comment marchait cette classe magique, mais j'ai fait quelques tests et suis plutôt satisfait :</p>
 <pre class="terminal"><code>&gt;&gt;&gt; from difflib import SequenceMatcher
 &gt;&gt;&gt; def similar(a, b):
     """ Returns a ratio indicating the similarity between two strings. """
@@ -112,9 +112,9 @@
 &gt;&gt;&gt; similar('coolcoolcool', 'nopenopenope')
 0.25
 </code></pre>
-<p>There is no risk renaming directories because in the worst case the one we're renaming was just not so quite the same than the one we're copiing and the program will take care of deleting useless files in it as well as copiing the right files. It's just that instead of creating a brand new directory we rename a trash one and do our business in it.</p>
-<p>We can't do the same thing with files, because we would have to be sure that the file we're renaming is identical to the one we wanna copy, which would require to compare them, and for real this time, since they wouldn't have the same path. This would take too much time for the few times it would useful. To be honnest I don't really know if it's worth it even for directories (there is a little overhead associated with computing the look-alike score)</p>
-<h2>Final Python program</h2>
+<p>Il n'y a pas de risque à renommer des dossiers car dans le pire des cas le dossier qu'on renomme n'a en fait rien à voir avec le dossier source et le programme s'occupera alors de copier et de supprimer les bons fichiers. C'est juste qu'au lieu de créer un nouveau dossier on renomme un qui allait être supprimé et qu'on utilise celui-ci pour la copie.</p>
+<p>On ne peut pas faire la même chose avec les fichiers, car il faudrait être sûr que le fichier qu'on renomme est le même que celui qu'on veut copier, ce qui nécessiterait de les comparer, et pour de vrai cette fois étant donné qu'ils n'auraient plus leur chemin identique. Cela prendrait beaucoup trop de temps pour les quelques cas où ça servirait à quelque chose. Pour être honnête je ne sais pas si ça vaut le coup même pour les dossier (il y a un peu de complexité dans le calcul du score de ressemblance).</p>
+<h2>Le programme final en Python</h2>
 <div class="codehilite"><pre class="source"><code><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">filecmp</span><span class="o">,</span> <span class="nn">stat</span>
 <span class="kn">import</span> <span class="nn">os.path</span> <span class="kn">as</span> <span class="nn">op</span>
 <span class="kn">from</span> <span class="nn">difflib</span> <span class="kn">import</span> <span class="n">SequenceMatcher</span>
@@ -181,23 +181,27 @@
         <span class="k">elif</span> <span class="n">op</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </code></pre></div>
-<h2>Results</h2>
-<p>I tested my program by backuping my music library on an external hard drive connected with USB. It's a 12.5 GB tree containing a total of 136 directories and 1947 files. I performed successive backups without modifying the source between each. The time taken by the program is only the time it needs to <em>compare</em> the source with the target. In real world instances, we should add to that the time to actually copy the new files or the ones updated in the source.</p>
-<p>The first backup, which was basically a raw copy since no previous backup was available, took <strong>17 minutes and 16 seconds</strong>. That's a little more than a vanilla Windows copy which took 16 minutes and 10 seconds.</p>
-<p>I made a second backup with the last modified timestamps non-synchronized. It took <strong>12 minutes and 4 seconds</strong>. There is a little gain comparing files instead of copiing them. But that still takes time because the files need to be opened and their data compared bytes after bytes.</p>
-<p>The third backup was made with the timestamps synchronized, which allow the shallow comparison to succeed. It took <strong>2.68 seconds</strong>.</p>
-<p>It is a lower performance than robocopy (less than one second), but still pretty good for a little artisanal script.</p>
+<h2>Résultats</h2>
+<p>J'ai testé mon programme en faisant une sauvegarde de ma librairie musciale sur mon disque dur externe connecté via USB. C'est un dossier de 12,5 Go contenant un total de 136 dossiers et 1947 fichiers. J'ai effectué plusieurs sauvegardes successives sans modifier la source entre chaque. Le temps pris par le programme est donc uniquement constitué du temps pris pour <em>comparer</em> la source à la cible. Dans des exemples réels, il faudrait bien sûr ajouter à ça le temps de copie des fichiers nouveaux ou bien mis à jour dans la source.</p>
+<p>La première sauvegarde, qui était en fait une pure copie étant donné que c'était la toute première sauvegarde, a pris <strong>17 minutes et 16 secondes</strong>. C'est un peu plus qu'une simple copie faite par Windows, qui a pris 16 minutes et 10 seconds.</p>
+<p>J'ai fait une seconde sauvegarde avec les DDM non synchronisées. Cela a pris <strong>12 minutes et 4 secondes</strong>. Il y a un petit gain quand on compare les fichiers plutôt que de les copier, mais cela prend toujours beaucoup de temps car les fichiers doivent être ouvert et lus en entier pour la comparaison.</p>
+<p>La troisième sauvegarde a été faite avec les DDM synchronisées, ce qui permet à la comparaison superficielle de réussir. Cela a pris <strong>2,68 secondes</strong>.</p>
+<p>C'est une performance moindre que robocopy (moins d'une seconde), mais plutôt pas mal pour un petit truc artisanal.</p>
 	
 </article>
 
-<div id="nb_comments">
-	<a href="/backup#comments">0 comment</a>
-</div>
+<div id="comments">
 
-<div id="front_nav">
+	<p class="post_comment">Something to say? Send your comment in an <a href="mailto:dprosium@gmail.com?Subject=foobuzz_comment" title="dprosium@gmail.com">email to the author</a> (dprosium@gmail.com). If you want it to be published, please specify so in your email. You can specify under what name you want your comment to be published and a link to your website.</p>
+
+	<h2>Comments</h2>
+
 	
 	
-	<a href="/new/1">Previous</a>
+		No comment yet.
+
+	
+
 </div>
 
 
