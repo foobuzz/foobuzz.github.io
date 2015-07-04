@@ -288,6 +288,10 @@ nav ul li a:hover{
 	text-decoration: underline;
 }
 
+acronym{
+	cursor: help;
+}
+
 
 /* FRONT PAGE FOOTER */
 
