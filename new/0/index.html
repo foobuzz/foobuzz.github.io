@@ -113,7 +113,7 @@
 0.25
 </code></pre>
 <p>There is no risk renaming directories because in the worst case the one we're renaming was just not so quite the same than the one we're copiing and the program will take care of deleting useless files in it as well as copiing the right files. It's just that instead of creating a brand new directory we rename a trash one and do our business in it.</p>
-<p>We can't do the same thing with files, because we would have to be sure that the file we're renaming is identical to the one we wanna copy, which would require to compare them, and for real this time, since they wouldn't have the same path. This would take too much time for the few times it would useful. To be honnest I don't really know if it's worth it even for directories (there is a little overhead associated with computing the look-alike score)</p>
+<p>We can't do the same thing with files, because we would have to be sure that the file we're renaming is identical to the one we wanna copy, which would require to compare them, and for real this time, since they wouldn't have the same path. This would take too much time for the few times it would be useful. To be honnest I don't really know if it's worth it even for directories (there is a little overhead associated with computing the look-alike score)</p>
 <h2>Final Python program</h2>
 <div class="codehilite"><pre class="source"><code><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">filecmp</span><span class="o">,</span> <span class="nn">stat</span>
 <span class="kn">import</span> <span class="nn">os.path</span> <span class="kn">as</span> <span class="nn">op</span>
@@ -163,11 +163,13 @@
         <span class="k">elif</span> <span class="n">op</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">op</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ext_path_file</span><span class="p">):</span>
                 <span class="n">best</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">best_score</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
                 <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">todel</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
                         <span class="n">score</span> <span class="o">=</span> <span class="n">look_alike</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-                        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">THRESHOLD</span> <span class="ow">and</span> <span class="p">(</span><span class="n">best</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">best</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">THRESHOLD</span> <span class="ow">and</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">best_score</span><span class="p">:</span>
                             <span class="n">best</span> <span class="o">=</span> <span class="n">fname</span>
+                            <span class="n">best_score</span> <span class="o">=</span> <span class="n">score</span>
                 <span class="k">if</span> <span class="n">best</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
                     <span class="n">os</span><span class="o">.</span><span class="n">renames</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">)</span>
                     <span class="n">todel</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
@@ -177,7 +179,7 @@
 
     <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">todel</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">op</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
             <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </code></pre></div>
