@@ -70,16 +70,16 @@
     <span class="s">&#39;/page/{page}&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">permalink</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;page&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))})</span>
     <span class="p">}</span>
 </code></pre></div>
-<p><em>routes</em> is a Python dictionary which associates an URI to a tuple of length 2 which contains the two following elements:</p>
+<p><code>routes</code> is a Python dictionary which associates an URI to a tuple of length 2 which contains the two following elements:</p>
 <ul>
 <li>
 <p>the first element is a function, the handler of the URI</p>
 </li>
 <li>
-<p>the second element is another Python dictionary which, for each variable of the URI, gives a list of values we want to generate the URI for. In this example, the variable 'page' (in curly braces in the URI) is associated to the list of integers from 0 to N-1. Note that this is Python 3, where <em>range</em> doesn't return a list, but an iterator, hence the need to call <em>list</em> to convert this iterator to a list. When there are no variable in the URI, the second element is the empty dictionary.</p>
+<p>the second element is another Python dictionary which, for each variable of the URI, gives a list of values we want to generate the URI for. In this example, the variable <code>page</code> (in curly braces in the URI) is associated to the list of integers from 0 to N-1. Note that this is Python 3, where <code>range</code> doesn't return a list, but an iterator, hence the need to call <code>list</code> to convert this iterator to a list. When there are no variable in the URI, the second element is the empty dictionary.</p>
 </li>
 </ul>
-<p>Here is the rest of the code, with the actual handlers <em>main</em> and <em>permalink</em>:</p>
+<p>Here is the rest of the code, with the actual handlers <code>main</code> and <code>permalink</code>:</p>
 <div class="codehilite"><pre class="source"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">pages</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
     <span class="n">template</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s">&#39;front_page.html&#39;</span><span class="p">)</span>
@@ -90,8 +90,8 @@
     <span class="n">template</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s">&#39;page.html&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">max_page</span><span class="o">=</span><span class="n">max_page</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="n">page</span><span class="p">)</span>
 </code></pre></div>
-<p>As you can see, <em>permalink</em> accepts a parameter 'page' that corresponds to the variable in the URI it is associated with.</p>
-<p>In this code, we suppose we use some templating system (jinja2, in this case) and that the variable <em>env</em> is just some object set up earlier that helps us retrieve easily our templates. Here are the templates <em>front_page.html</em> and <em>page.html</em>:</p>
+<p>As you can see, <code>permalink</code> accepts a parameter <code>page</code> that corresponds to the variable in the URI it is associated with.</p>
+<p>In this code, we suppose we use some templating system (jinja2, in this case) and that the variable <code>env</code> is just some object set up earlier that helps us retrieve easily our templates. Here are the templates <em>front_page.html</em> and <em>page.html</em>:</p>
 <p>front_page.html</p>
 <div class="codehilite"><pre class="source"><code><span class="nt">&lt;p&gt;</span>This website contains the following pages:<span class="nt">&lt;/p&gt;</span>
 
@@ -111,7 +111,7 @@
     <span class="err">&lt;</span><span class="na">a</span> <span class="na">href=</span><span class="s">&quot;/page/{{ page + 1 }}&quot;</span><span class="nt">&gt;</span>Next page<span class="nt">&lt;/a&gt;</span>
 {% endif %}
 </code></pre></div>
-<p>Now my script Dynastic works as the following: I put the Python handlers and the <em>routes</em> variable in a Python file called <em>get.py</em>, I go into the directory containing get.py and I call:</p>
+<p>Now my script Dynastic works as the following: I put the Python handlers and the <code>routes</code> variable in a Python file called <em>get.py</em>, I go into the directory containing get.py and I call:</p>
 <pre class="terminal"><code>dynastic generate
 </code></pre>
 <p>And boom, the magic happens and Dynastic is generating the website:</p>
@@ -156,7 +156,7 @@ Done.
       |- 9
          |- index.html
 </code></pre>
-<p>By default, the website is generated into a directory named 'www' but I can choose another one by setting the name in a variable named <em>directory</em> in get.py</p>
+<p>By default, the website is generated into a directory named 'www' but I can choose another one by setting the name in a variable named <code>directory</code> in get.py</p>
 <p>What happens at the generation is that for each URI in <em>routes</em>, Dynastic computes all the combinations of the values for the variables. For each one of these combinations, it calls the handler with the values as parameters and create a new file whose path is based on the URI formatted with the values. In this file it writes the content returned by the handler.</p>
 <p>I also integrated a very basic http server (i.e. I copy-pasted the code snippet on the SimpleHTTPServer documentation page) so that I can test the website on the local host just by calling</p>
 <pre class="terminal"><code>dynastic run

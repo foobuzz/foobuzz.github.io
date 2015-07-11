@@ -70,16 +70,16 @@
     <span class="s">&#39;/page/{page}&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">permalink</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;page&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))})</span>
     <span class="p">}</span>
 </code></pre></div>
-<p><em>routes</em> est un dictionnaire qui associe à une URI un tuple de longueur 2 qui se décompose comme suit :</p>
+<p><code>routes</code> est un dictionnaire qui associe à une URI un tuple de longueur 2 qui se décompose comme suit :</p>
 <ul>
 <li>
 <p>La première composante est une fonction : le handler de l'URI</p>
 </li>
 <li>
-<p>La seconde composante est un dictionnaire qui à chaque variable de l'URI associe la liste des valeurs possibles pour cette variable. Dans cet exemple, la variable 'page' (entre accolades dans l'URI) est associée à la liste des entiers de 0 à N-1. Noter qu'il s'agit de Python 3, où <em>range</em> ne retourne pas une liste mais un itérateur, d'où la nécessité d'utiliser <em>list</em> pour convertir cet itérateur en liste. Si l'URI n'accepte pas de variable, alors on passe le dictionnaire vide.</p>
+<p>La seconde composante est un dictionnaire qui à chaque variable de l'URI associe la liste des valeurs possibles pour cette variable. Dans cet exemple, la variable 'page' (entre accolades dans l'URI) est associée à la liste des entiers de 0 à N-1. Noter qu'il s'agit de Python 3, où <code>range</code> ne retourne pas une liste mais un itérateur, d'où la nécessité d'utiliser <code>list</code> pour convertir cet itérateur en liste. Si l'URI n'accepte pas de variable, alors on passe le dictionnaire vide.</p>
 </li>
 </ul>
-<p>Voici le reste du code, avec les fonctions <em>main</em> et <em>permalink</em>:</p>
+<p>Voici le reste du code, avec les fonctions <code>main</code> et <code>permalink</code>:</p>
 <div class="codehilite"><pre class="source"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">pages</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
     <span class="n">template</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s">&#39;front_page.html&#39;</span><span class="p">)</span>
@@ -90,8 +90,8 @@
     <span class="n">template</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s">&#39;page.html&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">max_page</span><span class="o">=</span><span class="n">max_page</span><span class="p">,</span> <span class="n">page</span><span class="o">=</span><span class="n">page</span><span class="p">)</span>
 </code></pre></div>
-<p>Comme vous pouvez le constater, <em>permalink</em> accepte un paramètre 'page' qui correspond à la variable dans l'URI à laquelle la fonction est associée.</p>
-<p>Dans ce code, on suppose qu'on utilise un système de template (jinja2, en l'occurence) et que la variable <em>env</em> est juste un objet qu'on a créé plus tôt qui permet de récupérer facilement nos templates. Voici les templates <em>front_page.html</em> et <em>page.html</em> :</p>
+<p>Comme vous pouvez le constater, <code>permalink</code> accepte un paramètre 'page' qui correspond à la variable dans l'URI à laquelle la fonction est associée.</p>
+<p>Dans ce code, on suppose qu'on utilise un système de template (jinja2, en l'occurence) et que la variable <code>env</code> est juste un objet qu'on a créé plus tôt qui permet de récupérer facilement nos templates. Voici les templates <em>front_page.html</em> et <em>page.html</em> :</p>
 <p>front_page.html</p>
 <div class="codehilite"><pre class="source"><code><span class="nt">&lt;p&gt;</span>This website contains the following pages:<span class="nt">&lt;/p&gt;</span>
 
@@ -111,7 +111,7 @@
     <span class="err">&lt;</span><span class="na">a</span> <span class="na">href=</span><span class="s">&quot;/page/{{ page + 1 }}&quot;</span><span class="nt">&gt;</span>Next page<span class="nt">&lt;/a&gt;</span>
 {% endif %}
 </code></pre></div>
-<p>Maintenant, mon script Dynastic fonctionne de cette manière : je place les handlers et la variable <em>routes</em> dans un fichier Python nommé <em>get.py</em>, je me déplace dans le dossier où se trouve get.py et je lance la commande :</p>
+<p>Maintenant, mon script Dynastic fonctionne de cette manière : je place les handlers et la variable <code>routes</code> dans un fichier Python nommé <em>get.py</em>, je me déplace dans le dossier où se trouve get.py et je lance la commande :</p>
 <pre class="terminal"><code>dynastic generate
 </code></pre>
 <p>Et boom, magie de la technologie, Dynastic génère le site :</p>
@@ -156,8 +156,8 @@ Done.
       |- 9
          |- index.html
 </code></pre>
-<p>Par défaut, le site est généré dans un dossier appelé 'www' mais je peux choisir un autre nom en l'inscrivant dans une variable nommée <em>dorectory</em> dans get.py</p>
-<p>Ce qui se passe à la génération, c'est que pour chaque URI dans <em>routes</em>, Dynastic calcule toutes les combinaisons de valeurs pour les variables. Pour chacune de ces combinaisons, il appelle le handler avec ces valeurs en tant que paramètres et crée un nouveau fichier dont le chemin est calqué sur l'URI formatté avec les valeurs. Dans ce fichier, il écrit le contenu retourné par le handler.</p>
+<p>Par défaut, le site est généré dans un dossier appelé 'www' mais je peux choisir un autre nom en l'inscrivant dans une variable nommée <code>directory</code> dans get.py</p>
+<p>Ce qui se passe à la génération, c'est que pour chaque URI dans <code>routes</code>, Dynastic calcule toutes les combinaisons de valeurs pour les variables. Pour chacune de ces combinaisons, il appelle le handler avec ces valeurs en tant que paramètres et crée un nouveau fichier dont le chemin est calqué sur l'URI formatté avec les valeurs. Dans ce fichier, il écrit le contenu retourné par le handler.</p>
 <p>J'ai aussi intégré un serveur http très basique (i.e. j'ai copié-collé le bout de code de la documentation de SimpleHTTPServer) afin de pouvoir tester le blog sur la boucle locale en appelant :</p>
 <pre class="terminal"><code>dynastic run
 </code></pre>
@@ -193,7 +193,7 @@ Done.
 
 <div id="comments">
 
-	<p class="post_comment">Something to say? Send your comment in an <a href="mailto:dprosium@gmail.com?Subject=foobuzz_comment" title="dprosium@gmail.com">email to the author</a> (dprosium@gmail.com). If you want it to be published, please specify so in your email. You can specify under what name you want your comment to be published and a link to your website.</p>
+	<p class="post_comment">Something to say? Send your comment in an email to the author at <code>dprosium {at} gmail {dot} com</code></a> (If you want it to be published, please specify so in your email. You can specify under what name you want your comment to be published and a link to your website.</p>
 
 	<h2>Comments</h2>
 
