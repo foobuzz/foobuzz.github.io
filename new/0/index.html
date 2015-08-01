@@ -5,7 +5,7 @@
 		<meta charset="UTF-8"> 
 		<link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
 		<link rel="stylesheet" type="text/css" href="/static/styles/highlight.css">
-		<title>A full-backup program - Foobuzz</title>
+		<title>Why Firefox was losing track of my history - Foobuzz</title>
 	</head>
 	
 	<body>
@@ -41,159 +41,47 @@
 
 <article>
 
-	<div class="entete">by Valentin, <span title="2015-07-04T17:44:57Z">July 04 2015</span>, in
+	<div class="entete">by Valentin, <span title="2015-08-01T11:19:36Z">August 01 2015</span>, in
 		
-		<a href="/cat/programming">Programming</a>, 
+		<a href="/cat/software">Software</a>, 
 		
-		<a href="/cat/python">Python</a>
-		
-	</div>
-
-	<div class="i18n">
-		
-		Lang: <img src="/static/gb.png" alt="english" title="english"> | <a href="/backup/fra" title="Read in French">Lire en français</a>
+		<a href="/cat/data">Data</a>
 		
 	</div>
 
-	<h1><a href="/backup">A full-backup program</a></h1>
+	<h1><a href="/firestory">Why Firefox was losing track of my history</a></h1>
 
-	<p>I wrote a program to backup my files. I wanted it to do <a href="http://typesofbackup.com/full-backup/">full backups</a>, not incremental ones, and to take advantage of the previous backups that had been done. The idea is that you have a source directory that you want to replicate to a target directory so that after the backup, the two folders are identical. For example, my documents on my laptop and their copy on my external hard drive. The program should only overwrite files in the target that have been modified in the source since the last backup, so that it's way faster than simply copy - pasting the whole directory.</p>
-<p>Eventually I found that Windows has a robust built-in command to do this (<a href="https://en.wikipedia.org/wiki/Robocopy">robocopy</a>), but writing a program to do this myself was very instructive so I share in this article how I worked that one out.</p>
-<h2>Basic algorithm</h2>
-<p>Here is the first algorithm I came with to solve the problem, in pseudo-code:</p>
-<pre class="terminal"><code>function backup(source, target):
-  for each filename in source:
-    loc_path_file = join(source, filename)
-    ext_path_file = join(target, filename)
-    if loc_path_file.isfile():
-      if not exists(ext_path_file):
-        copy(loc_path_file, ext_path_file)
-      else:
-        same = compare_files(loc_path_file, ext_path_file)
-        if not same:
-          overwrite(loc_path_file, ext_path_file)
-    else if loc_path_file.isdirectory():
-      if not exists(ext_path_file):
-        mkdir(ext_path_file)
-      backup(loc_path_file, ext_path_file)
-
-    for each filename in target but not in source:
-      delete(join(target, filename))
-</code></pre>
-<h2>Comparing files</h2>
-<p>I wrote the actual code in Python. To compare two files, I used the standard filecmp module. It has the function <code>cmp</code> which returns a boolean indicating if two files are identical. By default, this function performs a shallow comparison; it uses the files' metadata to tell if they're probably the same. The documentation is quite brief and I wanted to know what was going on exactly so I looked at the source code and this is how it works:</p>
-<p>When required to compare two files, <code>cmp</code> looks at the type (identified by an integer), the size (the number of bytes) and the date of last modification (with a precision of the second) for both files. If those three things are equals then it returns True. Otherwise, if the sizes differ, it return False. Otherwise, it compares the actual content of the two files. In non-shallow mode, the step comparing the triplets (type, size, last modification) is skipped.</p>
-<p>Note that by construction of my program, there is another metadata that must be the same for two files for them to be considered identical: <em>their path</em> (relative to their root source or target directory), including their filename. Indeed, from the begining I only compare files that have the same path. So a shallow comparison is ample. I can hardly imagine two files being different while having the same path, the same type, the same size and the same <acronym title="Date of Last Modification">DLM</acronym>. And clearly the most important metadata in there are the path and the DLM. The only way to mess up would be to alter one of the file less than one second after their common instant of last modification (one second being the granularity we're playing with); and that's not gonna happen since I'm not going the do something with my files while backuping them.</p>
-<p>I still had to make this common date of last modification happen. Indeed, imagine I do a backup at instant T. All the files in the source directory have been last modified at "T minus something". When new files are copied to the target directory, their DLM (in this case, their date of creation) is set to ~T. When performing the next backup, all files in target will hence have a DLM of ~T. And yet, the non-modified-since-last-backup files in the source (the ones that should help us speed up things) will still have a DLM of "T minus something". This is different than ~T, so the shallow comparison fails.</p>
-<p>Since the backup should not alter in any way the files in the source, the only solution was to alter the DLM of the copied files and set it to the ones from the source files ("T minus something"). It is quite logic when you think about it: you copy the file <em>and</em> its metadata. In Python, we can do this using the <code>utime</code> function from the os module.</p>
-<p>This is how you make files travel in space and time.</p>
-<h2>Renaming directories</h2>
-<p>Now imagine this situation: you have done a backup recently. In the source directory, there is this big directory, whose backup copy is up to date, and which is named "Blablabla [2015] - Complete ~foo". You don't like that name so you rename it "blablabla_2015_complete_foo", but you don't touch a single file in it. At its current state, when queried with a backup, the algorithm will search in the target for "blablabla_2015_complete_foo", don't find it, create a brand new directory with this name and copy every files in it. Then, when cleaning up, it will remove "Blablabla [2015] - Complete ~foo". That's a waste. If it was smart, the algorithm would just have renamed "Blablabla [2015] - Complete ~foo" with "blablabla_2015_complete_foo" and called it a day.</p>
-<p>I came with the following solution:</p>
-<p>When we have to backup a dir "dir1" which isn't found in the target, we look for dirs which exist in the target but not in the source (the ones that should be removed at clean-up) and assign them a score based on how much they look like "dir1". If we find directories whose score is higher than some threshold, then we take the one with the greatest score and we rename it with "dir1". If there is no directory in the target which doesn't exist in the source, or if no directory scores above the threshold, we fall back to creating a brand new directory in the target. In any of these two situations, we have a target directory to launch the recursive call on.</p>
-<p>So, I have to explain how is computed this look-alike score. I chose to base it on two parameters: the ratio of similarity between the name of the two directories and the ratio of similarity between the number of files in each one of the directories. The latter is basic arithmetic. The former can be obtained in Python with a SequenceMatcher object instance on which we call the ratio method. I don't studied how this SequenceMatcher magic works, but did some basic tests and was quite satisfied.</p>
-<pre class="terminal"><code>&gt;&gt;&gt; from difflib import SequenceMatcher
-&gt;&gt;&gt; def similar(a, b):
-    """ Returns a ratio indicating the similarity between two strings. """
-    return SequenceMatcher(None, a, b).ratio()
-
-&gt;&gt;&gt; similar('Blablabla [2015] - Complete ~foo', 'blablabla_2015_complete_foo')
-0.7457627118644068
-&gt;&gt;&gt; similar('Blablabla [2015] - Complete ~foo', 'Really nothing [2011] - In common ~bar')
-0.42857142857142855
-&gt;&gt;&gt; similar('truck', 'Truck')
-0.8
-&gt;&gt;&gt; similar('truck', 'truck')
-1.0
-&gt;&gt;&gt; similar('azertyuiopqsdfghjklmwxcvbn', 'abcdefghijklmnopqrstuvwxyz')
-0.4230769230769231
-&gt;&gt;&gt; similar('some string', 'some other string')
-0.7857142857142857
-&gt;&gt;&gt; similar('coolcoolcool', 'nopenopenope')
-0.25
-</code></pre>
-<p>There is no risk renaming directories because in the worst case the one we're renaming was just not so quite the same than the one we're copiing and the program will take care of deleting useless files in it as well as copiing the right files. It's just that instead of creating a brand new directory we rename a trash one and do our business in it.</p>
-<p>We can't do the same thing with files, because we would have to be sure that the file we're renaming is identical to the one we wanna copy, which would require to compare them, and for real this time, since they wouldn't have the same path. This would take too much time for the few times it would be useful. To be honnest I don't really know if it's worth it even for directories (there is a little overhead associated with computing the look-alike score)</p>
-<h2>Final Python program</h2>
-<div class="codehilite"><pre class="source"><code><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">shutil</span><span class="o">,</span> <span class="nn">filecmp</span><span class="o">,</span> <span class="nn">stat</span>
-<span class="kn">import</span> <span class="nn">os.path</span> <span class="kn">as</span> <span class="nn">op</span>
-<span class="kn">from</span> <span class="nn">difflib</span> <span class="kn">import</span> <span class="n">SequenceMatcher</span>
-
-
-<span class="n">THRESHOLD</span> <span class="o">=</span> <span class="mi">6</span>
-
-
-<span class="k">def</span> <span class="nf">similar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">SequenceMatcher</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">ratio</span><span class="p">()</span>
-
-
-<span class="k">def</span> <span class="nf">look_alike</span><span class="p">(</span><span class="n">dir1</span><span class="p">,</span> <span class="n">dir2</span><span class="p">):</span>
-    <span class="n">name1</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">dir1</span><span class="p">))</span>
-    <span class="n">name2</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">dir2</span><span class="p">))</span>
-    <span class="n">sim_names</span> <span class="o">=</span> <span class="n">similar</span><span class="p">(</span><span class="n">name1</span><span class="p">,</span> <span class="n">name2</span><span class="p">)</span>
-    <span class="n">nb_file1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dir1</span><span class="p">))</span>
-    <span class="n">nb_file2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dir2</span><span class="p">))</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">sim_nbfiles</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">nb_file2</span> <span class="o">-</span> <span class="n">nb_file1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nb_file2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
-        <span class="n">sim_nbfiles</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">nb_file1</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.1</span>
-    <span class="k">return</span> <span class="n">sim_names</span> <span class="o">/</span> <span class="n">sim_nbfiles</span>
-
-
-<span class="k">def</span> <span class="nf">synchronize_timestamps</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-    <span class="n">source_stats</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-    <span class="n">times</span> <span class="o">=</span> <span class="n">source_stats</span><span class="o">.</span><span class="n">st_atime</span><span class="p">,</span> <span class="n">source_stats</span><span class="o">.</span><span class="n">st_mtime</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">utime</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">times</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">backup</span><span class="p">(</span><span class="n">loc_path</span><span class="p">,</span> <span class="n">ext_path</span><span class="p">):</span>
-    <span class="n">all_loc_files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">loc_path</span><span class="p">)</span>
-    <span class="n">todel</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ext_path</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">ext_path</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">all_loc_files</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">all_loc_files</span><span class="p">:</span>
-        <span class="n">loc_path_file</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">loc_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-        <span class="n">ext_path_file</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ext_path</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">):</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">op</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ext_path_file</span><span class="p">):</span>
-                <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">filecmp</span><span class="o">.</span><span class="n">cmp</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">):</span>
-                    <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">)</span>
-            <span class="n">synchronize_timestamps</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">op</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">):</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">op</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ext_path_file</span><span class="p">):</span>
-                <span class="n">best</span> <span class="o">=</span> <span class="bp">None</span>
-                <span class="n">best_score</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-                <span class="k">for</span> <span class="n">fname</span> <span class="ow">in</span> <span class="n">todel</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
-                        <span class="n">score</span> <span class="o">=</span> <span class="n">look_alike</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">fname</span><span class="p">)</span>
-                        <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">THRESHOLD</span> <span class="ow">and</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">best_score</span><span class="p">:</span>
-                            <span class="n">best</span> <span class="o">=</span> <span class="n">fname</span>
-                            <span class="n">best_score</span> <span class="o">=</span> <span class="n">score</span>
-                <span class="k">if</span> <span class="n">best</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-                    <span class="n">os</span><span class="o">.</span><span class="n">renames</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">)</span>
-                    <span class="n">todel</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">ext_path_file</span><span class="p">)</span>
-            <span class="n">backup</span><span class="p">(</span><span class="n">loc_path_file</span><span class="p">,</span> <span class="n">ext_path_file</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">todel</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">op</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+	<p>A few months ago I encrypted my Firefox profile. It contains my history, bookmarks and most importantly, authentification cookies that I keep for websites I find more conveniant to stay logged in. Those are things I prefer to be encrypted for obvious privacy and security reasons.</p>
+<p>The process of encrypting a Firefox profile goes as follow: first, you need to know where the profile is located in the disk. On Windows, it's a directory which sits at {User direcory}\AppData\Roaming\Mozilla\Firefox\Profiles\{the profile directory}. Then you need to use an encryption software such as TrueCrypt to put this directory in an encrypted container. Once you have this container, this is how a software like TrueCrypt works: when you open a container with it, it'll query you with the password and if you enter the correct one it'll <em>mount</em> the container as if it was an external storage device. On Windows, this makes a new disk appear (you know like C: or D: or whatever) and all the content of the container becomes available at this disk. TrueCrypt lets you choose the letter of the disk on which you want to mount the container.</p>
+<p>In this case, the content of the container is a Firefox profile, so you have to tell Firefox how to access it once it's mounted. This can be done using the <a href="https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles">Firefox profile manager</a>. In fact Firefox let's you create an arbitrary number of profiles. A profile has a name, and a <em>path</em> indicating where the actual profile directory is on the computer. Here, the strategy is to choose a letter by convention, which will be the letter of the drive onto which we're always going to mount the Firefox profile container. For example, we can take R:\ (I prefer letters at the end of the alphabets because Windows uses letters at the begining at the alphabet to automatically mount external devices). So we're gonna create a Firefox profile and set its path to R:\</p>
+<p>When all this set up is ready, when you want to browse Firefox, first you mount the profile container to R:\ and then you open Firefox with the corresponding profile. When you finish browsing, you close Firefox and you dismount the container. That is a dull process, so you can, like me, write some little batch script that'll make it almost transparent: it just asks me the password when I click on the Firefox icon and does the job of mounting before opening Firefox and dismounting when I close Firefox.</p>
+<p>This was not intented to be a tutorial on how to encrypt a Firefox profile, but just an introduction to the rest of this article. <a href="https://nirklars.wordpress.com/2012/10/25/encrypt-firefox-thunderbird-profile-truecrypt/">This is a step-by-step guide on how to encrypt a Firefox profile</a>.</p>
+<p>When you create a container, you need to indicate the size of the container. Before encryption, my profile weighted around 230 MB, so I figured that 500 MB was enough for the container. Well, in fact, Firefox had a little surprise for me.</p>
+<p>A few weeks after I had set up my encrypted profile, I noticed that Firefox was losing old history. I never delete my history. It goes (went) all the way to more than six months, actually all the way to when I started my computer for the first time. I was first alerted by auto-completion fails. Having a massive history lets Firefox performs some very helpful and comprehensive auto-completion magic in the address bar; but this time it wasn't even able to auto-complete "reddit.com/r/askr". What the hell was going on. Then I discovered in the Library window that there was nothing more than "This month". I was <em>mad</em>. My data had disappeared.</p>
+<p>After some googling I found out why.</p>
+<p>It turns out that by default, Firefox delete old history based on some expiration criterias. <a href="https://mxr.mozilla.org/mozilla-central/source/toolkit/components/places/nsPlacesExpiration.js">This is the source code</a> of the program doing this slanderous job.</p>
+<p>Look at this:</p>
+<div class="codehilite"><pre class="source"><code><span class="c1">// This percentage of disk size is used to protect against calculating a too</span>
+<span class="c1">// large database size on disks with tiny quota or available space.</span>
+<span class="kr">const</span> <span class="nx">DATABASE_TO_DISK_PERC</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 </code></pre></div>
-<h2>Results</h2>
-<p>I tested my program by backuping my music library on an external hard drive connected with USB. It's a 12.5 GB tree containing a total of 136 directories and 1947 files. I performed successive backups without modifying the source between each. The time taken by the program is only the time it needs to <em>compare</em> the source with the target. In real world instances, we should add to that the time to actually copy the new files or the ones updated in the source.</p>
-<p>The first backup, which was basically a raw copy since no previous backup was available, took <strong>17 minutes and 16 seconds</strong>. That's a little more than a vanilla Windows copy which took 16 minutes and 10 seconds.</p>
-<p>I made a second backup with the last modified timestamps non-synchronized. It took <strong>12 minutes and 4 seconds</strong>. There is a little gain comparing files instead of copiing them. But that still takes time because the files need to be opened and their data compared bytes after bytes.</p>
-<p>The third backup was made with the timestamps synchronized, which allow the shallow comparison to succeed. It took <strong>2.68 seconds</strong>.</p>
-<p>It is a lower performance than robocopy (less than one second), but still pretty good for a little artisanal script.</p>
+<p>If there is not much space available on the disk, the history database can't take up more than 2% of this available space. My container has a size of 500 MB, but about 230 MB are already taken by other stuff (bookmarks, thumbnails, extensions, etc), so there's 270 MB actually available. So, the maximum size of the database was 5.4 MB. That's not much.</p>
+<p>Then there's this:</p>
+<div class="codehilite"><pre class="source"><code><span class="c1">// This is the average size in bytes of an URI entry in the database.</span>
+<span class="c1">// Magic numbers are determined through analysis of the distribution of a ratio</span>
+<span class="c1">// between number of unique URIs and database size among our users.</span>
+<span class="c1">// Based on these values we evaluate how many unique URIs we can handle before</span>
+<span class="c1">// starting expiring some.</span>
+<span class="kr">const</span> <span class="nx">URIENTRY_AVG_SIZE</span> <span class="o">=</span> <span class="mi">1600</span><span class="p">;</span>
+</code></pre></div>
+<p>Firefox computes the maximum number of URIs it can hold in the database thanks to an average URI size, whose value is set to 1.6 KB. With 5.4 MB available, it means that you can store up to 3375 URIs. I don't know about you, but for me, that's about 15 days of browsing the web.</p>
+<p>So, this is why my history was only available for 2 weeks.</p>
+<p>The solution to this problem was quite easy. Actually all this hardware calculation for the maximum number of URIs is used only if the maximum size isn't set by the user. There's no regular settings menu to set this preference, I had to go in <code>about:config</code>. According to <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/Places/Places_Expiration">this</a>, there should be 2 keys relative to the limit of URIs: <code>places.history.expiration.max_pages</code> which can be set by the user to his convenience and <code>places.history.expiration.transient_current_max_pages</code>, a read-only copy of the previous key destined to other components which would want to access this information. When I finally searched for the keys, only the read-only one was there (and its value was 3274, close but not equal to my estimation above, that's because I rounded the numbers). According to <a href="http://www.tomshardware.co.uk/answers/id-2088014/firefox-configuration-issue.html">this forum post</a>, I simply could create a brand new key called <code>places.history.expiration.max_pages</code> and do my business with it. Which I did, setting its value to one fucking million. I was glad to see that its twin key immediatly updated itself with the new value, indicating that it worked.</p>
 	
 </article>
 
 <div id="nb_comments">
-	<a href="/backup#comments">0 comment</a>
+	<a href="/firestory#comments">0 comment</a>
 </div>
 
 <div id="front_nav">
@@ -212,6 +100,8 @@
 
 					<ul>
 						
+							<li><a href="/firestory">Why Firefox was losing track of my history</a></li>
+						
 							<li><a href="/backup">A full-backup program</a></li>
 						
 							<li><a href="/dynastic">The First Article</a></li>
@@ -228,7 +118,9 @@
 						
 							<li><a href="/cat/meta">Meta</a></li>
 						
-							<li><a href="/cat/programming">Programming</a></li>
+							<li><a href="/cat/software">Software</a></li>
+						
+							<li><a href="/cat/data">Data</a></li>
 						
 					</ul>
 				</section>
