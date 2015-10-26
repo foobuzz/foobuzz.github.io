@@ -3,34 +3,38 @@
 
 	<head>
 		<meta charset="UTF-8"> 
-		<link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
-		<link rel="stylesheet" type="text/css" href="/static/styles/highlight.css">
-		<title>Why Firefox was losing track of my history - Foobuzz</title>
+		<link rel="stylesheet" type="text/css" href="/assets/styles/styles.css">
+		
+		<link rel="stylesheet" type="text/css" href="/assets/styles/highlight.css">
+		
+		<title>Why Firefox was losing track of my history - foobuzz</title>
 	</head>
 	
 	<body>
 	<div id="main_wrapper">
 	
 		<header>
-			<div id="head_text_wrapper">
-				<div id="head_text_bro"></div>
-				<div id="head_text">
-					<h1><a href="/">Foobuzz</a></h1>
-					<p>Programming and other stuff</p>
-				</div>
-			</div>
+			<h1><a href="/">foobuzz</a></h1>
 		</header>
 		
 		<nav>
 			<ul id="navigation">
-				<li><a href="/">Front</a></li><!--
-			 --><li><a href="/archives">Archives</a></li><!--
-			 --><li><a href="/about">About</a></li>
+				<li><a href="/">Front</a></li>
+			    <li><a href="/archives">Archives</a></li>
+			    <li><a href="/about">About</a></li>
 			</ul>
 
+			
 		 	<ul id="networking">
-				<li><a href="https://twitter.com/_foobuzz">Twitter</a></li>
+				
+					<li><a href="https://twitter.com/_foobuzz"><img src="/assets/icons/twitbird.png" alt="The Twitter icon"></a></li>
+				
+				
+					<li><a href="https://github.com/foobuzz"><img src="/assets/icons/github.png" alt="The GitHub icon"></a></li>
+				
+					<li><a href="/feed.xml"><img src="/assets/icons/atom.png" alt="The RSS/Atom icon"></a></li>
 			</ul>
+			
 		</nav>
 		
 		<div id="main">
@@ -41,17 +45,19 @@
 
 <article>
 
-	<div class="entete">by Valentin, <span title="2015-08-01T11:19:36Z">August 01 2015</span>, in
+	<div class="entete">by Valentin, July 01 2015, in
 		
-		<a href="/cat/software">Software</a>, 
+		<a href="/tag/software">software</a>, 
 		
-		<a href="/cat/data">Data</a>
+		<a href="/tag/data">data</a>
 		
 	</div>
 
 	<h1><a href="/firestory">Why Firefox was losing track of my history</a></h1>
 
-	<p>A few months ago I encrypted my Firefox profile. It contains my history, bookmarks and most importantly, authentification cookies that I keep for websites I find more conveniant to stay logged in. Those are things I prefer to be encrypted for obvious privacy and security reasons.</p>
+	
+
+<p>A few months ago I encrypted my Firefox profile. It contains my history, bookmarks and most importantly, authentification cookies that I keep for websites I find more conveniant to stay logged in. Those are things I prefer to be encrypted for obvious privacy and security reasons.</p>
 <p>The process of encrypting a Firefox profile goes as follow: first, you need to know where the profile is located in the disk. On Windows, it's a directory which sits at {User direcory}\AppData\Roaming\Mozilla\Firefox\Profiles\{the profile directory}. Then you need to use an encryption software such as TrueCrypt to put this directory in an encrypted container. Once you have this container, this is how a software like TrueCrypt works: when you open a container with it, it'll query you with the password and if you enter the correct one it'll <em>mount</em> the container as if it was an external storage device. On Windows, this makes a new disk appear (you know like C: or D: or whatever) and all the content of the container becomes available at this disk. TrueCrypt lets you choose the letter of the disk on which you want to mount the container.</p>
 <p>In this case, the content of the container is a Firefox profile, so you have to tell Firefox how to access it once it's mounted. This can be done using the <a href="https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles">Firefox profile manager</a>. In fact Firefox let's you create an arbitrary number of profiles. A profile has a name, and a <em>path</em> indicating where the actual profile directory is on the computer. Here, the strategy is to choose a letter by convention, which will be the letter of the drive onto which we're always going to mount the Firefox profile container. For example, we can take R:\ (I prefer letters at the end of the alphabets because Windows uses letters at the begining at the alphabet to automatically mount external devices). So we're gonna create a Firefox profile and set its path to R:\</p>
 <p>When all this set up is ready, when you want to browse Firefox, first you mount the profile container to R:\ and then you open Firefox with the corresponding profile. When you finish browsing, you close Firefox and you dismount the container. That is a dull process, so you can, like me, write some little batch script that'll make it almost transparent: it just asks me the password when I click on the Firefox icon and does the job of mounting before opening Firefox and dismounting when I close Firefox.</p>
@@ -80,14 +86,10 @@
 	
 </article>
 
-<div id="nb_comments">
-	<a href="/firestory#comments">0 comment</a>
-</div>
-
 <div id="front_nav">
 	
 	
-	<a href="/new/1">Previous</a>
+	
 </div>
 
 
@@ -95,32 +97,24 @@
 			</div>
 			
 			<aside>
-				<section id="recent">
+				<section>
 					<h1>Last articles</h1>
 
 					<ul>
 						
 							<li><a href="/firestory">Why Firefox was losing track of my history</a></li>
 						
-							<li><a href="/backup">A full-backup program</a></li>
-						
-							<li><a href="/dynastic">The First Article</a></li>
-						
 					</ul>
 				</section>
 				
-				<section id="categories">
-					<h1>Categories</h1>
+				<section>
+					<h1>Tags</h1>
 					
 					<ul>
 						
-							<li><a href="/cat/python">Python</a></li>
+							<li><a href="/tag/data">data</a> (1)</li>
 						
-							<li><a href="/cat/meta">Meta</a></li>
-						
-							<li><a href="/cat/software">Software</a></li>
-						
-							<li><a href="/cat/data">Data</a></li>
+							<li><a href="/tag/software">software</a> (1)</li>
 						
 					</ul>
 				</section>

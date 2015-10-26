@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>foobuzz</title>
+	<link href="http://foobuzz.github.io" rel="alternate"></link>
+	<link href="http://foobuzz.github.io/feed" rel="self"></link>
+	<updated>2015-06-30</updated>
+	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Why Firefox was losing track of my history</title>
+			<link href="http://foobuzz.github.io/firestory"/>
+			<id>urn:uuid:7643553c-80e9-58ac-9f95-27bc1b22562c</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2015-06-30</updated>
+			<summary type="html">
+
+&lt;p&gt;A few months ago I encrypted my Firefox profile. It contains my history, bookmarks and most importantly, authentification cookies that I keep for websites I find more conveniant to stay logged in. Those are things I prefer to be encrypted for obvious privacy and security reasons.&lt;/p&gt;
+&lt;p&gt;The process of encrypting a Firefox profile goes as follow: first, you need to know where the profile is located in the disk. On Windows, it&#39;s a directory which sits at {User direcory}\AppData\Roaming\Mozilla\Firefox\Profiles\{the profile directory}. Then you need to use an encryption software such as TrueCrypt to put this directory in an encrypted container. Once you have this container, this is how a software like TrueCrypt works: when you open a container with it, it&#39;ll query you with the password and if you enter the correct one it&#39;ll &lt;em&gt;mount&lt;/em&gt; the container as if it was an external storage device. On Windows, this makes a new disk appear (you know like C: or D: or whatever) and all the content of the container becomes available at this disk. TrueCrypt lets you choose the letter of the disk on which you want to mount the container.&lt;/p&gt;
+&lt;p&gt;In this case, the content of the container is a Firefox profile, so you have to tell Firefox how to access it once it&#39;s mounted. This can be done using the &lt;a href=&#34;https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles&#34;&gt;Firefox profile manager&lt;/a&gt;. In fact Firefox let&#39;s you create an arbitrary number of profiles. A profile has a name, and a &lt;em&gt;path&lt;/em&gt; indicating where the actual profile directory is on the computer. Here, the strategy is to choose a letter by convention, which will be the letter of the drive onto which we&#39;re always going to mount the Firefox profile container. For example, we can take R:\ (I prefer letters at the end of the alphabets because Windows uses letters at the begining at the alphabet to automatically mount external devices). So we&#39;re gonna create a Firefox profile and set its path to R:\&lt;/p&gt;
+&lt;p&gt;When all this set up is ready, when you want to browse Firefox, first you mount the profile container to R:\ and then you open Firefox with the corresponding profile. When you finish browsing, you close Firefox and you dismount the container. That is a dull process, so you can, like me, write some little batch script that&#39;ll make it almost transparent: it just asks me the password when I click on the Firefox icon and does the job of mounting before opening Firefox and dismounting when I close Firefox.&lt;/p&gt;
+&lt;p&gt;This was not intented to be a tutorial on how to encrypt a Firefox profile, but just an introduction to the rest of this article. &lt;a href=&#34;https://nirklars.wordpress.com/2012/10/25/encrypt-firefox-thunderbird-profile-truecrypt/&#34;&gt;This is a step-by-step guide on how to encrypt a Firefox profile&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When you create a container, you need to indicate the size of the container. Before encryption, my profile weighted around 230 MB, so I figured that 500 MB was enough for the container. Well, in fact, Firefox had a little surprise for me.&lt;/p&gt;
+&lt;p&gt;A few weeks after I had set up my encrypted profile, I noticed that Firefox was losing old history. I never delete my history. It goes (went) all the way to more than six months, actually all the way to when I started my computer for the first time. I was first alerted by auto-completion fails. Having a massive history lets Firefox performs some very helpful and comprehensive auto-completion magic in the address bar; but this time it wasn&#39;t even able to auto-complete &#34;reddit.com/r/askr&#34;. What the hell was going on. Then I discovered in the Library window that there was nothing more than &#34;This month&#34;. I was &lt;em&gt;mad&lt;/em&gt;. My data had disappeared.&lt;/p&gt;
+&lt;p&gt;After some googling I found out why.&lt;/p&gt;
+&lt;p&gt;It turns out that by default, Firefox delete old history based on some expiration criterias. &lt;a href=&#34;https://mxr.mozilla.org/mozilla-central/source/toolkit/components/places/nsPlacesExpiration.js&#34;&gt;This is the source code&lt;/a&gt; of the program doing this slanderous job.&lt;/p&gt;
+&lt;p&gt;Look at this:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;c1&#34;&gt;// This percentage of disk size is used to protect against calculating a too&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// large database size on disks with tiny quota or available space.&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;DATABASE_TO_DISK_PERC&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If there is not much space available on the disk, the history database can&#39;t take up more than 2% of this available space. My container has a size of 500 MB, but about 230 MB are already taken by other stuff (bookmarks, thumbnails, extensions, etc), so there&#39;s 270 MB actually available. So, the maximum size of the database was 5.4 MB. That&#39;s not much.&lt;/p&gt;
+&lt;p&gt;Then there&#39;s this:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;c1&#34;&gt;// This is the average size in bytes of an URI entry in the database.&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Magic numbers are determined through analysis of the distribution of a ratio&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// between number of unique URIs and database size among our users.&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// Based on these values we evaluate how many unique URIs we can handle before&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;// starting expiring some.&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;URIENTRY_AVG_SIZE&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1600&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Firefox computes the maximum number of URIs it can hold in the database thanks to an average URI size, whose value is set to 1.6 KB. With 5.4 MB available, it means that you can store up to 3375 URIs. I don&#39;t know about you, but for me, that&#39;s about 15 days of browsing the web.&lt;/p&gt;
+&lt;p&gt;So, this is why my history was only available for 2 weeks.&lt;/p&gt;
+&lt;p&gt;The solution to this problem was quite easy. Actually all this hardware calculation for the maximum number of URIs is used only if the maximum size isn&#39;t set by the user. There&#39;s no regular settings menu to set this preference, I had to go in &lt;code&gt;about:config&lt;/code&gt;. According to &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Mozilla/Tech/Places/Places_Expiration&#34;&gt;this&lt;/a&gt;, there should be 2 keys relative to the limit of URIs: &lt;code&gt;places.history.expiration.max_pages&lt;/code&gt; which can be set by the user to his convenience and &lt;code&gt;places.history.expiration.transient_current_max_pages&lt;/code&gt;, a read-only copy of the previous key destined to other components which would want to access this information. When I finally searched for the keys, only the read-only one was there (and its value was 3274, close but not equal to my estimation above, that&#39;s because I rounded the numbers). According to &lt;a href=&#34;http://www.tomshardware.co.uk/answers/id-2088014/firefox-configuration-issue.html&#34;&gt;this forum post&lt;/a&gt;, I simply could create a brand new key called &lt;code&gt;places.history.expiration.max_pages&lt;/code&gt; and do my business with it. Which I did, setting its value to one fucking million. I was glad to see that its twin key immediatly updated itself with the new value, indicating that it worked.&lt;/p&gt;</summary>
+			
+				<category term="software"></category>
+			
+				<category term="data"></category>
+			
+		</entry>
+	
+</feed>
