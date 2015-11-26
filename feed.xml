@@ -3,8 +3,76 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2015-06-30</updated>
+	<updated>2015-11-25</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Datetime in Python</title>
+			<link href="http://foobuzz.github.io/datetime-python"/>
+			<id>urn:uuid:230550b3-4c8e-5f32-8c51-fd3701edf457</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2015-11-25</updated>
+			<summary type="html">
+
+&lt;p&gt;Last Friday I spent two hours fighting with the datetime object from Python&#39;s datetime module. I originally thought that a datetime object represented a single point in time, which is not always the case. I sum up with a few bullets points what I learned about this module:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In its simplest form, a datetime object is just a date and a time as you would write it down on a piece of paper. It&#39;s a year, a month, a day, and, optionally, an hour, a minute, a second and some microseconds (the &#39;time&#39; part of &#39;datetime&#39;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;So, in this simplest form, a datetime object does not represent a given point in time because it depends on the timezone in which you consider your date and time. It&#39;s up to interpretation. Such datetime objects are called &lt;em&gt;naive&lt;/em&gt;. You can make a datetime object &lt;em&gt;aware&lt;/em&gt; by giving to it the timezone that should be used to interpret this date and time. An &lt;em&gt;aware&lt;/em&gt; datetime object does represent a given point in time.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The optionnal timezone carried by a datetime object is given by the &lt;code&gt;tzinfo&lt;/code&gt; attribute, whose value is of type &lt;code&gt;tzinfo&lt;/code&gt;. The tzinfo class is a metaclass (the equivalent of an abstract class in Java), meaning you can&#39;t directly instanciate a tzinfo object. You must instanciate a subclass of tzinfo, such as &lt;code&gt;timezone&lt;/code&gt;. But to construct a timezone object, you must give it a &lt;code&gt;timedelta&lt;/code&gt; object. The timedelta class represents a difference between two datetimes. When used to construct a timezone, it indicates the offset in relation to UTC. For example, &lt;code&gt;timezone(timedelta(hours=2))&lt;/code&gt; is a valid tzinfo object which represents the timezone UTC+2. &lt;code&gt;timezone.utc&lt;/code&gt; is a shortcut for &lt;code&gt;timezone(timedelta(0))&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Most methods which return a datetime object return a &lt;em&gt;naive&lt;/em&gt; object. The method &lt;code&gt;now&lt;/code&gt; returns the local and naive date and time; the method &lt;code&gt;utcnow&lt;/code&gt; returns the UTC naive date and time. Since Python 3.2, the &lt;code&gt;strptime&lt;/code&gt; method can produce an aware datetime object from a string. The string must contain the timezone in the &lt;code&gt;+HHMM&lt;/code&gt; or &lt;code&gt;-HHMM&lt;/code&gt; format (for example &lt;code&gt;+0200&lt;/code&gt; for UTC+2), and the placeholder to use is &lt;code&gt;%z&lt;/code&gt; to capture the timezone part.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Practical example&lt;/h2&gt;
+&lt;p&gt;Let&#39;s say you&#39;ve acquired such a string representating a date and a time: &lt;code&gt;Mon Nov 23 20:06:13 CET 2015&lt;/code&gt;. It&#39;s actually the default output&#39;s format of the &lt;code&gt;date&lt;/code&gt; command in bash. Let&#39;s say you want to write a Python script that tells you the exact time difference between the moment the script is executed and the date and time represented by this string.&lt;/p&gt;
+&lt;p&gt;We&#39;re in bad luck here because Python won&#39;t be able to tell us to what timezone &lt;code&gt;CET&lt;/code&gt; corresponds to. Remember, it can only parse timezones if they&#39;re in the form &lt;code&gt;+HHMM&lt;/code&gt;. So we need to do some basic research. It turns out that CET stands for Central European Time and is UTC+1.&lt;/p&gt;
+&lt;p&gt;Now that we have such knowledge, a solution is to replace &lt;code&gt;CET&lt;/code&gt; by &lt;code&gt;+0100&lt;/code&gt; in the string then let Python produces an aware datetime object.&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;datetime&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;timedelta&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;timezone&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;DATETIME_STRING&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&#39;Mon Nov 23 20:06:13 CET 2015&#39;&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DATETIME_STRING&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;replace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&#39;CET&#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&#39;+0100&#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;dt&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;strptime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&#39;%a %b &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%d&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; %H:%M:%S %z %Y&#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, we need the current time. There are two functions to get the current time: &lt;code&gt;now&lt;/code&gt; or &lt;code&gt;utcnow&lt;/code&gt;. The problem with &lt;code&gt;now&lt;/code&gt; is that it returns the current local time. So we would need to figure out what is the local timezone, which isn&#39;t straightforward (more on that later). &lt;code&gt;utcnow&lt;/code&gt; returns the UTC time, so we know the timezone by definition. Note that even if we know the timezone, &lt;code&gt;utcnow&lt;/code&gt; still returns a &lt;em&gt;naive&lt;/em&gt; object, so we&#39;ll have to manually set the timezone to UTC:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;n&#34;&gt;now&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utcnow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;now&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;now&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;replace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tzinfo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;timezone&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;# Getting an aware datetime object&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We can now subtract the two datetime objects to obtain a timedelta object, which has the fancy &lt;code&gt;seconds&lt;/code&gt; attribute:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;n&#34;&gt;delta&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;now&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dt&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;delta&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;seconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;# Prints the timespan in seconds between dt and now&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Getting the local timezone&lt;/h2&gt;
+&lt;p&gt;In the last part, another strategy would have been to use the &lt;code&gt;now&lt;/code&gt; to obtain the local time and then set the local timezone to the datetime object obtained. But getting the local timezone isn&#39;t easy. I haven&#39;t found any function in the documentation doing that, and posts on the subject on StackOverflow advice using the &lt;code&gt;tzlocal&lt;/code&gt; module, which isn&#39;t present in the standard library.&lt;/p&gt;
+&lt;p&gt;It&#39;s still possible with the vanilla datetime module.&lt;/p&gt;
+&lt;p&gt;First, a solution that would work sometimes:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;n&#34;&gt;diff&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;now&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utcnow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;minutes&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;round&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;diff&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;seconds&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;60&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;local_timezone&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;timezone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;timedelta&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;minutes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;minutes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here we get the timezone as the difference between &lt;code&gt;now&lt;/code&gt; and &lt;code&gt;utcnow&lt;/code&gt;. But since the two functions are not executed at the exact same time, the difference doesn&#39;t produce a timedelta object with a whole number of minutes, which is the condition for a timedelta to be used to construct a timezone. We get a whole number of minutes by rounding the number of seconds divided by 60. Then we construct a timezone thanks to a new timedelta.&lt;/p&gt;
+&lt;p&gt;Now imagine that this code runs on a &lt;em&gt;very&lt;/em&gt; slow computer and more than a minute is gone between the execution of the two functions, and you&#39;ve got a corrupted timezone. So, it doesn&#39;t really work.&lt;/p&gt;
+&lt;p&gt;To make it work we can use a timestamp. Python can parse POSIX timestamp into datetime objects. We can use &lt;code&gt;fromtimestamp&lt;/code&gt; to get the local datetime from a timestamp and &lt;code&gt;utcfromtimestamp&lt;/code&gt; to get the UTC datetime from the same timestamp, then substract the two, which, this time, will represent the exact same instant:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;n&#34;&gt;TIMESTAMP&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;42&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;dt_utc&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utcfromtimestamp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TIMESTAMP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;dt_local&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fromtimestamp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TIMESTAMP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;diff&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dt_local&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dt_utc&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;local_timezone&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;timezone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;diff&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Well, to be perfectly honnest, I&#39;m still not absolutely convinced that this would work 100% of the time. Depending on the implementation of the &lt;code&gt;fromtimestamps&lt;/code&gt; methods, there may exist edge cases causing trouble some times. I don&#39;t know. At the end of the day, the true way to get the timezone is to look at the operating system&#39;s specific configuration file containing such information, which is set by the user when it installs the operating system. This is what the &lt;code&gt;tzlocal&lt;/code&gt; module does by the way. Python probably does it too when it does anything UTC.&lt;/p&gt;</summary>
+			
+				<category term="programming"></category>
+			
+				<category term="python"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>Why Firefox was losing track of my history</title>
