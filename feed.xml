@@ -16,7 +16,7 @@
 			<updated>2015-11-25</updated>
 			<summary type="html">
 
-&lt;p&gt;Last Friday I spent two hours fighting with the datetime object from Python&#39;s datetime module. I originally thought that a datetime object represented a single point in time, which is not always the case. I sum up with a few bullets points what I learned about this module:&lt;/p&gt;
+&lt;p&gt;Last Friday I spent two hours fighting with the datetime class from Python&#39;s datetime module. I originally thought that a datetime object represented a single point in time, which is not always the case. I sum up with a few bullets points what I learned about this module:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;In its simplest form, a datetime object is just a date and a time as you would write it down on a piece of paper. It&#39;s a year, a month, a day, and, optionally, an hour, a minute, a second and some microseconds (the &#39;time&#39; part of &#39;datetime&#39;).&lt;/p&gt;
