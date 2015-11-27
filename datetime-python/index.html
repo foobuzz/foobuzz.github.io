@@ -66,7 +66,7 @@
 <p>So, in this simplest form, a datetime object does not represent a given point in time because it depends on the timezone in which you consider your date and time. It's up to interpretation. Such datetime objects are called <em>naive</em>. You can make a datetime object <em>aware</em> by giving to it the timezone that should be used to interpret this date and time. An <em>aware</em> datetime object does represent a given point in time.</p>
 </li>
 <li>
-<p>The optionnal timezone carried by a datetime object is given by the <code>tzinfo</code> attribute, whose value is of type <code>tzinfo</code>. The tzinfo class is a metaclass (the equivalent of an abstract class in Java), meaning you can't directly instanciate a tzinfo object. You must instanciate a subclass of tzinfo, such as <code>timezone</code>. But to construct a timezone object, you must give it a <code>timedelta</code> object. The timedelta class represents a difference between two datetimes. When used to construct a timezone, it indicates the offset in relation to UTC. For example, <code>timezone(timedelta(hours=2))</code> is a valid tzinfo object which represents the timezone UTC+2. <code>timezone.utc</code> is a shortcut for <code>timezone(timedelta(0))</code>.</p>
+<p>The optionnal timezone carried by a datetime object is given by the <code>tzinfo</code> attribute, whose value is of type <code>tzinfo</code>. The tzinfo class is an abstract base class, meaning you can't directly instanciate a tzinfo object. You must instanciate a subclass of tzinfo, such as <code>timezone</code>. But to construct a timezone object, you must give it a <code>timedelta</code> object. The timedelta class represents a difference between two datetimes. When used to construct a timezone, it indicates the offset in relation to UTC. For example, <code>timezone(timedelta(hours=2))</code> is a valid tzinfo object which represents the timezone UTC+2. <code>timezone.utc</code> is a shortcut for <code>timezone(timedelta(0))</code>.</p>
 </li>
 <li>
 <p>Most methods which return a datetime object return a <em>naive</em> object. The method <code>now</code> returns the local and naive date and time; the method <code>utcnow</code> returns the UTC naive date and time. Since Python 3.2, the <code>strptime</code> method can produce an aware datetime object from a string. The string must contain the timezone in the <code>+HHMM</code> or <code>-HHMM</code> format (for example <code>+0200</code> for UTC+2), and the placeholder to use is <code>%z</code> to capture the timezone part.</p>
@@ -139,13 +139,13 @@
 					
 					<ul>
 						
-							<li><a href="/tag/software">software</a> (1)</li>
-						
-							<li><a href="/tag/data">data</a> (1)</li>
+							<li><a href="/tag/programming">programming</a> (1)</li>
 						
 							<li><a href="/tag/python">python</a> (1)</li>
 						
-							<li><a href="/tag/programming">programming</a> (1)</li>
+							<li><a href="/tag/data">data</a> (1)</li>
+						
+							<li><a href="/tag/software">software</a> (1)</li>
 						
 					</ul>
 				</section>
