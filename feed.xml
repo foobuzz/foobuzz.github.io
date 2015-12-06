@@ -3,7 +3,7 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2015-12-04</updated>
+	<updated>2015-12-04T23:00:00Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
 	
 		<entry>
@@ -13,7 +13,7 @@
 			<author>
 				<name>Valentin</name>
 			</author>
-			<updated>2015-12-04</updated>
+			<updated>2015-12-04T23:00:00Z</updated>
 			<summary type="html">
 
 &lt;p&gt;Have you ever been redirected to a so-called read-only version of Reddit? That&#39;s a thing. For example, check out &lt;a href=&#34;https://np.reddit.com/r/books&#34;&gt;np.reddit.com/r/books&lt;/a&gt;. No voting arrows, no button to comment even when logged in, and a little message at the top of the subreddit: &#34;You have been linked to a read-only version of this subreddit. Please respect the community by not voting.&#34; All because the little &lt;code&gt;np&lt;/code&gt; (&#34;No Participation&#34;) subdomain was used. Now if you try the same thing with /r/askreddit: &lt;a href=&#34;np.reddit.com/r/askreddit&#34;&gt;np.reddit.com/r/askreddit&lt;/a&gt;, everything is absolutely normal, no difference with the regular Reddit. Quite strange, isn&#39;t it. It doesn&#39;t stop there. For example, &lt;a href=&#34;https://sf.reddit.com/r/teenagers/&#34;&gt;sf.reddit.com/r/teenagers&lt;/a&gt; displays only the self-post of the subreddit, because of the &lt;code&gt;sf&lt;/code&gt; (SelF-posts) subdomain. But that only works for /r/teenagers. So, what the well?&lt;/p&gt;
@@ -76,7 +76,7 @@
 			<author>
 				<name>Valentin</name>
 			</author>
-			<updated>2015-11-25</updated>
+			<updated>2015-11-25T23:00:00Z</updated>
 			<summary type="html">
 
 &lt;p&gt;Last Friday I spent two hours fighting with the datetime class from Python&#39;s datetime module. I originally thought that a datetime object represented a single point in time, which is not always the case. I sum up with a few bullets points what I learned about this module:&lt;/p&gt;
@@ -144,7 +144,7 @@
 			<author>
 				<name>Valentin</name>
 			</author>
-			<updated>2015-06-30</updated>
+			<updated>2015-06-30T22:00:00Z</updated>
 			<summary type="html">
 
 &lt;p&gt;A few months ago I encrypted my Firefox profile. It contains my history, bookmarks and most importantly, authentification cookies that I keep for websites I find more conveniant to stay logged in. Those are things I prefer to be encrypted for obvious privacy and security reasons.&lt;/p&gt;
