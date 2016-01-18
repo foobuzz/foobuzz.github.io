@@ -227,21 +227,71 @@ nav ul li a:hover{
 	text-decoration: none;
 }
 
-#content h2, #content h3, #content h4{
-	font-family: 'Open Sans', Arial, Sans Serif;
-}
-
 #content p{
-	font-family: 'Open Sans', Arial, Sans Serif;
 	font-size: 0.9em;
 }
 
-#content ul, #content ol{
+#content {
 	font-family: 'Open Sans', Arial, Sans Serif;
 }
 
-acronym{
+#content acronym{
 	cursor: help;
+}
+
+#content img {
+	max-width: 100%;
+	text-align: center;
+}
+
+#content figure {
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 2em;
+}
+
+#content figcaption {
+	font-family: Arial, 'Sans Serif';
+	font-size: 0.8em;
+	text-align: center;
+}
+
+#content blockquote {
+	border-left: solid 3px #D3D3D3;
+	padding-left: 8px;
+}
+
+#content blockquote p {
+	font-family: 'Liberation Serif', Georgia, Serif;
+	font-size: 1.1em;
+	font-style: italic;
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+#content table {
+	font-size: 0.8em;
+	margin: auto;
+	border-collapse: collapse;
+	border: 1px solid #E9E9E9;
+	margin-bottom: 10px;
+}
+
+#content table thead {
+	border-bottom: 2px solid #E9E9E9;
+}
+
+#content table td, #content table th {
+	text-align: left;
+	padding: 4px;
+}
+
+#content table tr th {
+	background-color: white;
+}
+
+#content table tr:nth-child(odd) {
+	background-color: #EBF0F7;
 }
 
 
