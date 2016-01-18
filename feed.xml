@@ -3,7 +3,7 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2016-01-15T20:38:26Z</updated>
+	<updated>2016-01-18T22:36:44Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
 	
 		<entry>
@@ -13,7 +13,7 @@
 			<author>
 				<name>Valentin</name>
 			</author>
-			<updated>2016-01-15T20:38:26Z</updated>
+			<updated>2016-01-18T22:36:44Z</updated>
 			<summary type="html">
 
 &lt;p&gt;When I switched to Linux last summer, the only software non compatible with Linux that I couldn&#39;t do without was &lt;a href=&#34;https://www.foobar2000.org/&#34;&gt;foobar2000&lt;/a&gt;. I make it work using Wine. There are several reasons I consider this audio player and library manager to be superior to many others. To begin, its GUI is highly customizable via the so-called &#34;Layout Editing Mode&#34;. There are a fair number of useful widgets that you can choose from and place on the screen, using a system of vertical and horizontal splits that you can add recursively. &lt;/p&gt;
