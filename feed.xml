@@ -3,8 +3,146 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2015-12-04T23:00:00Z</updated>
+	<updated>2016-01-15T20:38:26Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>The music I listen to</title>
+			<link href="http://foobuzz.github.io/foobar2000"/>
+			<id>urn:uuid:1e8cbdbe-becb-5641-b034-725f6ed44f0e</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2016-01-15T20:38:26Z</updated>
+			<summary type="html">
+
+&lt;p&gt;When I switched to Linux last summer, the only software non compatible with Linux that I couldn&#39;t do without was &lt;a href=&#34;https://www.foobar2000.org/&#34;&gt;foobar2000&lt;/a&gt;. I make it work using Wine. There are several reasons I consider this audio player and library manager to be superior to many others. To begin, its GUI is highly customizable via the so-called &#34;Layout Editing Mode&#34;. There are a fair number of useful widgets that you can choose from and place on the screen, using a system of vertical and horizontal splits that you can add recursively. &lt;/p&gt;
+&lt;p&gt;Another good feature are the &#34;Global Hotkeys&#34;, which make it possible to map keyboard shortcuts to various commands (pause, next song, change volume, switch the playlist order from random to default, etc), and these shortcuts work even if the player hasn&#39;t the focus. It&#39;s particularly useful when playing video games while listening to music.&lt;/p&gt;
+&lt;p&gt;Finally, plugins can be installed, some of which are powerful. My favorite is &#34;Playback Statistics&#34; which keeps track of the time a song has been added to the library, the first time and last time it has been played, and its play count.&lt;/p&gt;
+&lt;p&gt;Using this plugin, I like to compute my own little charts and see statistics about the music I listen to. However, exporting the data to a programmatically exploitable format wasn&#39;t as easy as I thought.&lt;/p&gt;
+&lt;h2&gt;The ID mystery&lt;/h2&gt;
+&lt;p&gt;Playback Statistics (PS) has a feature that allow one to &#34;export data&#34; (resp. &#34;import data&#34;). The intent of this feature is to make it possible to share statistics across different foobar2000 installations. The exported file is an XML file containing one node per song in the library with an attribute for each piece of data. Here&#39;s an example of a node corresponding to one song:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;Entry&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;ID=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&#34;eef3112353c1512d&#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;Count=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&#34;5&#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;FirstPlayed=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&#34;130818970132330604&#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;LastPlayed=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&#34;130913311506349590&#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;Added=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&#34;130739450382613924&#34;&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The timestamps for the last three attributes are in the Microsoft &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/windows/desktop/ms724284%28v=vs.85%29.aspx&#34;&gt;FILETIME format&lt;/a&gt;. It&#39;s the number of 100-nanoseconds since January 1 1601. &lt;a href=&#34;https://blogs.msdn.microsoft.com/oldnewthing/20090306-00/?p=18913/&#34;&gt;Don&#39;t ask me&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The problem is that the song is identified by an ID and nobody knows how it&#39;s computed from the song. The &lt;a href=&#34;http://wiki.hydrogenaud.io/index.php?title=Foobar2000:Components/Playback_Statistics_v3.x_%28foo_playcount%29&#34;&gt;PS documentation&lt;/a&gt; implies that the ID is computed from the following song&#39;s metadata: artist, title, album, disc number, track number. However, from &lt;a href=&#34;https://github.com/tfriedel/foobar2000-export/issues/1&#34;&gt;GitHub&lt;/a&gt; to &lt;a href=&#34;https://hydrogenaud.io/index.php/topic,103977.msg853596.html#msg853596&#34;&gt;Hydrogen Audio&lt;/a&gt;, nobody succeeded in guessing how the ID is computed from a song.&lt;/p&gt;
+&lt;p&gt;I tried to break the mysterious hash myself without success. I did two successive exports separated by a specific song&#39;s listening session. In the two XML files, I spotted the only element that had a PlayCount increment and deduced that it was the song I&#39;d listened to. Note that the order of the songs aren&#39;t always the same, so I couldn&#39;t perform a simple diff and had to actually parse the XML to spot the difference. Having linked one song to its ID, I then tried to brute-force the ID. I tried all the combinations of the metadata said to be used in the documentation, with various separators between the fields, then encoded with various character encodings, then hashed with the most famous hash functions. At the heart of this 4 for-loops imbrication, I finally tested if the mysterious ID was a substring of the obtained hash. This resulted in zero match. I figured that the author could have used a more complicated hashing process. He could even have used a custom salt somewhere in the process. This was hopeless.&lt;/p&gt;
+&lt;p&gt;The next logical step was probably either to contact the plugin&#39;s author or to try to decompile the plugin&#39;s dll. But this is when I stumbled upon this &lt;a href=&#34;https://www.hydrogenaud.io/forums/index.php?showtopic=97456&#34;&gt;Hydrogen Audio thread&lt;/a&gt; where a method to link each song of the library to its ID was exposed. This method relies on another plugin, &#34;Text Tools&#34;. This plugin enables the user to export text information about the songs in the library, accessing the songs&#39; metadata. Foobar2000 exposes metadata in the form of variables surrounded by the &lt;code&gt;%&lt;/code&gt; symbol. For example, &lt;code&gt;%title%&lt;/code&gt; gives the song&#39;s title. Fair enough, the PS plugin exposes its own variables (play count, first played, etc) using this format. For example, &lt;code&gt;%play_count%&lt;/code&gt; gives the song&#39;s play count. Wonderful! Using only Text Tools I was then able to export all relevant information about the library!&lt;/p&gt;
+&lt;h2&gt;The Music Diary&lt;/h2&gt;
+&lt;p&gt;On the Figure 1 (you can right-click on it and click to &#34;Show Image&#34; to see the full-size version), each point represents a tracked song from my library. A tracked song is a song that I listened to at least one time since I&#39;ve installed the Playback Statistics plugin. The plugin increments the play count of a song when the player plays at least one straight minute of it. This leads to misleadings numbers. For example, one of the track I&#39;ve listened the most to is The Fourth Movement of Beethoven&#39;s Fifth Symphony, with a Play Count (PC) of 102. However, this track is about 10 minutes long and I know that I&#39;ve mostly listened only to the last 3 minutes of it. (What an epic finale!)&lt;/p&gt;
+&lt;figure&gt;
+&lt;img alt=&#34;Graph representing the Play Count on the Y-axis and the first time played in the X-axis&#34; src=&#34;assets/articles/music-diary.png&#34;&gt;
+&lt;figcaption&gt;&lt;strong&gt;Figure 1&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/img&gt;&lt;/figure&gt;
+&lt;p&gt;The X-axis represents the first time I&#39;ve listened to a song. The Y-axis represents the Play Count of the song as of the writing of this article. It&#39;s not a surprise that the left of the graph, starting a little before June 2013, is flooded with many songs. That&#39;s all the songs I was casually listening to suddenly starting being tracked by the plugin. However, you can obverse the same phenomenon one year later in June 2014, which contains a high concentration of new songs too. That&#39;s because I like to explore new music during the summer holidays. The effect lose strength in the summer of 2015, which I assume is because I was doing an internship and didn&#39;t have as much time as I had during previous summers.&lt;/p&gt;
+&lt;p&gt;An interesting phenomenon takes place between September 2013 and February 2014. As you can see, I haven&#39;t discovered many songs in this period. However, the few I did I listened to them a lot of times! Well, this period was when I moved outside my parents&#39; to study in a new city and I didn&#39;t have an Internet connexion in my new apartment. I remember exploring a bit of music at my school&#39;s computers and listening to them a lot in my apartment as I didn&#39;t have much to do.&lt;/p&gt;
+&lt;p&gt;I have a few ultra popular songs that I listen to massively. &lt;a href=&#34;https://www.youtube.com/watch?v=zgsDf73rm_0&#34;&gt;Breaking Through by Audiomachine&lt;/a&gt; holds the record with a stratospheric 153 PC. Songs with the highest PC tends to be older, having been listened for the first time around 2013. This makes sense, since the older a song is, the more time I have to listen to it repetitively and increment its PC. My favorite songs that I discovered recently are &lt;a href=&#34;https://www.youtube.com/watch?v=MYSVMgRr6pw&#34;&gt;Take me To Church by Hozier&lt;/a&gt; and &lt;a href=&#34;https://www.youtube.com/watch?v=HtPL2YhK6h0&#34;&gt;Take a Look Around by Limp Bizkit&lt;/a&gt;. The former is recent and I discovered it when it became popular worldwide. The latter dates back from 2000 and I just became fond of it when I discovered it last summer. I played it in loop while playing &lt;a href=&#34;http://www.urbanterror.info/home/&#34;&gt;&lt;em&gt;Urban Terror&lt;/em&gt;&lt;/a&gt;, which certainly contributed to its high PC.&lt;/p&gt;
+&lt;p&gt;You can see vertical ribs, for example at the beginning of last December or at the beginning of March 2015. That&#39;s when I discover an album. I listen to the whole album in one go. Then I listen to each track individually according to my preferences. Each track then evolves on the album&#39;s vertical line.&lt;/p&gt;
+&lt;p&gt;Finally, you can see how serious I am each year before my finals, during a little period around the end of April and the beginning of May, where I don&#39;t listen to any new song, except for &lt;a href=&#34;https://www.youtube.com/watch?v=BPbSCENrY4g&#34;&gt;Audiomachine&#39;s Millennium&lt;/a&gt; in May 2015. Indeed, I remember discovering it at the end of &lt;a href=&#34;https://www.youtube.com/watch?v=1DiMjOWlbmM&#34;&gt;this movies montage&lt;/a&gt; during a procrastinating session.&lt;/p&gt;
+&lt;h2&gt;The Fluff Principle&lt;/h2&gt;
+&lt;p&gt;The Fluff Principle is a term invented by &lt;a href=&#34;https://en.wikipedia.org/wiki/Paul_Graham_%28computer_programmer%29&#34;&gt;Paul Graham&lt;/a&gt; in a &lt;a href=&#34;http://www.paulgraham.com/hackernews.html&#34;&gt;February 2009 article&lt;/a&gt;. The Hacker News creator gives the following definition:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;on a user-voted news site, the links that are easiest to judge will take over unless you take specific measures to prevent it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;He explains that one type of fluff is short content. It&#39;s faster to consume a joke or a picture than an in-depth article. Therefore, at equal quality, the former will gain more upvotes per unit of time than the latter.&lt;/p&gt;
+&lt;p&gt;Well, the Fluff Principle also holds for my music statistics. It&#39;s faster to listen to a short song than to a long one. Therefore, at equal quality, short songs will gain more PC by unit of time than long ones. For example, my top one song, Audiomachine&#39;s Breaking Through (153 PC), is only 1:18 long. I know that I&#39;ve listened to another song, &lt;a href=&#34;https://www.youtube.com/watch?v=SNuwOYQPr-s&#34;&gt;Seven Angels by Avantasia&lt;/a&gt; a crazy amount of time, each time the whole thing. However, this song is 14:17, so it&#39;s not quite a surprise that its PC is only 31. Now if I want to know how much time I&#39;ve been listening to each song, that is, the total amount of time I was listening while the song was playing, I have to multiple the PC by the song&#39;s duration. &lt;em&gt;Breaking Through&lt;/em&gt; hits 153×(1×60+18) = 11,934 seconds. &lt;em&gt;Seven Angels&lt;/em&gt; hits 37×(14×60+17) = 31,709 seconds. Wow! I&#39;ve listened to &lt;em&gt;Seven Angels&lt;/em&gt; way more than to &lt;em&gt;Breaking Through&lt;/em&gt;!&lt;/p&gt;
+&lt;p&gt;Following this observation, we can define the Normalized Play Count (NPC) as the following: NPC(song) = PC(song)×Duration(song)/AD where AD is the Average Duration of a tracked song. This way, for songs which have a duration close to the average duration, their NPC will be approximately equal to their PC. The NPC plays an important role for particularly short songs, for which it diminishes their importance, and for long songs, for which it increases the importance.&lt;/p&gt;
+&lt;p&gt;The table on Figure 2 shows the top 20 songs in my library sorted by their NPC, in the reverse order. This table contains several anomalies that are due to the fact that the PS plugin increments the PC of a song only when 1 minute of it is played. Anomalies are very long tracks whose duration tends to give them a high NPC when in reality I listened only to a part of them. The anomalies are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ranked 1:&lt;/strong&gt; It&#39;s 20 minutes long, but I know I almost never listen beyond the 10 minutes mark.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ranked 2:&lt;/strong&gt; It&#39;s 10 minutes long, but I almost always listen to its finale, that is the last 3-4 minutes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ranked 6:&lt;/strong&gt; Final song of the album. I usually only listen to the first 3-4 minutes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ranked 9:&lt;/strong&gt; I never listen to the Quasimodo Suite, which is quite lengthy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Rank&lt;/th&gt;&lt;th&gt;Artist&lt;/th&gt;&lt;th&gt;Title&lt;/th&gt;&lt;th&gt;NPC&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;&lt;td&gt;Beethoven&lt;/td&gt;&lt;td&gt;Piano Concerto No.5: Mvt. I&lt;/td&gt;&lt;td&gt;384.107&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;&lt;td&gt;Beethoven&lt;/td&gt;&lt;td&gt;Symphony No.5 - IV Allegro&lt;/td&gt;&lt;td&gt;320.7867&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;&lt;td&gt;Dvorak&lt;/td&gt;&lt;td&gt;Symphony No. 9: II. Largo&lt;/td&gt;&lt;td&gt;143.867&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;&lt;td&gt;Avantasia&lt;/td&gt;&lt;td&gt;The Seven Angels&lt;/td&gt;&lt;td&gt;109.836&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;5&lt;/td&gt;&lt;td&gt;M83&lt;/td&gt;&lt;td&gt;Raconte-Moi Une Histoire&lt;/td&gt;&lt;td&gt;97.736&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;6&lt;/td&gt;&lt;td&gt;Awolnation&lt;/td&gt;&lt;td&gt;Knights of Shame&lt;/td&gt;&lt;td&gt;96.200&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;7&lt;/td&gt;&lt;td&gt;Audiomachine&lt;/td&gt;&lt;td&gt;Rising Dawn&lt;/td&gt;&lt;td&gt;95.217&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;8&lt;/td&gt;&lt;td&gt;Zack Hemsey&lt;/td&gt;&lt;td&gt;Vengeance&lt;/td&gt;&lt;td&gt;90.881&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;9&lt;/td&gt;&lt;td&gt;Santa Esmeralda&lt;/td&gt;&lt;td&gt;The House of the Rising Sun + Quasimodo Suite&lt;/td&gt;&lt;td&gt;85.195&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;10&lt;/td&gt;&lt;td&gt;Limp Bizkit&lt;/td&gt;&lt;td&gt;Take a Look Around&lt;/td&gt;&lt;td&gt;83.250&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;11&lt;/td&gt;&lt;td&gt;Mahler&lt;/td&gt;&lt;td&gt;Symphony No. 1 - Mvt. IV&lt;/td&gt;&lt;td&gt;81.503&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;12&lt;/td&gt;&lt;td&gt;Beethoven&lt;/td&gt;&lt;td&gt;Symphony No.5 - II Adante con moto&lt;/td&gt;&lt;td&gt;80.673&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;13&lt;/td&gt;&lt;td&gt;Macklemore &amp;amp; Ryan Lewis&lt;/td&gt;&lt;td&gt;Wing$&lt;/td&gt;&lt;td&gt;80.525&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;14&lt;/td&gt;&lt;td&gt;Hozier&lt;/td&gt;&lt;td&gt;Take Me to Church&lt;/td&gt;&lt;td&gt;79.947&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;15&lt;/td&gt;&lt;td&gt;Hans Zimmer&lt;/td&gt;&lt;td&gt;Mombasa&lt;/td&gt;&lt;td&gt;78.914&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;16&lt;/td&gt;&lt;td&gt;Edwyn Collins&lt;/td&gt;&lt;td&gt;A Girl Like You&lt;/td&gt;&lt;td&gt;78.295&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;17&lt;/td&gt;&lt;td&gt;Beethoven&lt;/td&gt;&lt;td&gt;Moonlight Sonata - Third Movement&lt;/td&gt;&lt;td&gt;78.282&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;18&lt;/td&gt;&lt;td&gt;Beethoven&lt;/td&gt;&lt;td&gt;Piano Concerto No.5: Mvt. II&lt;/td&gt;&lt;td&gt;75.685&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;19&lt;/td&gt;&lt;td&gt;M83&lt;/td&gt;&lt;td&gt;Wait&lt;/td&gt;&lt;td&gt;73.653&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;20&lt;/td&gt;&lt;td&gt;Beethoven&lt;/td&gt;&lt;td&gt;Piano Concerto No.5: Mvt. III&lt;/td&gt;&lt;td&gt;72.167&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;figcaption&gt;&lt;strong&gt;Figure 2&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Well, I sure like Beethoven.&lt;/p&gt;</summary>
+			
+				<category term="software"></category>
+			
+				<category term="python"></category>
+			
+				<category term="data"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>The np problem, Reddit edition</title>
