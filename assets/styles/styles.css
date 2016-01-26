@@ -328,7 +328,7 @@ aside{
 		width: 100%;
 	}
 
-	aside section h1{
+	aside section h2{
 		display: inline-block;
 		margin-top: 2px;
 	}
@@ -355,7 +355,7 @@ aside{
 		width:23%;
 	}
 
-	aside section h1{
+	aside section h2{
 		border-bottom: 1px solid #D8D9D9;
 	}
 
@@ -369,8 +369,9 @@ aside{
 }
 
 
-aside section h1{
+aside section h2{
 	font-family: 'Open Sans', Arial, sans-serif;
+	font-size: 1.2em;
 	color: #5E605F;
 	text-shadow: 1px 1px 1px white;
 	margin-bottom:0;
