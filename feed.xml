@@ -3,8 +3,52 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2016-01-18T22:36:44Z</updated>
+	<updated>2016-02-27T12:20:03Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Big Bang</title>
+			<link href="http://foobuzz.github.io/bigbang"/>
+			<id>urn:uuid:ac5e48d2-191d-5842-86ef-9bd950c7832a</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2016-02-27T12:20:03Z</updated>
+			<summary type="html">
+
+&lt;p&gt;&lt;img alt=&#34;Cover of the book&#34; src=&#34;http://i.imgur.com/ZgzbZ8x.jpg&#34; style=&#34;width:140px;float:left;margin-right:15px;&#34;&gt;
+I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece of literature, about 460 pages written in a tiny font, and I was quite impressed when it was given to me at Christmas, since I&#39;m not a big book reader. However, it was so interesting that I had no trouble finishing it. The author does a wonderful job at telling the long story that leads to the Big Bang theory as it is today (as it was in 2004, actually, the year the book was released).&lt;/img&gt;&lt;/p&gt;
+&lt;p&gt;At some moments he doesn&#39;t hesitate to venture into the technical side of things yet he keeps it simple and accessible to anyone with basic middle school education. The way the story is written and its details suggest that the author has been studying a massive amount of documentation for the writing, and the bibliography at the end of the book is a proof of that.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Big Bang&lt;/em&gt; confirms my feeling that a historical depiction of how something was built is the best way to understand how it works. One of the first class that I took in my engineering school was about the working of a CPU. The professor based his course on how processors were built, historically. He started with the basic, early proof-of-concepts, and then explained how components were gradually added, and for what purpose. Of my three years of school, this was definitively the most interesting course. Such a chronological structure leads to a great understanding of the matter and also makes the overall course way more interesting than a raw description.&lt;/p&gt;
+&lt;figure&gt;
+&lt;div style=&#34;text-align:center;&#34;&gt;
+&lt;iframe allowfullscreen=&#34;&#34; frameborder=&#34;0&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/G8cbIWMv0rI&#34; width=&#34;420&#34;&gt;&lt;/iframe&gt;
+&lt;figcaption&gt;&lt;strong&gt;Carl Sagan explains how Eratosthenes deduced the circumference of the Earth. This is the kind of explanations and stories the book contains, this one in particular is given at the beginning of the book.&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/div&gt;&lt;/figure&gt;
+&lt;p&gt;The book does the same thing with the Big Bang, this theory that I knew about but never managed to understand even superficially (I mean, other than &#34;there was some sort of explosion and since then the Universe is expanding&#34;). It explains why the idea emerged in the first place, what were the alternative theories, what observations favored the Big Bang theory rather than another one, etc. It&#39;s a novel and as such, it never forgets to draw up portraits of the scientists involved in the process, the concrete experiments that they were doing, as well as little anecdotes scattered here and there. I loved the little cliffhangers that the author leaves at the end of chapters, giving a hint on how someone is going to discover some amazing thing in the next chapter. This makes it look like a thriller.&lt;/p&gt;
+&lt;p&gt;When reading &lt;em&gt;Big Bang&lt;/em&gt; I realized how science makes sense, and how people criticizing it in favor of alternative beliefs just lack knowledge. Things like the Big Bang (before reading the book) or quantum mechanics are so obscure for someone like me who only has a training on classical mechanics that the only way I would think them true is by having confidence in science. And while I always had 100% confidence in it (&lt;em&gt;it works, bitches&lt;/em&gt;), there&#39;s no such thing as an understanding of why it&#39;s justified. And that&#39;s what this book brings. It brings an explanation of how much sense scientific theories make, how solid they are. The usage of the word &lt;em&gt;theory&lt;/em&gt; doesn&#39;t mean that scientists have made an enigmatic bet that their hypothesis might somewhat be true. It means that even when observing how well their hypothesis works, they stay wise and careful in front of the peculiarities of Nature.&lt;/p&gt;
+&lt;p&gt;Nevertheless, the book gives a less idealistic vision of scientists that I imagined. I always pictured scientists as perfectly partial and unbiased people, and forgot that they were humans too. &lt;em&gt;Big Bang&lt;/em&gt; shows how scientists can be seduced by a theory not only because of how faithful it is to reality but also because of its beauty or how it corresponds to their &#34;intuition&#34; of how Nature behave (or, worse, how it &lt;em&gt;should&lt;/em&gt; behave). While the simplicity of a theory is really important, which, in a sense, makes the beauty matter not irrelevant, the book shows that some scientists are prone to kill the simplicity of a theory by applying patches to it to make it both compatible with observation and their personal beliefs of how it should work.&lt;/p&gt;
+&lt;p&gt;The best example is probably Ptolemy which added epicycles to the orbits of planets so that they could continue to orbit around the Earth and the epicycle thing would explain their visible retrogradations in the sky. Another shocking example is when the dynamic aspect of the Universe was a consequence of Einstein&#39;s general relativity, but Einstein liked a static Universe better, so he added some constant (the cosmological constant) in the equations to make it static. Friedman and Lemaître chose to really study the consequences of the original, patch-less theory, and ended up elaborating the first version of the Big Bang theory.&lt;/p&gt;
+&lt;figure&gt;
+&lt;div style=&#34;text-align:center;&#34;&gt;
+&lt;iframe allowfullscreen=&#34;&#34; frameborder=&#34;0&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/EYPapE-3FRw&#34; width=&#34;420&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;figcaption&gt;&lt;strong&gt;The great Richard Feynman explains how science works&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The problem is that once you&#39;ve made your point and defended it, it&#39;s hard to change your mind. The more you defend your theory, the harder it is to admit that you were wrong all this time. And it&#39;s really sad when someone seems to no longer base his or her opinion on the more recent data, but on the fact that they&#39;re just too deeply engaged to their view at this point. To a certain extend, the book gave me the impression that this phenomenon had a significant impact on the battle between the defenders of the Big Bang theory and the defenders of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Steady_State_theory&#34;&gt;Steady State theory&lt;/a&gt;. The latter was a new theory that emerged after the Big Bang theory and modeled a static universe instead of an expanding one. It was way more elaborated that the cosmological constant patch. At some point in History, it even explained observations that the Big Bang didn&#39;t.&lt;/p&gt;
+&lt;p&gt;At some point in the book, it feels like defenders of each theory are no longer defending their side because it best describes reality, but because they want to be right in front of the other side. Some of their arguments were no longer reasonable but different kinds of sophism instead. Actually, the kind-of-childish term &#34;Big Bang&#34; was first used by Fred Hoyle (defender of the Steady State theory) in order to make fool of the theory which involved some kind of big explosion. Defenders of the Big Bang though it was a nice term, so they adopted it. What takes the cake is that the same Hoyle was the co-author of a paper which explained how heavy elements are created inside stars*, which, at the time, was a better argument for the Big Bang than for the Steady State. The man definitely didn&#39;t know how to defend its theory properly, but fortunately that&#39;s for the good of knowledge.&lt;/p&gt;
+&lt;p&gt;*The whole team was: Margaret Burbidge, Geoffrey Burbidge, William Fowler, and Fred Hoyle. Hence the nickname of their monumental paper: &lt;a href=&#34;https://en.wikipedia.org/wiki/B2FH_paper&#34;&gt;B2FH&lt;/a&gt;&lt;/p&gt;
+&lt;figure&gt;
+&lt;img alt=&#34;The first six primary mirror segments being prepped for final cryogenic acceptance testing.&#34; src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/James_Webb_Primary_Mirror.jpg/1024px-James_Webb_Primary_Mirror.jpg&#34;/&gt;
+&lt;figcaption&gt;&lt;strong&gt;The only thing more badass than this picture is its caption &lt;a href=&#34;https://en.wikipedia.org/wiki/James_Webb_Space_Telescope&#34;&gt;on Wikipedia&lt;/a&gt;: &lt;i&gt;The first six primary mirror segments being prepped for final cryogenic acceptance testing.&lt;/i&gt;&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Finally, if there is one thing that I should remember from this book, it&#39;s that &lt;em&gt;telescopes&lt;/em&gt; are the ultimate referees when it comes to know the Universe. It&#39;s like Feynman said in the video: you can develop the theory you want, to can marketize the theory as you want, you can think of all the arguments you want, you can wish and hope what you want. At the end of day, someone&#39;s going to build a telescope bigger than ever, and its observations will decide of the future of your theory without mercy.&lt;/p&gt;
+&lt;p&gt;I&#39;m really looking forward to the launch of the James-Webb Space Telescope in 2018. Those things are knowledge fuel.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;TL;DR: 10/10 would read again&lt;/strong&gt;&lt;/p&gt;</summary>
+			
+				<category term="books"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>The music I listen to</title>
@@ -31,8 +75,8 @@
 &lt;h2&gt;The Music Diary&lt;/h2&gt;
 &lt;p&gt;On the Figure 1 (you can right-click on it and click to &#34;Show Image&#34; to see the full-size version), each point represents a tracked song from my library. A tracked song is a song that I listened to at least one time since I&#39;ve installed the Playback Statistics plugin. The plugin increments the play count of a song when the player plays at least one straight minute of it. This leads to misleadings numbers. For example, one of the track I&#39;ve listened the most to is The Fourth Movement of Beethoven&#39;s Fifth Symphony, with a Play Count (PC) of 102. However, this track is about 10 minutes long and I know that I&#39;ve mostly listened only to the last 3 minutes of it. (What an epic finale!)&lt;/p&gt;
 &lt;figure&gt;
-&lt;img alt=&#34;Graph representing the Play Count on the Y-axis and the first time played in the X-axis&#34; src=&#34;assets/articles/music-diary.png&#34;/&gt;
-&lt;figcaption&gt;&lt;strong&gt;Figure 1&lt;/strong&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;img alt=&#34;Graph representing the Play Count on the Y-axis and the first time played in the X-axis&#34; src=&#34;/assets/articles/music-diary.png&#34;/&gt;
+&lt;figcaption&gt;&lt;strong&gt;Figure 1&lt;/strong&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;The X-axis represents the first time I&#39;ve listened to a song. The Y-axis represents the Play Count of the song as of the writing of this article. It&#39;s not a surprise that the left of the graph, starting a little before June 2013, is flooded with many songs. That&#39;s all the songs I was casually listening to suddenly starting being tracked by the plugin. However, you can obverse the same phenomenon one year later in June 2014, which contains a high concentration of new songs too. That&#39;s because I like to explore new music during the summer holidays. The effect lose strength in the summer of 2015, which I assume is because I was doing an internship and didn&#39;t have as much time as I had during previous summers.&lt;/p&gt;
 &lt;p&gt;An interesting phenomenon takes place between September 2013 and February 2014. As you can see, I haven&#39;t discovered many songs in this period. However, the few I did I listened to them a lot of times! Well, this period was when I moved outside my parents&#39; to study in a new city and I didn&#39;t have an Internet connexion in my new apartment. I remember exploring a bit of music at my school&#39;s computers and listening to them a lot in my apartment as I didn&#39;t have much to do.&lt;/p&gt;
