@@ -223,7 +223,7 @@ nav ul li a:hover{
 	text-decoration: none;
 }
 
-#content p{
+#content p, #content ol{
 	font-size: 0.9em;
 }
 
