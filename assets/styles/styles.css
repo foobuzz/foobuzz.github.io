@@ -224,8 +224,12 @@ nav ul li a:hover{
 	text-decoration: none;
 }
 
-#content p, #content ol{
+#content p, #content ol, #content ul{
 	font-size: 0.9em;
+}
+
+#content ul li, #content ol li {
+	margin: 10px 0;
 }
 
 #content {
