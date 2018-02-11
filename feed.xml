@@ -94,13 +94,7 @@ fatal: cannot lock ref &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/pu
 &lt;p&gt;I&#39;ve honestly no idea whether supporting Exif by default would cause more damage on the web than the damage the lack of support is currently causing, but the fact is that today, browsers can cause bad surprises to web developers and seem to be quite late on the Exif game. Apparently Apple didn&#39;t wonder much about legacy when they honored Exif by default on their iPhones apps, maybe browsers should follow the lead.&lt;/p&gt;
 &lt;p&gt;As of today, the only way for a site such as my photo gallery project to store and display pictures properly is to rotate the picture according to the Exif orientation tag upon acquiring it (server-side), get rid of the tag, and then display the picture without any additional CSS. The web is basically living in denial of the Exif orientation standard, while every other piece of software is dealing with it.&lt;/p&gt;</summary>
 			
-				<category term="html"></category>
-			
-				<category term="css"></category>
-			
-				<category term="exif"></category>
-			
-				<category term="web"></category>
+				<category term="programming"></category>
 			
 		</entry>
 	
@@ -169,7 +163,7 @@ fatal: cannot lock ref &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/pu
 &lt;p&gt;[1] &lt;a href=&#34;https://en.wikipedia.org/wiki/ANSI_escape_code#Colors&#34;&gt;RGB values for the 8 primary colors in different environments&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;[2] &lt;a href=&#34;https://gist.github.com/XVilka/8346728#now-supporting-truecolour&#34;&gt;List of terminal emulators supporting true colors&lt;/a&gt;&lt;/p&gt;</summary>
 			
-				<category term="linux"></category>
+				<category term="tech"></category>
 			
 		</entry>
 	
@@ -326,9 +320,7 @@ fatal: cannot lock ref &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/pu
 &lt;/li&gt;
 &lt;/ul&gt;</summary>
 			
-				<category term="math"></category>
-			
-				<category term="python"></category>
+				<category term="experiments"></category>
 			
 		</entry>
 	
@@ -503,14 +495,9 @@ I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;figcaption&gt;&lt;strong&gt;Figure 2&lt;/strong&gt;&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;Well, I sure like Beethoven.&lt;/p&gt;</summary>
+&lt;/figure&gt;</summary>
 			
-				<category term="software"></category>
-			
-				<category term="python"></category>
-			
-				<category term="data"></category>
+				<category term="random"></category>
 			
 		</entry>
 	
@@ -641,8 +628,6 @@ I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece
 			
 				<category term="programming"></category>
 			
-				<category term="python"></category>
-			
 		</entry>
 	
 		<entry>
@@ -682,9 +667,7 @@ I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece
 &lt;p&gt;So, this is why my history was only available for 2 weeks.&lt;/p&gt;
 &lt;p&gt;The solution to this problem was quite easy. Actually all this hardware calculation for the maximum number of URIs is used only if the maximum size isn&#39;t set by the user. There&#39;s no regular settings menu to set this preference, I had to go in &lt;code&gt;about:config&lt;/code&gt;. According to &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Mozilla/Tech/Places/Places_Expiration&#34;&gt;this&lt;/a&gt;, there should be 2 keys relative to the limit of URIs: &lt;code&gt;places.history.expiration.max_pages&lt;/code&gt; which can be set by the user to his convenience and &lt;code&gt;places.history.expiration.transient_current_max_pages&lt;/code&gt;, a read-only copy of the previous key destined to other components which would want to access this information. When I finally searched for the keys, only the read-only one was there (and its value was 3274, close but not equal to my estimation above, that&#39;s because I rounded the numbers). According to &lt;a href=&#34;http://www.tomshardware.co.uk/answers/id-2088014/firefox-configuration-issue.html&#34;&gt;this forum post&lt;/a&gt;, I simply could create a brand new key called &lt;code&gt;places.history.expiration.max_pages&lt;/code&gt; and do my business with it. Which I did, setting its value to one fucking million. I was glad to see that its twin key immediatly updated itself with the new value, indicating that it worked.&lt;/p&gt;</summary>
 			
-				<category term="software"></category>
-			
-				<category term="data"></category>
+				<category term="tech"></category>
 			
 		</entry>
 	
