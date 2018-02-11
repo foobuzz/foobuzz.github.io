@@ -3,8 +3,31 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2018-01-28T20:31:19Z</updated>
+	<updated>2018-02-11T11:55:53Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Git branches and slashes</title>
+			<link href="http://foobuzz.github.io/git-slashes"/>
+			<id>urn:uuid:c1051410-9ece-53a6-8eb9-c7a98c9edf3d</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2018-02-11T11:55:53Z</updated>
+			<summary type="html">
+
+&lt;p&gt;I&#39;ve found out that using slashes to name git branches in a hierarchy fashion is limited to only one level:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;$ git checkout -b feature/public-api
+Switched to a new branch &lt;span class=&#34;s1&#34;&gt;&#39;feature/public-api&#39;&lt;/span&gt;
+$ git checkout -b feature/public-api/oauth2
+fatal: cannot lock ref &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/public-api/oauth2&#39;&lt;/span&gt;: &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/public-api&#39;&lt;/span&gt; exists&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; cannot create &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/public-api/oauth2&#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The reason for this is that a git branch is simply a text file in the &lt;code&gt;.git/branches&lt;/code&gt; directory, containing the hash of the commit at the tip of the branch. When a branch&#39;s name contains a slash, git creates a subdirectory to store this file in. So the hash of the branch &lt;code&gt;feature/public-api&lt;/code&gt; is stored at &lt;code&gt;.git/branches/feature/public-api&lt;/code&gt;. If you try to add one more level to that, then git will try to create the &lt;code&gt;.git/branches/feature/public-api&lt;/code&gt; directory, which is impossible, because there&#39;s already a file with this name.&lt;/p&gt;
+&lt;p&gt;It&#39;s yet another &lt;a href=&#34;https://en.wikipedia.org/wiki/Leaky_abstraction&#34;&gt;leaky abstraction&lt;/a&gt; from git, once again for the purposes of performance and simplicity of implementation, which I can understand.&lt;/p&gt;</summary>
+			
+				<category term="programming"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>The Social Network and "We need to expand"</title>
