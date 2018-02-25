@@ -3,8 +3,46 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2018-02-11T11:55:53Z</updated>
+	<updated>2018-02-25T10:59:58Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>2018 Oscars Predictions</title>
+			<link href="http://foobuzz.github.io/oscars2018"/>
+			<id>urn:uuid:cac4edf9-d26f-5794-9fea-e4a70dcbd1c4</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2018-02-25T10:59:58Z</updated>
+			<summary type="html">
+
+&lt;p&gt;Here are my predictions for the winners of the 2018 Academy Awards, whose ceremony will take place next Sunday.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Category&lt;/th&gt;&lt;th&gt;Prediction&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Picture&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Lady Bird&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Director&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Christopher Nolan (Dunkirk)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Actor (leading)&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Gary Oldman (Darkest Hour)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Actress (leading)&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Frances McDormand (Three Billboards*)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Actor (supporting)&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Sam Rockwell (Three Billboards*)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Actress (supporting)&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Allison Janney (I, Tonya)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Original Screenplay&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Three Billboards*&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Adapted Screenplay&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Call Me by Your Name&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Original Score&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Phantom Thread&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Visual Effects&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Blade Runner 2049&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Cinematography&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Blade Runner 2049&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;b&gt;Best Animated Picture&lt;/b&gt;&lt;/td&gt;&lt;td&gt;Coco&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;code&gt;*&lt;/code&gt; &lt;em&gt;Three Billboards Outside Ebbing, Missouri&lt;/em&gt;&lt;/p&gt;</summary>
+			
+				<category term="movies"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>Git branches and slashes</title>
