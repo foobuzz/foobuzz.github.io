@@ -3,8 +3,33 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2018-03-14T19:39:37Z</updated>
+	<updated>2018-03-25T15:52:11Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Do not use query string parameters for cache busting</title>
+			<link href="http://foobuzz.github.io/cache-bust"/>
+			<id>urn:uuid:0939ffb3-646d-5508-9fa7-037247b8669a</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2018-03-25T15:52:11Z</updated>
+			<summary type="html">
+
+&lt;p&gt;When you want to refresh some static resource that might have been cached by caches you don&#39;t have control over, you have to change the URL of the resource so that those caches won&#39;t serve the obsolete version, a practice known as &lt;em&gt;cache busting&lt;/em&gt;. One way to bust cache is to use a version number in a query string parameter when referencing the resource.&lt;/p&gt;
+&lt;p&gt;For example, if your HTML uses &lt;code&gt;theme.css&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;link&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&#34;stylesheet&#34;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&#34;text/css&#34;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&#34;theme.css&#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and that, for some reason, you lose control over cached versions of the stylesheet (e.g. the stylesheet is served with the HTTP &lt;code&gt;Cache-Control: public&lt;/code&gt; header along with an aggressive &lt;code&gt;max-age&lt;/code&gt; that will make caches all over the wire cache it for a long time), then you can always &#34;bust&#34; the cache by serving this new link:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;link&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&#34;stylesheet&#34;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&#34;text/css&#34;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&#34;theme.css?v=2&#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This changes the URL of the stylesheet, meaning caches won&#39;t serve the old version. Other variants include renaming the file (&lt;code&gt;theme.v2.css&lt;/code&gt;) or renaming the path of the file (&lt;code&gt;/v2/theme.css&lt;/code&gt;). However those variants are a bit more complicated to implement because they require to rename the files before deploying, whereas the query string method only requires to update the reference in the HTML, since static servers simply ignore query string parameters.&lt;/p&gt;
+&lt;p&gt;You shouldn&#39;t, however, use the query string method, for the following reason: if at the moment you&#39;re serving &lt;code&gt;theme.css?v=2&lt;/code&gt; anyone on the Internet issues a GET request to &lt;code&gt;theme.css?v=3&lt;/code&gt; then caches will associate the v3 to the content of the v2. When you will want to deploy a new version and will update the query string parameter, you&#39;ll see that the resource doesn&#39;t update. A malicious client could be even more vicious and query something like &lt;code&gt;theme.css?v=6&lt;/code&gt; when you&#39;re at &lt;code&gt;v=3&lt;/code&gt; to let you see how well the system works until a few days when, updating from &lt;code&gt;v=5&lt;/code&gt;, you try to deploy &lt;code&gt;v=6&lt;/code&gt; and witness the resource going back in time to its state as it was at &lt;code&gt;v=3&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Using a version number in the filename is much preferable, for the simple reason that if someone requests &lt;code&gt;theme.v2.css&lt;/code&gt; when you&#39;re serving &lt;code&gt;theme.v1.css&lt;/code&gt;, the server will respond with a 404 error and no content, which is of course not a cacheable response.&lt;/p&gt;</summary>
+			
+				<category term="programming"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>Nessun Dorma in Rogue Nation</title>
