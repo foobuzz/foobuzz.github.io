@@ -3,8 +3,33 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2018-03-25T15:52:11Z</updated>
+	<updated>2018-04-09T20:03:16Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>How to encrypt messages on Linux</title>
+			<link href="http://foobuzz.github.io/encrypting-strings"/>
+			<id>urn:uuid:4863295b-d8e6-5414-8e25-4a5168f88b5b</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2018-04-09T20:03:16Z</updated>
+			<summary type="html">
+
+&lt;p&gt;Disable Bash history:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;unset HISTFILE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Encrypt:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;echo &#39;your string here&#39; | gpg -c | base64
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Decrypt:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;echo &#39;encrypted here&#39; | base64 -d | gpg -d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Both commands will open a graphical prompt for the password.&lt;/p&gt;</summary>
+			
+				<category term="tech"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>Do not use query string parameters for cache busting</title>
