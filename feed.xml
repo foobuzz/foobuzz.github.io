@@ -3,8 +3,116 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2018-04-09T20:03:16Z</updated>
+	<updated>2018-08-05T12:12:00Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Timing a simple Python command-line tool</title>
+			<link href="http://foobuzz.github.io/python-perf"/>
+			<id>urn:uuid:2aa730f6-5a17-5887-af58-d46501661cb2</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2018-08-05T12:12:00Z</updated>
+			<summary type="html">
+
+&lt;p&gt;I programmed a little &lt;a href=&#34;https://github.com/foobuzz/todo/&#34;&gt;todolist tool&lt;/a&gt; for the command line, and I&#39;m not entirely satisfied with its &#34;performance&#34;. What bothers me is that I can notice a tiny delay between the moment I hit the &lt;code&gt;todo&lt;/code&gt; command and the moment the output is written to the standard output. So I analysed how much time it took, and where the time was lost. My initial intuition was that most of the time was due to querying a SQlite database, but I was very wrong.&lt;/p&gt;
+&lt;p&gt;Note that any performance number given in this article comes from an entry-level Intel Pentium-powered computer. The program is faster on my newer laptop. All the measurements are about using the bare &lt;code&gt;todo&lt;/code&gt; command which simply prints the list of pending tasks&lt;/p&gt;
+&lt;h2&gt;Total time&lt;/h2&gt;
+&lt;p&gt;To time the program, we can use the UNIX&#39;s &lt;code&gt;time&lt;/code&gt; program:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;$ &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; todo
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;...&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+real    0m0.097s
+user    0m0.078s
+sys 0m0.016s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It takes 97ms for the &lt;code&gt;todo&lt;/code&gt; command to execute, hence the very little, but noticeable, delay. As a comparison, &lt;code&gt;cat&lt;/code&gt;-ing a ~200 lines file takes about 6ms. So 97ms to print a bunch of tasks is really slow in absolute terms.&lt;/p&gt;
+&lt;h2&gt;Script time&lt;/h2&gt;
+&lt;p&gt;To investigate further, we need to use the &lt;code&gt;cProfile&lt;/code&gt; Python module, which will break down the time taken by each function call and each module import. &lt;code&gt;cProfile&lt;/code&gt; can be used as a stand-alone executable thanks to the &lt;code&gt;-m&lt;/code&gt; Python interpreter&#39;s flag. We&#39;re sorting the function calls by cumulative time (meaning if a function is called multiple times then all those times are summed together) descending:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;$ python -m cProfile -s cumtime ./todo.py
+
+     &lt;span class=&#34;m&#34;&gt;34229&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; calls &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;33095&lt;/span&gt; primitive calls&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; in &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;.050 seconds
+
+ Ordered by: cumulative &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt;
+
+ &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;...&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The important information here is that cProfile tells us that the code has been executed in &lt;code&gt;0.050 seconds&lt;/code&gt;. We are missing 47ms to be consistent with the 97ms total time. Well, surprise, those 47ms are actually the time the Python interpreter takes to start up, before even starting executing the script. This can be verified by timing the interpreter while it executes the &lt;em&gt;empty program&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;$ &lt;span class=&#34;nb&#34;&gt;time&lt;/span&gt; python -c &lt;span class=&#34;s1&#34;&gt;&#39;&#39;&lt;/span&gt;
+real    0m0.045s
+user    0m0.028s
+sys 0m0.012s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;45ms. Checks out with a little margin of error.&lt;/p&gt;
+&lt;p&gt;That is very bad. It means that almost 50% of the total time it takes for the program to run is due to Python starting up, which is a contextual aspect out of my control.&lt;/p&gt;
+&lt;p&gt;Let&#39;s analyse the other 50%.&lt;/p&gt;
+&lt;h2&gt;Main time&lt;/h2&gt;
+&lt;p&gt;I now look at the listing of function calls, sorted by cumulative time, descending (I&#39;ve removed lines containing Python internal stuff):&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt; ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      1    0.000    0.000    0.050    0.050 todo.py:3(&amp;lt;module&amp;gt;)
+      1    0.000    0.000    0.028    0.028 todocore.py:120(main)
+      1    0.000    0.000    0.021    0.022 todocore.py:36(&amp;lt;module&amp;gt;)
+      1    0.000    0.000    0.012    0.012 docopt.py:493(docopt)
+     35    0.000    0.000    0.010    0.000 re.py:277(_compile)
+      1    0.000    0.000    0.010    0.010 todo.py:527(feedback_todo)
+     29    0.000    0.000    0.010    0.000 todo.py:676(safe_print)
+      1    0.000    0.000    0.010    0.010 subprocess.py:356(&amp;lt;module&amp;gt;)
+     22    0.000    0.000    0.010    0.000 sre_compile.py:563(compile)
+     23    0.000    0.000    0.009    0.000 re.py:221(compile)
+      1    0.000    0.000    0.008    0.008 docopt.py:40(fix)
+      2    0.000    0.000    0.007    0.003 todo.py:595(get_basic_task_string)
+      2    0.000    0.000    0.007    0.003 todo.py:612(get_task_string_components)
+      1    0.000    0.000    0.006    0.006 configparser.py:119(&amp;lt;module&amp;gt;)
+      2    0.000    0.000    0.006    0.003 todo.py:683(get_datetime)
+   1660    0.001    0.000    0.006    0.000 docopt.py:34(__eq__)
+   42/1    0.001    0.000    0.006    0.006 docopt.py:45(fix_identities)
+     22    0.000    0.000    0.006    0.000 sre_parse.py:750(parse)
+  53/22    0.000    0.000    0.006    0.000 sre_parse.py:363(_parse_sub)
+      1    0.000    0.000    0.004    0.004 dbapi2.py:23(&amp;lt;module&amp;gt;)
+      1    0.000    0.000    0.002    0.002 datetime.py:5(&amp;lt;module&amp;gt;)
+  [...]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;A bit a guidance here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;cumtime&lt;/code&gt; is the column we&#39;re interested in&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;filename:lineo(function)&lt;/code&gt; is the column giving us the performance culprits. In this last column, module imports are marked with the conventional name &lt;code&gt;&amp;lt;module&amp;gt;&lt;/code&gt;. A module import is simply the source code from this module being executed from top to bottom (with the side-effect of its top-level variables being binded as attributes of the object the module is being imported as)&lt;/li&gt;
+&lt;li&gt;The first line is always the execution of the overall script (no different than importing it: execution from top to bottom) and therefore takes the entire time measured&lt;/li&gt;
+&lt;li&gt;The only thing that &lt;code&gt;todo.py&lt;/code&gt; does is importing &lt;code&gt;todocore.py&lt;/code&gt;, and executing its &lt;code&gt;main&lt;/code&gt; function. The only thing that &lt;code&gt;todocore.py&lt;/code&gt; does is importing libraries and defining functions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The important information here is that the &lt;code&gt;main&lt;/code&gt; function takes 28ms to execute. We are missing 22ms to be consistent with the overall 50ms execution time. Those 22ms are in the importation of &lt;code&gt;todocore.py&lt;/code&gt;, which is not satisfying, because &lt;code&gt;todocore.py&lt;/code&gt; does nothing. It imports libraries and defines functions. Well, turns out that in Python, importing libraries isn&#39;t nothing at all.&lt;/p&gt;
+&lt;p&gt;If we grep the previous listing with &lt;code&gt;&amp;lt;module&amp;gt;&lt;/code&gt; to filter imports only, then we end up with:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;    1    0.000    0.000    0.021    0.022 todocore.py:36(&amp;lt;module&amp;gt;)
+    1    0.000    0.000    0.010    0.010 subprocess.py:356(&amp;lt;module&amp;gt;)
+    1    0.000    0.000    0.006    0.006 configparser.py:119(&amp;lt;module&amp;gt;)
+    1    0.000    0.000    0.004    0.004 dbapi2.py:23(&amp;lt;module&amp;gt;)
+    1    0.000    0.000    0.002    0.002 datetime.py:5(&amp;lt;module&amp;gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The first line is the root import of &lt;code&gt;todocore.py&lt;/code&gt; (22 ms) and the remaining lines are modules from the standard library, whose import&#39;s performances together sum up to the root 22 ms.&lt;/p&gt;
+&lt;p&gt;So, 75% of the execution time has nothing to do with my program. The first 50% is the interpreter starting up, and then 25% is due to importing stuff from the standard library. Any optimization that I can do on my code will be bounded under ~25% of the overall execution, that is 28 ms.&lt;/p&gt;
+&lt;p&gt;In fact, I found that imports can be somewhat optimized. In my case, there is one import that is different than the others: &lt;code&gt;subprocess&lt;/code&gt; is only actually used for a very specific use-case which is to open a text editor when the user wants to edit a task. In Python, you don&#39;t necessarily have to do imports at the top of the script, you can do them inside a function. This means that I could avoid to systematically import &lt;code&gt;subprocess&lt;/code&gt;, and only import it when necessary instead. This made me win 10 ms.&lt;/p&gt;
+&lt;h2&gt;Business Logic time&lt;/h2&gt;
+&lt;p&gt;Near the top of the listing, there is an important function call that takes quite some time:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;    1    0.000    0.000    0.012    0.012 docopt.py:493(docopt)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;docopt&lt;/code&gt; is the function that parses the command-line arguments. It takes 12 ms out of 28 ms total in &lt;code&gt;main&lt;/code&gt;. The command-line in question being: &lt;code&gt;todo&lt;/code&gt;. In absolute terms, such performance is quite ridiculous.&lt;/p&gt;
+&lt;p&gt;So, finally, after the interpreter starting up, after the imports being done, after the command-line being parsed, my code, at last, executes in 16 ms.&lt;/p&gt;
+&lt;p&gt;The point of &lt;a href=&#34;https://github.com/docopt/docopt&#34;&gt;docopt&lt;/a&gt; is that you define the documentation of your command-line interface, and it automatically generates a parser for it (the opposite of e.g. the standard &lt;code&gt;argparse&lt;/code&gt; that generates a documentation from a parser you build with its API). I studied a bit the performance of docopt and realized that a big performance hit was to parse the documentation text and build the parser from that. Once the parser is built, parsing the command-line is fast. This is sad, because the internal Python object representing the parser could be literally hard-coded in the source code, instead of being generated once again from the text everytime the program is invoked.&lt;/p&gt;
+&lt;p&gt;I though I would win some time by using the standard &lt;code&gt;argparse&lt;/code&gt; since it builds a parser programmatically and doesn&#39;t have to parse text, but after experimenting I found out that I was wrong. With &lt;code&gt;argparse&lt;/code&gt;, you add a command that your parser is able to parse with the &lt;code&gt;add_argument&lt;/code&gt; method, and this method took 1 ms to execute. So since my program has more than 12 commands, it was slower than docopt&#39;s 12 ms.&lt;/p&gt;
+&lt;p&gt;Looks like parsing command lines is hard. How the hell does git even work out.&lt;/p&gt;
+&lt;p&gt;I didn&#39;t investigated much further into the business logic, because it&#39;s all broken down in little pieces of a few milliseconds or less that together sum up to the 16 ms. There is the notable 7 ms contribution of the function &lt;code&gt;get_task_string_components&lt;/code&gt;, which, I found out, was so slow because some tasks in todo&#39;s output contain a deadline alongside their label, and Python is slow to convert an internal datetime object to a string representation when using the &lt;code&gt;strftime&lt;/code&gt; function and a date format. You can make it an order of magnitude faster by doing it yourself with basic string formatting.&lt;/p&gt;
+&lt;p&gt;I searched for the &lt;code&gt;fetch_all&lt;/code&gt; function, which is the function from the sqlite3 library that actually performs the query on the sqlite database. This was my initial intuition for the bottleneck. It was deep down the listing, with a cumtime of &#34;0.000&#34;, which means it executes under half of a millisecond.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;This was a toy analysis on my toy program, but I get valuable lessons from it:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;You can very wrong about the bottleneck. You should measure.&lt;/li&gt;
+&lt;li&gt;If you want it to be snappy, you should use a compiled language&lt;/li&gt;
+&lt;li&gt;If you really want to be serious about optimization, then you&#39;ll most likely need to abandon standard stuff and implement yourself the stack of some specific paths all the way to the bottom&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;No. 3 makes me wonder: when you do a Google Search, from your browser all the way to Google hardware, what is the percentage of it that is standard, and what is the percentage of it that is custom-made?&lt;/p&gt;</summary>
+			
+				<category term="programming"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>How to encrypt messages on Linux</title>
