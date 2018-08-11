@@ -3,8 +3,33 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2018-08-05T12:12:00Z</updated>
+	<updated>2018-08-11T15:07:15Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Let's not forget about SNI</title>
+			<link href="http://foobuzz.github.io/doh-sni"/>
+			<id>urn:uuid:c2924597-a575-511b-8d03-46bad70e032a</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2018-08-11T15:07:15Z</updated>
+			<summary type="html">
+
+&lt;p&gt;Mozilla &lt;a href=&#34;https://blog.nightly.mozilla.org/2018/06/01/improving-dns-privacy-in-firefox/&#34;&gt;is launching&lt;/a&gt; one of their &#34;shield studies&#34; (experimental features they push on Firefox Nightly or some low percentage of regular Firefox&#39;s users) which consists in using DNS over HTTPS with Cloudflare&#39;s DNS (1.1.1.1) by default.&lt;/p&gt;
+&lt;p&gt;As for anything over HTTPS, DNS over HTTPS (DoH) brings two guaranties:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Encryption: nobody can spy on the domain name being resolved between you and the resolver&lt;/li&gt;
+&lt;li&gt;Authenticity: the result of the DNS query has not been altered in transit between the resolver and you&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The reason Mozilla uses Cloudflare as the default provider is firstly because in order for DoH to work, the resolver must support it, which isn&#39;t the case for many default ISP&#39;s own resolvers (used by default by most users), and secondly because they think ISPs cannot be trusted whereas Cloudflare should be: they link &lt;a href=&#34;https://developers.cloudflare.com/1.1.1.1/commitment-to-privacy/privacy-policy/firefox/&#34;&gt;this page&lt;/a&gt;, by stating that it constitutes a &#34;very strong privacy agreement&#34;, which seems legit since there literally is the word &#34;promise&#34; in it. Forgive my skepticism, but I find this part of Mozilla&#39;s argumentation rather clumsy. A &lt;a href=&#34;https://blog.ungleich.ch/en-us/cms/blog/2018/08/04/mozillas-new-dns-resolution-is-dangerous/&#34;&gt;recent blog post&lt;/a&gt; shares my doubts.&lt;/p&gt;
+&lt;p&gt;What everybody seems to forget about, however, is that in any case ISPs can still spy on the domains their users connect to. When a browser wants to start an HTTPS connection with a server, first the IP of the domain is resolved (using DNS, or DoH, as it happens), then the browser asks the server for its certificate (some data which proves that the server really is the one it says it is) using the resolved IP to route the request. However, since multiple domains can be hosted behind the same IP address, and a certificate only validates one domain, the browser must send the domain alongside the IP, so that the server can know what certificate to answer with. All of this passes through the user&#39;s ISP in clear.&lt;/p&gt;
+&lt;p&gt;This is called &lt;a href=&#34;https://en.wikipedia.org/wiki/Server_Name_Indication&#34;&gt;Server Name Indication&lt;/a&gt; (SNI), and you can read more about it in this &lt;a href=&#34;https://security.stackexchange.com/a/86741&#34;&gt;very good StackOverflow answer&lt;/a&gt;. As you may guess, some users &lt;a href=&#34;https://www.reddit.com/r/firefox/comments/890tnv/configure_dns_over_https_in_firefox/dwoqkop/&#34;&gt;on Reddit&lt;/a&gt; already made the remark, as well as &lt;a href=&#34;https://news.ycombinator.com/item?id=16166657&#34;&gt;on Hacker News&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In conclusion, even if ISPs would be considered less trusted than a centralized provider, using a centralized DNS provider doesn&#39;t quite solve the problem since the domain are still sent in clear to the ISP. Although extracting the domains from TLS handshakes might be technically more complicated than just looking at DNS logs, if we&#39;re assuming malicious ISPs in a first place, there is no reason they wouldn&#39;t do it.&lt;/p&gt;</summary>
+			
+				<category term="tech"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>Timing a simple Python command-line tool</title>
