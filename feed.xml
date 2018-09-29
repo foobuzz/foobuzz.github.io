@@ -3,8 +3,38 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2018-08-11T15:07:15Z</updated>
+	<updated>2018-09-29T07:26:58Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>The Meaning of It All: Thoughts of a Citizen Scientist</title>
+			<link href="http://foobuzz.github.io/meaning-of-it-all"/>
+			<id>urn:uuid:8ee6ca76-8fc0-5c84-b255-1bd7505ad2a2</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2018-09-29T07:26:58Z</updated>
+			<summary type="html">
+
+&lt;p&gt;I&#39;ve been reading &lt;em&gt;The Meaning of It All&lt;/em&gt; from &lt;a href=&#34;https://en.wikipedia.org/wiki/Richard_Feynman&#34;&gt;Richard Feynman&lt;/a&gt;. It&#39;s a collection of transcripts of lectures given by Feynman at the University of Washington, Seattle, in 1963. In those lectures, Feynman discusses the relationship between science and society in an informal way.&lt;/p&gt;
+&lt;p&gt;I will simply quote two excerpts from the lectures, about skepticism, which struck me as particularly interesting. The first one is:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Why do we grapple with problems? We are only in the beginning. We have plenty of time to solve the problems. The only way that we will make a mistake is that in the impetuous youth of humanity we will decide we know the answer. This is it. No one else can think of anything else. And we will jam. We will confine man to the limited imagination of today&#39;s human beings.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Feynman opposes dogmatic explanations to the unknown. What I like very much in this argument is that what appears to be most of a concern to Feynman isn&#39;t so much that such dogmatic explanations would likely be unreliable and incorrect, but most importantly that they will be boring, because limited to the concepts that we can conceive at humanity&#39;s current state of knowledge.&lt;/p&gt;
+&lt;p&gt;A famous quote from Feynman is &#34;I think nature&#39;s imagination is so much greater than man&#39;s, she&#39;s never going to let us relax.&#34; The peculiarities of Nature is a leitmotiv throughout all of Feynman&#39;s literature, and I think this point of view explains the enthusiasm and sense of wonder he conveys so well when talking about physics.&lt;/p&gt;
+&lt;p&gt;The second excerpts is about the death of his wife:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I met a girl at about thirteen or fourteen whom I loved very much, and we took about thirteen years to get married. It&#39;s not my present wife, as you will see. And she got tuberculosis and had it, actually, for several years. And when she got tuberculosis I gave her a clock which had nice big numbers that turned over rather than ones with a dial, and she liked it. The day she got sick I gave it to her, and she kept it by the side of her bed for four, five, six years while she got sicker and sicker. And ultimately she died. She died at 9:22 in the evening. And the clock stopped at 9:22 in the evening and never went again. Fortunately, I noticed some part of the anecdote I have to tell you. After five years the clock gets kind of weak in the knees. Every once in a while I had to fix it, so the wheels were loose. And secondly, the nurse who had to write on the death certificate the time of death, because the light was low in the room, took the clock and turned it up a little bit to see the numbers a little bit better and put it down. If I hadn&#39;t noticed that, again I would be in some trouble. So one must be very careful in such anecdotes to remember all the conditions, and even the ones that you don&#39;t notice may be the explanation of the mystery.&lt;/p&gt;
+&lt;p&gt;So, in short, you can&#39;t prove anything by one occurrence, or two occurrences, and so on. Everything has to be checked out very carefully. Otherwise you become one of these people who believe all kinds of crazy stuff and doesn&#39;t understand the world they&#39;re in. Nobody understands the world they&#39;re in, but some people are better off at it than others.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;What I like about this one is that Feynman doesn&#39;t try to proclaim being some sort of infallible rationale being, as it is often the case in the skepticism community, whose members often end up being quite arrogant to others. It&#39;s a very personal example where he illustrates how one can be tempted into reading &#34;signs&#34; on events which have a pretty logical explanation, and how tricky it can be to actually find this explanation. I find it to be simply and humbly told.&lt;/p&gt;</summary>
+			
+				<category term="books"></category>
+			
+				<category term="science"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>Let's not forget about SNI</title>
