@@ -3,8 +3,61 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2018-09-29T07:26:58Z</updated>
+	<updated>2018-10-13T07:58:08Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>The One Is Two Society</title>
+			<link href="http://foobuzz.github.io/one-is-two-society"/>
+			<id>urn:uuid:5e75bf9a-6fc2-5e8c-bf0a-938071f5f4d2</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2018-10-13T07:58:08Z</updated>
+			<summary type="html">
+
+&lt;p&gt;If I wanted to waste time and energy, I could create and promote the &#34;One Is Two Society&#34;, an organization defending the idea that mathematics is wrong and that 1 = 2. The main argument would be as follows:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;(1) Let have two equal integers: a = b
+(2) Multiply by a:               a² = ab
+(3) Substract b²:                a² - b² = ab - b²
+(4) Factor both sides:           (a - b)(a + b) = b(a - b)
+(5) Divide by (a - b)            a + b = b
+(6) Because a = b:               2b = b
+(7) Divide by b:                 2 = 1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If I was advertising my society well enough, I think I would gather a fair number of members. In fact, I would gather anyone for whom the following criteria would be true:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Curious enough to follow a mathematical demonstration&lt;/li&gt;
+&lt;li&gt;Not good enough at math to spot the mathematical error (division by zero at step 5)&lt;/li&gt;
+&lt;li&gt;Paranoiac and narcissist enough to think that it&#39;s possible that a little organization in his own corner must be right against what is teached at school, what is common knowledge, and what is written in every encyclopedia as being knowledge backed up by centuries of maths being based on it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Criteria 1 is relatively easy to check; although math isn&#39;t the cup of tea of all, still many people are curious enough to follow the demonstration, and good enough to understand it. Criteria 2 is the easiest to check; the vast majority of people don&#39;t spot the error. Once the demonstration reaches an absurdity, we know there must be an error, but most of us don&#39;t spot it in a first place, and it&#39;s hard to point out of the exact problem even once we know there is an error.&lt;/p&gt;
+&lt;p&gt;Criteria 3, however, is the one that is hard to check. It&#39;s the one criteria that would make my society a marginal movement and not a widespread misunderstanding. Once the demonstration reaches &lt;code&gt;2 = 1&lt;/code&gt;, the vast majority of people think &#34;Ah! This is wrong. Where is the error?&#34;. Only some tiny class of people, fanciful enough, will think &#34;Oh! I&#39;ve been shown that maths are broken! 1 = 2 !!&#34;&lt;/p&gt;
+&lt;p&gt;The fact that criteria 3 is the one making the difference is very important, because it means that the existence and relative popularity of my society wouldn&#39;t be a &lt;em&gt;literacy&lt;/em&gt; issue regarding &lt;em&gt;mathematics&lt;/em&gt;, it would be a &lt;em&gt;trust&lt;/em&gt; issue regarding &lt;em&gt;culture&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;I believe that the relative popularity of &lt;a href=&#34;https://en.wikipedia.org/wiki/Modern_flat_Earth_societies&#34;&gt;modern flat Earth society&lt;/a&gt; can be explained with the same mechanism. When the flat-earth subject is brought into discussion, I notice that a lot of people consider that flat-earthists must be stupid or very ignorant of science. However if you look at the flat-earth literature, you realize that some of them are quite knowledgeable about the history of science related to Earth, and their fallacies can be hard to dismiss properly. It would be time consuming to properly break every one of their arguments, but we don&#39;t need to do so because we already know from culture that Earth isn&#39;t flat. From the point of view of a single individual, as soon as you remove the trust in culture, acquiring reliable knowledge of the world becomes way more complicated, and cunningly error-prone.&lt;/p&gt;
+&lt;h2&gt;Exhibit 1: Bedford Level Experiment&lt;/h2&gt;
+&lt;p&gt;One of the major argument from flat-earthers is the Bedford Level Experiment. The idea of this experiment is first to go to a long straight of water (we want a long, level, surface). On this long straight, regularly mount vertical shafts with a red mark always at the exact same height from the surface of the water (we can use boats or buoys to mount them), each shaft relatively far away from each other. Now go some distance away along the straight and look at all the aligned shafts with a telescope.&lt;/p&gt;
+&lt;p&gt;If the Earth is truly rounded, then, viewed from the telescope, the series of red marks shoudn&#39;t be aligned vertically. If they are aligned vertically, then it means that the Earth is flat. Given the radius of the Earth that is claimed by science, specific distances to respect between the marks can be calculated so that a vertical misalignment would be clearly visible.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://3.bp.blogspot.com/-60Dg8BFYKMU/WIILs56L46I/AAAAAAAARKk/MkBerD16mpo6sm_3Ah_9F4F4wqo5e3jRgCK4B/s1600/bedford-experiment.jpg&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;So the flat-earthers found the perfect river to perform this experiment: the &lt;a href=&#34;https://en.wikipedia.org/wiki/Old_Bedford_River&#34;&gt;Old Bedford River&lt;/a&gt;, in England, which contains a perfect 10 km straight. They did the experiment, and guess what, they viewed that all the marks were aligned, therefore proving that Earth is flat.&lt;/p&gt;
+&lt;p&gt;Now, confronted with such demonstration, as a simple citizen, you have two ways to react:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;You can point out that the experimental protocol is invalid, because air refraction along the straight will mess around the marks alignment from the viewpoint of a far-away observer. This is a slippy argument, because it involves science and science is complicated. A flat-earther would probably counter with &#34;Yeah but what is the probability that the &lt;em&gt;all&lt;/em&gt; the marks becomes aligned after being refracted?&#34; and then you would have to do study the subject and do all sorts of calculations and unless you know your stuff you&#39;ll lose the debate.&lt;/li&gt;
+&lt;li&gt;You can accept the fact that science and experimentation are delicate, error-prone things that should be carried out by professionnal, and your money is therefore on the worldwide consensus instead of the guys who went on an obscure trip to an England river. This is based on trust of science, not science itself, and you will win the debate with this.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Exhibit 2: The Flat Earth Wiki&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://wiki.tfes.org/The_Flat_Earth_Wiki&#34;&gt;The Flat Earth Wiki&lt;/a&gt; is a fascinating piece of misinformation. It exhaustively rebuts each and every argument for a round Earth in a seemingly scientific way, and constitutes as a whole a incredible corpus of fantasy science.&lt;/p&gt;
+&lt;p&gt;My favorite article is &lt;a href=&#34;https://wiki.tfes.org/Universal_Acceleration&#34;&gt;Universal Acceleration&lt;/a&gt;. It rebuts the argument that since there is gravity on Earth (we don&#39;t levitate away yo), the planet should naturally arrange itself as a ball around a then-defined center of gravity. But that not how it goes in flat-earth land. In this world, the Earth is a disk, which is constantly accelerating &#34;upwards&#34; through the Universe, giving the illusion of gravity.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/WrKPhfd.gif&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;The worst is that they back it up with some general relatively, rightfully so: in general relatively, the &lt;a href=&#34;https://en.wikipedia.org/wiki/Equivalence_principle&#34;&gt;equivalence principle&lt;/a&gt; states that it&#39;s impossible to make the difference between acceleration and gravity. For example, would you be in an accelerating spaceship, therefore pushed towards the back of the spaceship, any observable effect would be similar to gravity in this spaceship.&lt;/p&gt;
+&lt;p&gt;Then you may ask how can something be accelerating constantly, since this means it would gain more and more speed, and one day it will reach and surpass the speed of light, which is impossible. But, hey, &lt;a href=&#34;https://wiki.tfes.org/Universal_Acceleration#Why_doesn.27t_the_Earth.27s_velocity_reach_the_speed_of_light.3F&#34;&gt;they&#39;ve got you here&lt;/a&gt;, with some equation and Lorentz factor and whatnots, and I know that some weird stuff happens near the speed of light, but I&#39;m not knowledgeable enough about it to confirm or disprove their calculations. Yet, again, I don&#39;t need to do so, because I know from culture that it isn&#39;t true, and therefore that their calculations or reasoning &lt;em&gt;must&lt;/em&gt; be wrong. (Anyway if the Earth can be flat, I don&#39;t see why the speed of light couldn&#39;t be surpassed.)&lt;/p&gt;
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Although in this article I defend the value that there is in trusting science, by no means I want to discourage the understanding of it, quite the contrary. Understanding how it works and why it works is the best way to further solidify trust you can put on it. However, it is a very time consuming process and we don&#39;t always have the interest or energy to do so, hence, in my opinion, the need to have a guideline to follow that one must be able to trust.&lt;/p&gt;
+&lt;p&gt;On a related note, there is a &lt;a href=&#34;https://www.quora.com/How-can-I-debate-climate-change-with-a-skeptic-without-resorting-to-emotion-and-hyperbole/answer/Richard-Muller-3&#34;&gt;Quora answer by physicist Richard Muller&lt;/a&gt; where he explains that global warming skeptics also are well equiped with ammunitions about the subject (certainly in a way more reasonable and less far-fetched way than flat-eathers, the subject being more subtle), and that you shouldn&#39;t get involved in a debate with them unless you know your stuff very well.&lt;/p&gt;</summary>
+			
+				<category term="science"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>The Meaning of It All: Thoughts of a Citizen Scientist</title>
