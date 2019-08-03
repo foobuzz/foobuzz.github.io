@@ -3,8 +3,35 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2018-10-13T07:58:08Z</updated>
+	<updated>2019-08-03T17:03:12Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Reading notes: July 2019</title>
+			<link href="http://foobuzz.github.io/reading-notes-july-2019"/>
+			<id>urn:uuid:ec4ea97e-e8fe-5a5b-a905-2cf7ca82e83e</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2019-08-03T17:03:12Z</updated>
+			<summary type="html">
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://www.theguardian.com/cities/2019/feb/05/super-tall-super-skinny-super-expensive-the-pencil-towers-of-new-yorks-super-rich?CMP=share_btn_tw&#34;&gt;The Guardian: Super-tall, super-skinny, super-expensive: the &#39;pencil towers&#39; of New York&#39;s super-rich&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;New York City has FAR (Floor Area Ratio) regulations for residential buildings. The FAR is how much living area you&#39;re allowed to have in your building as a function of the parking lot area. So with a FAR of 10 you can make a 10-storey building over the entire surface of the parking lot. However if you only make your building half the size of the parking lot then you&#39;re allowed to make it a 20 storey building. In Manhattan, the FAR value varries according to the specific area.&lt;/p&gt;
+&lt;p&gt;Then there are TDR (Transferable Development Rights). If one building doesn&#39;t exploit all of its allowed surface according to its FAR, the owner can sell the remaining surface to an adjacent building, which is then allowed to surpass its own limit with what he has bought from his neighbor.&lt;/p&gt;
+&lt;p&gt;Real Estate magnats in NYC are making deals to transfer livable surface from one adjacent building to another, bubbling up to gigantic residential skyscrapers, which also happen to be very thin so as to maximize height according to FAR. The current top example is &lt;a href=&#34;https://en.wikipedia.org/wiki/432_Park_Avenue&#34;&gt;432 Park Avenue&lt;/a&gt; at 425.5 meters. More are being built or scheduled to be built. Since FAR only specifies the allowed livable space, they also add &#34;technical floors&#34; to add some free height. Appartments in those buildings are sold for extreme prices to millionnaires or billionaires, who don&#39;t live in them since it is merely an investment.&lt;/p&gt;
+&lt;p&gt;Some people are worried that such tall skyline will cast vast shadows to Central Park. Pro-tall-skinny-buildings counter-argument is that the total amount of allowed height is finite, and what happens is just a specific concentration of height, which might actually be preferable to what would be a uniform height, because skinny shadows move faster throughout the day than bulky shadows.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://www.nytimes.com/interactive/2019/07/16/world/europe/notre-dame.html&#34;&gt;New York Times: Notre-Dame came far closer to collapsing than people knew. This is how it was saved.&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The firefighters were called 30 minutes after the fire was detected, because the guard who went to check for the fire went to the wrong building. It is not clear whether it is because the agent who monitored the alarm misunderstood the cryptic output of the alarm UI, or gave the wrong direction, or the guard misunderstood the direction over the radio. The warning system consisted of 160 detectors and required dozens of experts to design over 6 years. Before the firefighers arrived smoke started to be visible from the outside, and the information was on Twitter.&lt;/p&gt;
+&lt;p&gt;At the begining, firefighers went up the stairs of the cathedral to fight the fire directly from the attic. They later retreated because it was unstoppable, but made the the observation that the wind was bringing the fire towards the North tower. The tower holds 4 huge bells, each of which are hung on wooden beams. The fire would have set the bells lose, and considering their significant weight, their fall could potentially have damaged the tower to the point of collapse.&lt;/p&gt;
+&lt;p&gt;The general supervising the situation declared that the attic was lost, and that efforts should be focused on saving the towers, especially the North one. A team of firefighers were sent on a commando mission (the most dangerous move of the night) to reach the North tower from the South tower, put the fire out, and than come back using the South tower too, which they successfully did because they&#39;re badass as hell.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://time.com/5628572/elon-musk-moon-landing/&#34;&gt;Time: Elon Musk Told Us Why He Thinks We Can Land on the Moon in &#39;Less Than 2 Years&#39;&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Elon Musk says SpaceX could send a man to the Moon in two years if they wanted to. When asked about sending a man to the ISS, he says it acts like the &lt;a href=&#34;https://en.wikipedia.org/wiki/Zeno%27s_paradoxes#Arrow_paradox&#34;&gt;Arrow paradox&lt;/a&gt;: everytimes they&#39;re half-way launch, they still need to cover the second half.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.cnn.com/cnnnext/dam/assets/180907100732-elon-musk-smokes-marijuana-podcast-1-large-169.jpg&#34; style=&#34;text-align:center;&#34;/&gt;&lt;/p&gt;</summary>
+			
+				<category term="reading-notes"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>The One Is Two Society</title>
