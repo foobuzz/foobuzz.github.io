@@ -3,8 +3,101 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2019-08-03T17:03:12Z</updated>
+	<updated>2019-08-04T18:09:53Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Recreating the Midnight in Paris opening sequence</title>
+			<link href="http://foobuzz.github.io/midnight-in-paris"/>
+			<id>urn:uuid:cf6409d6-7511-53d7-ba09-300b8749e29c</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2019-08-04T18:09:53Z</updated>
+			<summary type="html">
+
+&lt;p&gt;Below is my recreation of the opening sequence of Woody Allen&#39;s movie &lt;em&gt;Midnight in Paris&lt;/em&gt;. You can find the original one &lt;a href=&#34;https://www.youtube.com/watch?v=JABOZpoBYQE&#34;&gt;here&lt;/a&gt;. I have also a &lt;a href=&#34;https://www.flickr.com/photos/182852020@N03/albums/72157709815555102&#34;&gt;Flickr album&lt;/a&gt; with the 60 pictures, as well as a &lt;a href=&#34;https://www.flickr.com/photos/182852020@N03/albums/72157709816126392&#34;&gt;bonus album&lt;/a&gt; with extra pictures taken during the project.&lt;/p&gt;
+&lt;iframe allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen=&#34;&#34; frameborder=&#34;0&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/BWY-M_3wfkA&#34; style=&#34;display: block; margin:auto;&#34; width=&#34;560&#34;&gt;&lt;/iframe&gt;
+&lt;p&gt;I have substituted some shots for other ones, mostly because their spot wasn&#39;t available at the time I was taking the picture. I also did not try to imitate the exact framing of the shots in the movie, because I decided it wasn&#39;t the optimal choice given the conditions that had changed between when the movie was shot and when I was taking the shots.&lt;/p&gt;
+&lt;p&gt;Below I break down this project in its three phases: location identification, photography, and editing.&lt;/p&gt;
+&lt;h2&gt;Locations identification&lt;/h2&gt;
+&lt;p&gt;The sequence in question contains 60 shots taken at various places in Paris. The first step was to identify the location of each of the 60 spots where the shot had been filmed in order to go there and take the video. I did not find any authoritative reference on the web that lists those places. The most advanced material I found was &lt;a href=&#34;https://www.thecinetourist.net/an-american-tourist-in-paris.html#&#34;&gt;this article of The Cine-Tourist&lt;/a&gt; which analyses the opening sequence and gives away many of its locations if you&#39;re willing to go through the prose. The most interesting take-away from this article is that the locations of the opening sequence aren&#39;t random, in fact they match the locations of the events that takes place in the rest of the movie.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&#34;/assets/articles/monceau.png&#34; style=&#34;border: 1px solid black;&#34;&gt;
+&lt;figcaption&gt;&lt;strong&gt;Example of location identification with shot No. 48. &#34;Saule pleureur&#34; means &#34;weeping willow&#34;. The website from the image in the middle is &lt;a href=&#34;http://parismamanetmoi.com/2013/02/03/saules-pleureurs-parisiens/&#34;&gt;http://parismamanetmoi.com/2013/02/03/saules-pleureurs-parisiens/&lt;/a&gt;&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/img&gt;&lt;/figure&gt;
+&lt;p&gt;In order to identify the precise location of the shots, I first identified the general area (that is, the street, or park, or place) on Google Maps, and then tried to recreate the exact angle in Street View. From there I grabbed the coordinates. In order to identify the general area, I used either the aformentionned article, my own relative knowledge of Paris for the most famous places, hints from the shots themselves (some of them have the street name literally written), or asked people around when I was stuck.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&#34;/assets/articles/rooftops.png&#34; style=&#34;border: 1px solid black;&#34;&gt;
+&lt;figcaption&gt;&lt;strong&gt;Identification of shot No. 31. Circled in green are the &lt;i&gt;Archives Nationales&lt;/i&gt;. &lt;a href=&#34;https://earth.google.com/web/@48.86069794,2.35372001,94.66637416a,52.00513838d,35y,90.92544887h,78.99834568t,0r&#34;&gt;Here is a link&lt;/a&gt; to the Google Earth position (Chrome only).&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/img&gt;&lt;/figure&gt;
+&lt;p&gt;By far the most challenging location to find was shot number 31, which is a shot of rooftops. Google, family, or friends could not help me with this one. I eventually spent an evening browsing Google Earth with 3D buildings activated, searching for a dome similar to the one at the top of the shot, and identified that it was a shot of the &lt;em&gt;Archives Nationales&lt;/em&gt;, taken from the &lt;em&gt;Centre Pompidou&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.google.com/spreadsheets/d/1NyUQUBlArYYu714a-9r5xWLDiZCOQXU0hHTroAVsCkI/edit#gid=0&#34;&gt;Here is a spreadsheet&lt;/a&gt; listing the locations of each of the 60 shots. The map below contains one marker for each of those 60 locations. As you can see, the shots clearly doesn&#39;t cover most of Paris. Almost all of them are from the Right Bank (North of the Seine), for starters. Blue markers are daytime shots; red markers are nighttime shots.&lt;/p&gt;
+&lt;iframe height=&#34;480&#34; src=&#34;https://www.google.com/maps/d/embed?mid=1wahbYDHX_P5rV7AZDYfNdEq0lJKOjht7&#34; width=&#34;640&#34;&gt;&lt;/iframe&gt;
+&lt;p&gt;Using this map, I grouped the locations into &#34;clusters&#34; which are easy to cover on foot. Each cluster can then be linked either by subway, by foot too, or just be photographed another day. So here are the &#34;walks&#34; that I eventually scheduled:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Area&lt;/th&gt;&lt;th&gt;Shots&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Montmartre&lt;/td&gt;&lt;td&gt;5, 19, 9, 18, 4, 31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Parc Monceau&lt;/td&gt;&lt;td&gt;48, 50, 49&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Champs Elysées&lt;/td&gt;&lt;td&gt;21, 35, 23, 12, 39, 36, 2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Tour Eiffel&lt;/td&gt;&lt;td&gt;30, 17, 15&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Concorde&lt;/td&gt;&lt;td&gt;7, 6, 26, 1, 28, 3, 32, 14, 13, 24&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Opéra → Louvre&lt;/td&gt;&lt;td&gt;38, 29, 16, 34, 27, 8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Saint Michel / Notre-Dame&lt;/td&gt;&lt;td&gt;20, 37, 47, 46, 42, 41, 40, 43, 44, 10, 45, 25, 11, 22, 33&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i&gt;Night Shots&lt;/i&gt;&lt;/td&gt;&lt;td&gt;51-60&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2&gt;Photography&lt;/h2&gt;
+&lt;p&gt;I took pictures and videos with a &lt;a href=&#34;https://www.trustedreviews.com/reviews/panasonic-lumix-dmc-fz200&#34;&gt;Panasonic FZ200&lt;/a&gt;. The only other equipment I had was my smartphone with locations on Google Maps and snapshots from the movies to imitate framing. When I started photographing, I immediatly unndertood that I had made a mistake by doing this project in July because 1/ there are way too many people and 2/ there is way too much light.&lt;/p&gt;
+&lt;p&gt;Initially I did not intend to take videos to actually recreate the sequence, but only to take pictures to create an equivalent photo album. As I started shooting, I realized that my pictures were way pooreer, photographically speaking, than the lovely shots in the movie, due to the poor light and my lack of equipment and skills. So I decided to take videos to recreate the full sequence, such that even without the photography magic, the project would at least have a interesting and vivid output. My camera, the Panasonic FZ200, comes with native 1080p video. Although the image is not of great quality, it does the job.&lt;/p&gt;
+&lt;p&gt;I also realized that constraining myself to the shots of the movie was actually very limiting. I thought that imitating the composition of those shots was an easy thing to do, I just had to &#34;copy&#34;, but because of all the various factors that changes between the movie and the reality (not the same light, not as many people, cars parked in the way, not the same overall &#34;mood&#34;, etc), recreating the exact shots of the movie was not necessarily the best choice for optimal photograhic result. This is why I adapted the framing for many shots. Also, sometimes the exact spot to take the picture was simply not the convenient place to be.&lt;/p&gt;
+&lt;p&gt;There are 5 shots out of the 60 that I substituted for other ones:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Shot No. 12 of the Fouquet&#39;s terrace. Since the restaurant has been burned during the &lt;a href=&#34;https://en.wikipedia.org/wiki/Yellow_vests_movement&#34;&gt;yellow vest protests&lt;/a&gt;, there was no terrace at all. I replaced it by the entrance to the metro Cluny-La Sorbonne near Saint Michel. I also modified the point of view of Shot No. 23, of the Fouquet&#39;s entrance, so that it shows the Fouquet&#39;s renovation work.&lt;/li&gt;
+&lt;li&gt;Shot No. 20 of a flower shop at &lt;em&gt;rue Edouard Colonne&lt;/em&gt;. The shop is now closed and the whole building facade is covered in scaffholding. I replaced it with a shot of &lt;em&gt;rue Rembrandt&lt;/em&gt; near the &lt;em&gt;Parc Monceau&lt;/em&gt;, a pretty little street with a lot of green foliage.&lt;/li&gt;
+&lt;li&gt;Shot No. 27 of the Louvre pyramid, with the camera pointing West. The spot was closed off in preparation of a festival, so I replaced it with a shot of the pyramid with the camera pointed East, that is, towards the &lt;em&gt;Palais du Louvre&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Shot No. 31 of rooftops. It is either taken from the back of the &lt;em&gt;Centre Pompidou&lt;/em&gt; or a rooftop nearby, none of which are publicly available (I admit I did not physically check the point of view from the &lt;a href=&#34;https://restaurantgeorgesparis.com/fr/&#34;&gt;café Georges&lt;/a&gt;, but I&#39;m almost sure the angle is unavailable even from there). I replaced this shot with another shot of rooftops taken from Montmartre.&lt;/li&gt;
+&lt;li&gt;Shot No. 50 of a statue in the &lt;em&gt;Parc Monceau&lt;/em&gt;. I waited 1 hour to take it, before abandoning. People sitting on the benches. Then people doing their yoga class. Then children playing around. I replaced it with another statue from the same park at a quieter spot.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure&gt;
+&lt;iframe allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen=&#34;&#34; frameborder=&#34;0&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/NErn9YbZJf0&#34; style=&#34;display: block; margin:auto;&#34; width=&#34;560&#34;&gt;&lt;/iframe&gt;
+&lt;figcaption&gt;&lt;strong&gt;When you&#39;re trying to do a photo project but you remember your camera is a &lt;a href=&#34;https://www.xkcd.com/1719/&#34;&gt;superzoom&lt;/a&gt;&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;For each shot, I took the picture in Aperture mode, with the lowest aperture available, to limit light and to have a depth of field as long as possible. My camera also has a built-in &#34;HDR mode&#34;, where it rapidly takes multiples shots, each with a different exposure, before blending them together. Since lot of shots contains harsh contrasts (e.g. shaded facades vs. bright sky), HDR mode came in handy, although it behaves badly with movement because of the delay between each exposure (the blending algorithm can then yield weird outputs). The final album contains either the HDR picture if exploitable, the Aperture one otherwise. I took some of the night-time pictures in Manual mode, as in any other mode the camera was trying too hard to get a &#34;normal&#34; exposure, which overblown artificial lights.&lt;/p&gt;
+&lt;h2&gt;Editing&lt;/h2&gt;
+&lt;p&gt;The first post-treatment that I applied to the videos was to stabilize them. Since I had no tripod, most of the videos contained a fair amount of micro-shaking, as well as some soft macro-movement. I stabilized the videos using ffmpeg and the &lt;code&gt;libvidstab&lt;/code&gt; filter, following &lt;a href=&#34;https://scottlinux.com/2016/09/17/video-stabilization-using-vidstab-and-ffmpeg-on-linux/&#34;&gt;this tutorial&lt;/a&gt;. Here is an example command line to stabilize a video:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;ffmpeg -i /home/valentin/Pictures/Midnight_Sorted/57/P1010379.MP4 -vf vidstabdetect -f null -
+ffmpeg -i /home/valentin/Pictures/Midnight_Sorted/57/P1010379.MP4 -vf vidstabtransform=smoothing=30:input=transforms.trf /home/valentin/Pictures/Midnight_Sorted/57/P1010379_stab.MP4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This eliminated the micro-shaking but left some smooth overall movement, which I don&#39;t find annoying so it&#39;s okay. One side effect I noticed from stabilization was a cropping of the videos, which was problematic for shot No. 41 of the UGC Danton theater, where part of the emblem &#34;UGC Danton&#34; was cut out of the frame, so I exempted this shot from stabilization. Another side effect was a sort of &#34;distortion&#34; effect on the whole picture, which can be noticed on shot No. 5 of the Moulin Rouge. I did not worked around this, but it is rather subtle and way better than shaking.&lt;/p&gt;
+&lt;p&gt;I put the shots together using &lt;a href=&#34;https://www.shotcut.org/&#34;&gt;Shotcut&lt;/a&gt;. Although I followed relatively closely the editing of the movie, my final edit is not a frame-perfect recreation.&lt;/p&gt;</summary>
+			
+				<category term="movies"></category>
+			
+				<category term="random"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>Reading notes: July 2019</title>
