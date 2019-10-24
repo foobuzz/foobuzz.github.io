@@ -3,8 +3,35 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2019-09-09T21:38:58Z</updated>
+	<updated>2019-10-24T18:42:58Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Simple streaming of videos over the LAN</title>
+			<link href="http://foobuzz.github.io/streaming-videos-on-a-server"/>
+			<id>urn:uuid:881eb3af-5ea7-5d41-ae3f-24551d949c85</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2019-10-24T18:42:58Z</updated>
+			<summary type="html">
+
+&lt;p&gt;My external hard drive is connected to my Raspberry Pi, which itself is connected to my TV via HDMI. I have a bunch of videos on my drive which I usually watch on the TV using &lt;a href=&#34;https://elinux.org/Omxplayer&#34;&gt;&lt;code&gt;omxplayer&lt;/code&gt;&lt;/a&gt;, but sometimes I want to be able to watch them on my laptop. I wanted a simple solution without having to make my Pi a full-fledged &lt;a href=&#34;https://en.wikipedia.org/wiki/Network-attached_storage&#34;&gt;NAS&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My first attempt was to launch the built-in simple HTTP server of Python into my videos&#39; directory:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;python3 -m http.server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And then visit my Pi&#39;s local IP in my laptop&#39;s browser to get the file listing and let the browser open and read the videos. It works, but it&#39;s impossible to seek at arbitrary times inside the videos. Indeed, the server doesn&#39;t support the &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range&#34;&gt;&lt;code&gt;Range&lt;/code&gt; header&lt;/a&gt; that the browser sends when seeking at a specific part of a video.&lt;/p&gt;
+&lt;p&gt;I &lt;a href=&#34;https://stackoverflow.com/a/14618010&#34;&gt;found out&lt;/a&gt; that the Python &lt;a href=&#34;https://twistedmatrix.com&#34;&gt;Twisted project&lt;/a&gt; comes with a basic web server that is more powerful than &lt;code&gt;http.server&lt;/code&gt; and does support &lt;code&gt;Range&lt;/code&gt;s. In the end, the solution to my problem was as simple as:&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;sudo apt-get install python-twisted-web
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and then&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;twistd -no web --path=.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It takes a little more time to start than &lt;code&gt;http.server&lt;/code&gt; but it can seek videos :)&lt;/p&gt;</summary>
+			
+				<category term="tech"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>Proof that 1 + 1 = 2</title>
