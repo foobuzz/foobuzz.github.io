@@ -3,8 +3,54 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2019-10-24T18:42:58Z</updated>
+	<updated>2019-12-14T16:19:30Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Notes on nuclear energy</title>
+			<link href="http://foobuzz.github.io/notes-nuclear"/>
+			<id>urn:uuid:12f4bb3d-1dc5-59d9-9717-14906d5ab917</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2019-12-14T16:19:30Z</updated>
+			<summary type="html">
+
+&lt;p&gt;If you want to release energy, then you need to give some force the opportunity to work.&lt;/p&gt;
+&lt;p&gt;For example, consider a child who is tensing a slingshot. In this state, all forces cancel each other. The force of the child&#39;s arm counters the force of the slingshot&#39;s elastic. There is no energy released out of this system. But as soon as the child releases the elastic, then the tension force of the elastic starts providing some work. And if there is a force that is working, then it releases energy. In this instance, it releases kinetic energy, given to the rock that is being projected.&lt;/p&gt;
+&lt;p&gt;There is a force out there which is rather strong: the nuclear force. It is the force which glues together the nucleus of an atom. The nucleus of an atom is made of two types of particles: protons and neutrons (we call them nucleons when we don&#39;t need to make the difference), and they&#39;re all kept tight together by the nuclear force. Now, if you take an atom, you can&#39;t get any energy &lt;em&gt;per se&lt;/em&gt; out of its nucleus, because it is stable. And you can&#39;t get energy out of anything stable. You need some force to work.&lt;/p&gt;
+&lt;p&gt;So how you get the nuclear force to work? Well, scientists have made a relevant observation: not all nucleus are as tightly glued as each other (they use the notion of &#34;&lt;a href=&#34;https://en.wikipedia.org/wiki/Binding_energy&#34;&gt;binding energy&lt;/a&gt;&#34; to measure how glued nucleons are together, which is the energy you would be required to provide in order to unglue the nucleons). Below is a graph of how tightly glued nucleus are depending on how many nucleons they contain (the proper word is not &#34;glued&#34;, but rather &#34;stable&#34;). As you can see, atoms with few nucleons, such as Hydrogen, are not that much stable; the maximum of stability is reached with Iron; and then stability decreases steadily down to Uranium.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Binding_energy_curve_-_common_isotopes.svg/1280px-Binding_energy_curve_-_common_isotopes.svg.png&#34; style=&#34;border: 1px solid black;&#34;&gt;
+&lt;figcaption&gt;&lt;strong&gt;Binding energy of nuclides depending of their number of nucleons. This energy is, by definition, the amount of energy required to separate the nucleons of the nucleus.&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/img&gt;&lt;/figure&gt;
+&lt;p&gt;So scientists had the following idea: what if we took two low-stability atoms, such as two atoms of Hydrogen, and glued them together to make one atom of Helium, which would be a bit more stable, according to the graph. What would be the point of that? Well, you have to remember that stability comes from the nuclear force. So if you&#39;ve somehow reached a higher level of stability, then it means you have provided the opportunity for the nuclear force to &lt;em&gt;work&lt;/em&gt;. And what happens when a force works? &lt;strong&gt;It releases energy.&lt;/strong&gt; This is nuclear fusion.&lt;/p&gt;
+&lt;p&gt;With nuclear fission, the opposite is achieved: we take the biggest nucleus, Uranium, which is not very stable, and we split it into two smaller nucleus (fissile Uranium has 235 nucleons, and will fission into two nucleus of around 100 and 135 nucleons respectively). Each of those two children nucleus have a higher stability, according to the graph, so it means that the nuclear force has had the opportunity to work, and in the process, must have released energy.&lt;/p&gt;
+&lt;p&gt;In both nuclear fusion and fission, the gain in energy eventually presents itself in the form of kinetic energy in the particles at play. Such kinetic energy will make those particles impact the bulk material surrounding them. This will lead to the material heating, and, in the case of civil nuclear, this heat is used to boil water and, ultimately, run a turbine.&lt;/p&gt;
+&lt;p&gt;But why does the gain in energy presents itself at kinetic energy, and what particles hold this kinetic energy, and from what force?&lt;/p&gt;
+&lt;h2&gt;Fusion&lt;/h2&gt;
+&lt;p&gt;In the case of Hydrogen fusion, a Hydrogen nucleus with 2 nucleons (deuterium) fusions with an Hydrogen nucleus with 3 nucleons (tritium), to very temporarily become an Helium nucleus with 5 nucleons. The resulting Helium-5 nucleus is in such a configuration that a neutron gets ejected out of it at high speed. The rest of the nucleus is ejected at high speed too because of the recoil. The resulting kinetic energy is far greater than the energy required to perform the fusion in a first place. The emission of a neutron happens almost instantly (Helium-5 has a half-life of 10&lt;sup&gt;-22&lt;/sup&gt; seconds), so the fusion is usually said to produce one neutron and one Helium-4 nucleus, without even mentioning the Helium-5 step.&lt;/p&gt;
+&lt;figure style=&#34;text-align: center;&#34;&gt;
+&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Deuterium-tritium_fusion.svg/800px-Deuterium-tritium_fusion.svg.png&#34; style=&#34;border: 1px solid black; width:200px;&#34;&gt;
+&lt;figcaption&gt;&lt;strong&gt;Ultimately, the energy of fusion turns up as the kinetic energy due to neutron decay of the unstable Helium 5 nucleus.&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/img&gt;&lt;/figure&gt;
+&lt;p&gt;Now, I don&#39;t have a clear understanding of the mechanism at play which ejects this neutron, but the force at play is, again, the nuclear force. What I haven&#39;t said yet about the nuclear force is that if the nucleons get really too close, it starts becoming repulsive. The following digram shows the value of the nuclear force between 2 nucleons depending on their distance. Caution: the value on the y-axis is positive when the force is repulsive, and negative otherwise.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/5/53/ReidForce2.jpg&#34; style=&#34;border: 1px solid black;&#34;&gt;
+&lt;figcaption&gt;&lt;strong&gt;Nuclear force gets repulsive at very short range.&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/img&gt;&lt;/figure&gt;
+&lt;p&gt;So my limited understanding is this neutron emission is that, after the fusion, the Helium-5 nucleus is in such a configuration, that a neutron becomes too close to its counterparts, crossing the limit where the nuclear force start becoming repulsing, and so gets ejected.&lt;/p&gt;
+&lt;h2&gt;Fission&lt;/h2&gt;
+&lt;p&gt;In the case of fission, a neutron is shot at an Uranium nucleus. The nucleus grabs the neutron, which puts the nucleus into such a configuration that the nuclear force starts shaping the nucleus into two different clusters of nucleons. This reaches a point where the two clusters are separated by a distance big enough for the electromagnetic repulsion of their protons to be greater than the nuclear force, at which point the nucleus fissions into two children nucleus repulsing each other at high speed.&lt;/p&gt;
+&lt;figure style=&#34;text-align: center;&#34;&gt;
+&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/e/e0/Stdef2.png&#34; style=&#34;border: 1px solid black; height:200px;&#34;&gt;
+&lt;figcaption&gt;&lt;strong&gt;A nucleus having taken a neutron becomes in such a configuration that nucleus start organizing into 2 clusters. In reality, the two clusters don&#39;t usually have the same size.&lt;/strong&gt;&lt;/figcaption&gt;
+&lt;/img&gt;&lt;/figure&gt;
+&lt;p&gt;The final force at the origin of the kinetic energy is therefore the repulsive electromagnetic force.&lt;/p&gt;</summary>
+			
+				<category term="science"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>Simple streaming of videos over the LAN</title>
