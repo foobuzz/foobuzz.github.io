@@ -3,8 +3,31 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2019-12-14T16:19:30Z</updated>
+	<updated>2019-12-23T20:50:28Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Thoughts on agnosticism</title>
+			<link href="http://foobuzz.github.io/god"/>
+			<id>urn:uuid:d0377a8f-605c-5201-b6bc-8fe9dbe1d42d</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2019-12-23T20:50:28Z</updated>
+			<summary type="html">
+
+&lt;p&gt;Can we prove or disprove the existence of god?&lt;/p&gt;
+&lt;p&gt;It depends on the exact definition of god, but in many of the traditional religious definitions, god hides himself from proof in order to truly test the faith of believers. In this case, his existence is, by definition, not provable.&lt;/p&gt;
+&lt;p&gt;A relevant question would then be: can something whose existence we cannot prove (&#34;we&#34; as humans) have any impact on the world? I would think definitely yes. Our study of the universe is done either in laboratory, either by observations of deep space through tiny pinholes thanks to our telescopes. The entire field of natural science if therefore based on the assumption of regularity in Nature, such that what we discover on observations of limited scope applies everywhere. It is a very reasonable assumption, because it provides us with a framework to study efficiently, and it gives excellent results that can then be converted into actual engineering that works, at least in the scope we&#39;re playing with.&lt;/p&gt;
+&lt;p&gt;However, it is vulnerable to irregularities that would hide themselves from us, such as god is traditionally defined. For example, god could chose to fulfill some prayers, but stop altering the normal flow of things as soon as he spots you&#39;re doing statistics to measure whether prayers work or not. An entity capable of observing all the information of the Universe at once (wouldn&#39;t that be... a god?) would definitely detect those irregularities, but we humans are far less powerful than that, and we could clearly get tricked. &lt;/p&gt;
+&lt;p&gt;In this case, you might think, well, why not believe in god even if I can&#39;t prove it; I have little to lose, big to win. This is a famous philosophical argument made popular by Pascal, named the &lt;a href=&#34;https://en.wikipedia.org/wiki/Pascal%27s_wager&#34;&gt;Pascal&#39;s wager&lt;/a&gt;. But then, you&#39;re making an assumption, which is the assumption traditionally made in religion: god is good.&lt;/p&gt;
+&lt;p&gt;Let me tell the story of an alternative god. This god has created humans as rational animals, who should use logic and the scientific method to improve their understanding of the world. This god carefully hides himself from his creation, such that through this scientific method of them, they can&#39;t uncover him. But to truly test their faithfulness to rationality, he put the seed of mysticism and of superstition into the human brain, and because he&#39;s a sort of a meta guy, he specifically put the seed of belief in himself. He wants humans to be rational, so he wants them to resist the temptation of belief. So, in this world, humans naturally develop an intuition for the existence of god, but they&#39;re designed to reject it, because god made it impossible to prove this intuition, and god wants them to be focused on proof. Those who accept the superstition, the believers, are considered deficient, and are sent to hell.&lt;/p&gt;
+&lt;p&gt;The reason I made up this alternative god, is to show that whenever you think that you have nothing to lose in believing in god, it is incorrect: you actually risk going to hell if it ever happens that my alternative god is real. You might be skectic of my alternative god, because since I just made it up, it surely isn&#39;t an hypothesis as solid as any of the religious gods, who appeared in holy books thousands of years ago. But this is just a popularity argument, and since you have zero element in favor of any hypothesis anyway, you can&#39;t really argue that any god is more or less likely than any other.&lt;/p&gt;
+&lt;p&gt;Maybe you think that the most rational move is therefore neither to believe that god exists, nor to believe that he doesn&#39;t. But even then, I could tell you the story of a god who only sends agnostics to hell (because they&#39;re not brave enough to take a risk, or whatever). Basically, whatever you do, there is possible god that would send you to hell for it. This is what happens with non-scientific assertions (assertions, which, by the way they are formulated, you cannot prove or disprove): there is no optimal move. Such assertions are irrelevant; not because ignoring them is safe, but because there is no insight on what is the safest position.&lt;/p&gt;</summary>
+			
+				<category term="random"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>Notes on nuclear energy</title>
