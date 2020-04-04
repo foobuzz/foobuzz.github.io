@@ -3,8 +3,49 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2019-12-23T20:50:28Z</updated>
+	<updated>2020-04-04T13:59:43Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>We're in for 2 months</title>
+			<link href="http://foobuzz.github.io/covid19"/>
+			<id>urn:uuid:ecaa93e1-01aa-59cb-816a-fa0f9fa23314</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2020-04-04T13:59:43Z</updated>
+			<summary type="html">
+
+&lt;p&gt;One of my activities during the lockdown here in France is trying to predict how much time will the lockdown last. The data I&#39;m using comes from &lt;a href=&#34;https://github.com/CSSEGISandData/COVID-19&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Below is a plot of the rate of growth of Covid-19 in Hubei, Italy, and France, starting from the day each region has started its lockdown. The rate of growth at a given day is the number of new cases on this day, as a percentage of the number of cases from the previous day. The rate of growth is constant for an exponential evolution, and is 0 when there is no more growth. (Mathematically, it is the derivative of the function divided by the function itself.)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/assets/covid19/growth.svg&#34; style=&#34;width:100%; border: 1px solid lightgray;&#34;&gt;&lt;br&gt;
+&lt;a href=&#34;https://gist.github.com/foobuzz/c5a18dd8c983b128ee788fe7747a031b#file-growth-py&#34;&gt;Source script&lt;/a&gt;&lt;/br&gt;&lt;/img&gt;&lt;/p&gt;
+&lt;p&gt;Hubei has some statistical aberrations which make the plot goes wild at some places. They may be the result of changes from one counting method to another. For example, at some point they started adding people clinically diagnosed with symptoms of pneumonia (most likely Covid-19) on top of those who tested positive to SARS-Cov-2.&lt;/p&gt;
+&lt;p&gt;What we see in the plot is that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Locking down works. For each of the countries, locking down eventually brings the growth significantly down. Italy has been on a smooth decline since the beginning of their lockdown. You may read articles in the press about how they&#39;re finally beating the virus, which is just a way of saying that the rate of growth has decreased under some arbitrary threshold. It has been decreasing from the start.&lt;/li&gt;
+&lt;li&gt;It takes time to kill growth. Hubei needed 30 days for the growth to almost come to a stop.&lt;/li&gt;
+&lt;li&gt;Even if they don&#39;t start at the same rate of growth, it looks that each country is ultimately going to take around 30 or 40 days to kill growth.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Why does it take so much time? I have 2 explanations for it.&lt;/p&gt;
+&lt;p&gt;Explanation number 1 is the incubation period of Covid-19, which ranges between 5 days and 14 days. This means that the last people who have been contaminated just before the lockdown (which is much of the contaminated people, because of exponential growth) will start going through the disease between 5 days and 14 days &lt;em&gt;in&lt;/em&gt; the lockdown. Once they are sick, the symptoms tend to peak between 2 and 3 days in the illness, which is the moment they reach for medical assistance and get tested. So it is expected that the &lt;em&gt;measured&lt;/em&gt; number of contaminated people could continue growing up to 17 days after the start of the lockdown.&lt;/p&gt;
+&lt;p&gt;17 days are still lesser than the 30 days we&#39;re observing here, which brings me to the second explanation: the lockdown is not perfect. Some people cannot work from home and still go to work. People need to buy groceries, and go to the shop. People order deliveries, with packing touched by other people. People get sick for various reasons, so they do to the doctor, where other people are waiting. And so on and so forth.&lt;/p&gt;
+&lt;p&gt;The fact that there are contaminations even during the lockdown seems to be corroborated by another metric, which is: once there is no more growth, how many of all the people who have tested positive are still sick? The answer is: most of them. The following graph shows the number of &lt;em&gt;unrecovered&lt;/em&gt; cases of Covid-19 against the total number of cases in Hubei after 30 days of lockdown. That is, once there is almost no more growth.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/assets/covid19/recovery.svg&#34; style=&#34;width:100%; border: 1px solid lightgray;&#34;&gt;&lt;br&gt;
+&lt;a href=&#34;https://gist.github.com/foobuzz/c5a18dd8c983b128ee788fe7747a031b#file-recovery-py&#34;&gt;Source script&lt;/a&gt;&lt;/br&gt;&lt;/img&gt;&lt;/p&gt;
+&lt;p&gt;We see that even when the virus has stopped spreading, a large majority of all Covid-19 cases are still positive, and it takes another 30 days before most of them recover and there is only a small minority which is still positive.&lt;/p&gt;
+&lt;p&gt;My initial reaction was that it is no problem to stop the lockdown after the first month, you just have to keep the still-ill locked down until they recover. The problem is that it is well-known that the number of measured cases is way lesser than the number of total cases, because only the worst cases get tested. So we must imagine that this graph only represent a subset of the entire set of Covid-19 cases, and their sizes evolve proportionally. So if you let out people at Day 30, you&#39;re actually letting out people among a sh#tload of people who are positive, and therefore at risk of spreading the virus again.&lt;/p&gt;
+&lt;p&gt;You can read the complete Hubei lockdown timeline &lt;a href=&#34;https://en.wikipedia.org/wiki/2020_Hubei_lockdowns#Lockdown_timeline&#34;&gt;here&lt;/a&gt;, from which I extract 3 bullet points:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;23 January: lockdown&lt;/li&gt;
+&lt;li&gt;6 March: first day with 0 new case&lt;/li&gt;
+&lt;li&gt;27 March: lockdown lifted&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The rest of the world waited for the last moment to put lockdowns in place, and started experiencing hindsight bias about the fact that it was pretty much announced by China one month before. If this time we stop playing the game of &#34;in our country it&#39;s going to be different than in China&#34;, then the prediction for the duration of the lockdown is: 2 months.&lt;/p&gt;</summary>
+			
+				<category term="random"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>Thoughts on agnosticism</title>
@@ -21,7 +62,7 @@
 &lt;p&gt;A relevant question would then be: can something whose existence we cannot prove (&#34;we&#34; as humans) have any impact on the world? I would think definitely yes. Our study of the universe is done either in laboratory, either by observations of deep space through tiny pinholes thanks to our telescopes. The entire field of natural science if therefore based on the assumption of regularity in Nature, such that what we discover on observations of limited scope applies everywhere. It is a very reasonable assumption, because it provides us with a framework to study efficiently, and it gives excellent results that can then be converted into actual engineering that works, at least in the scope we&#39;re playing with.&lt;/p&gt;
 &lt;p&gt;However, it is vulnerable to irregularities that would hide themselves from us, such as god is traditionally defined. For example, god could chose to fulfill some prayers, but stop altering the normal flow of things as soon as he spots you&#39;re doing statistics to measure whether prayers work or not. An entity capable of observing all the information of the Universe at once (wouldn&#39;t that be... a god?) would definitely detect those irregularities, but we humans are far less powerful than that, and we could clearly get tricked. &lt;/p&gt;
 &lt;p&gt;In this case, you might think, well, why not believe in god even if I can&#39;t prove it; I have little to lose, big to win. This is a famous philosophical argument made popular by Pascal, named the &lt;a href=&#34;https://en.wikipedia.org/wiki/Pascal%27s_wager&#34;&gt;Pascal&#39;s wager&lt;/a&gt;. But then, you&#39;re making an assumption, which is the assumption traditionally made in religion: god is good.&lt;/p&gt;
-&lt;p&gt;Let me tell the story of an alternative god. This god has created humans as rational animals, who should use logic and the scientific method to improve their understanding of the world. This god carefully hides himself from his creation, such that through this scientific method of them, they can&#39;t uncover him. But to truly test their faithfulness to rationality, he put the seed of mysticism and of superstition into the human brain, and because he&#39;s a sort of a meta guy, he specifically put the seed of belief in himself. He wants humans to be rational, so he wants them to resist the temptation of belief. So, in this world, humans naturally develop an intuition for the existence of god, but they&#39;re designed to reject it, because god made it impossible to prove this intuition, and god wants them to be focused on proof. Those who accept the superstition, the believers, are considered deficient, and are sent to hell.&lt;/p&gt;
+&lt;p&gt;Let me tell the story of an alternative god. This god has created humans as rational animals, who should use logic and the scientific method to improve their understanding of the world. This god carefully hides himself from his creation, such that through this scientific method of them, they can&#39;t uncover him. But to truly test their faithfulness to rationality, he put the seed of mysticism and of superstition into the human brain, and because he&#39;s sort of a meta guy, he specifically put the seed of belief of himself. He wants humans to be rational, so he wants them to resist the temptation of belief. So, in this world, humans naturally develop an intuition for the existence of god, but they&#39;re designed to reject it, because god made it impossible to prove this intuition, and god wants them to be focused on proof. Those who accept the superstition, the believers, are considered deficient, and are sent to hell.&lt;/p&gt;
 &lt;p&gt;The reason I made up this alternative god, is to show that whenever you think that you have nothing to lose in believing in god, it is incorrect: you actually risk going to hell if it ever happens that my alternative god is real. You might be skectic of my alternative god, because since I just made it up, it surely isn&#39;t an hypothesis as solid as any of the religious gods, who appeared in holy books thousands of years ago. But this is just a popularity argument, and since you have zero element in favor of any hypothesis anyway, you can&#39;t really argue that any god is more or less likely than any other.&lt;/p&gt;
 &lt;p&gt;Maybe you think that the most rational move is therefore neither to believe that god exists, nor to believe that he doesn&#39;t. But even then, I could tell you the story of a god who only sends agnostics to hell (because they&#39;re not brave enough to take a risk, or whatever). Basically, whatever you do, there is possible god that would send you to hell for it. This is what happens with non-scientific assertions (assertions, which, by the way they are formulated, you cannot prove or disprove): there is no optimal move. Such assertions are irrelevant; not because ignoring them is safe, but because there is no insight on what is the safest position.&lt;/p&gt;</summary>
 			
