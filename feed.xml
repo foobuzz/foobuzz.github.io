@@ -3,8 +3,43 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2020-04-04T13:59:43Z</updated>
+	<updated>2020-07-25T15:38:50Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>The sane intuition behind 0.999... ≠ 1</title>
+			<link href="http://foobuzz.github.io/9999999999999999999999999999999999999999"/>
+			<id>urn:uuid:0e528ef7-0923-564e-b6f3-9b77360a0368</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2020-07-25T15:38:50Z</updated>
+			<summary type="html">
+
+&lt;p&gt;One of the most important realizations that I have had about mathematics is the fact that there is no global definition of what &#34;infinity&#34; is. You can&#39;t just drop the word &#34;infinite&#34; in any context, as if one day mathematicians had a meeting to decide the meaning of &#34;infinity&#34; and made it an element of reasoning you can use with any mathematical thing.&lt;/p&gt;
+&lt;p&gt;In set theory, a set is &#34;infinite&#34; if, for every natural number, the set has a subset whose cardinality is that of this natural number. In functional analysis, a function has a limit L as &lt;em&gt;x&lt;/em&gt; approaches &#34;infinity&#34; if, for any tiny ɛ, there is a point after which the function won&#39;t ever be farther from L than the distance ɛ. The term of &#34;infinity&#34; obviously comes from an intuition about the philosophical notion of infinity, but it is then defined formally using very traditional and non-mystical notions and notations, and there isn&#39;t any global notion of &#34;infinity&#34;. You can&#39;t take some random mathematical thing and ask &#34;What happens when this goes to infinity?&#34;.&lt;/p&gt;
+&lt;p&gt;Now, when someone comes and says &#34;hey, do you know that 0.999 with an infinite amount of 9s after the decimal point is equal to 1?&#34;, what most people do is that they try to picture the number 0.999 with an actual infinite number of nines after the decimal point and then they try to actually reason about this monstrosity. This is an interesting intellectual exercise, but when you&#39;re doing that, you&#39;re doing philosophy, not mathematics. If you want to do mathematics, what you should be asking back is &#34;What is the definition of a number with a decimal repeating infinitely?&#34;&lt;/p&gt;
+&lt;p&gt;There are multiple definitions for it, but the one that makes the most sense to me is an infinite &lt;a href=&#34;https://en.wikipedia.org/wiki/Series_(mathematics)#Convergent_series&#34;&gt;series&lt;/a&gt;. We can simply state that 0.999... can be written as 0.9 + 0.09 + 0.009 + 0.0009 + ... Formally, it would be written as follows:&lt;/p&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;
+&lt;img src=&#34;/assets/articles/09-series.svg&#34;/&gt;
+&lt;/p&gt;
+&lt;p&gt;This form is very helpful, because the notion of infinite series is very well defined. It is simply the limit of the sequence of the partial sums. In other words, 0.999... is the limit of the sequence 0.9, 0.99, 0.999, 0.9999, etc. Let&#39;s call this sequence 0.(9)n for later reference. I like this definition because it reminds me of very important aspects of sequences and their limits that I learned when I was in school:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;There is no such thing as an &#34;infinite term&#34; of a sequence (and some teachers won&#39;t like it if you ever dare say something like that).&lt;/li&gt;
+&lt;li&gt;The limit of a sequence may very well be distinct than any of its terms.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I think those two aspects are at the origin of the difficulty that there is to accept that 0.999... = 1. I think that the decimal representation with its &#34;infinite digits&#34; is misleading because it leads us to ponder the notion of an &#34;infinite term&#34; (of finite truncations) all while it is explicitly discouraged as soon as we actually consider the sequence of truncations itself. Then our minds are lost wandering in the vast pastures of infinity where it&#39;s hard to understand how a limit may not belong to the sequence itself. I think that what people really mean when they think that it&#39;s problematic that 0.999... = 1 is that the sequence of 0.(9)n &lt;em&gt;never&lt;/em&gt; reaches 1 no matter how many time you look at the next term.&lt;/p&gt;
+&lt;p&gt;In other words, consider the set of all elements of the sequence: {0.9, 0.99, 0.999, 0.9999, ...}. This set is obviously infinite, and 1, the limit of the sequence, does not belong to this set. When we ponder the notion of &#34;infinity&#34; in the context of 0.9..., what we might envision is the journey through this &#34;infinite&#34; set. With this in mind, it&#39;s hard to see how 1 can have anything to do with this, since it is outside the set.&lt;/p&gt;
+&lt;p&gt;But this begs the question: what is a &#34;limit&#34;? In layman terms, the limit of a sequence is a real number the sequence is ever getting closer to (without the requirement that it actually reaches it at any point). More formally, it means that for any tiny real number ɛ, there is a rank after which the sequence won&#39;t ever be farther from the limit than the distance ɛ. (This is the same definition than the one used in functional analysis I presented in the introduction.) Even without a formal proof, it seems pretty obvious than the sequence 0.9, 0.99, 0.999,... has 1 for limit. And therefore, if you actually understand the proper meaning of the notation, that 0.999... = 1.&lt;/p&gt;
+&lt;p&gt;Now, since the limit of an increasing sequence also happens to be its supremum (least upper bound), this leads us to another definition, which is the one that is actually used by &lt;a href=&#34;https://en.wikipedia.org/wiki/0.999...&#34;&gt;Wikipedia&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The real number represented by an infinite decimal is the least upper bound of its finite truncations.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;What this means is that if you take the sequence 0.(9)n, then the number that is written &#34;0.999...&#34; or said to have &#34;an infinite amount of 9s after the decimal point&#34; is the smallest number that is greater than all terms of the sequence. For example, 3 is greater than all the terms of the sequence, so that&#39;s a candidate. Is it the smallest such number? Well, certainly not. 2 is greater than all terms of the sequence and it is lesser than 3. Can we find smaller? Sure. 1 is greater than all terms of the sequence. Is there something even smaller? Hmm... doesn&#39;t seem so. I think 1 is the smallest. This, of course, is only intuition so far, but &lt;a href=&#34;https://en.wikipedia.org/wiki/0.999...#Formal_proof&#34;&gt;the proof&lt;/a&gt; is easy enough to follow.&lt;/p&gt;</summary>
+			
+				<category term="random"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>We're in for 2 months</title>
