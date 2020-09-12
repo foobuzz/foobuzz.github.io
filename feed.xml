@@ -3,8 +3,36 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2020-07-25T15:38:50Z</updated>
+	<updated>2020-09-12T19:29:56Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>When do the digits of the Epoch time change?</title>
+			<link href="http://foobuzz.github.io/epoch"/>
+			<id>urn:uuid:c810ce2b-2879-5c57-8e66-155af9c76aca</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2020-09-12T19:29:56Z</updated>
+			<summary type="html">
+
+&lt;p&gt;&lt;strong&gt;Approximately&lt;/strong&gt;, using whole numbers of units commonly used for each time scale.&lt;/p&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;1599938520
+||||||||||- every second
+|||||||||- every 10 seconds
+||||||||- every 2 minutes
+|||||||- every 17 minutes
+||||||- every 3 hours
+|||||- every day
+||||- every 12 days
+|||- every 4 months
+||- every 3 years 
+|-every 32 years
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary>
+			
+				<category term="random"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>The sane intuition behind 0.999... ≠ 1</title>
