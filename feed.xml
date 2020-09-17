@@ -3,8 +3,52 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2020-09-12T19:29:56Z</updated>
+	<updated>2020-09-17T21:27:53Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>What if the future is all that is more practical</title>
+			<link href="http://foobuzz.github.io/future"/>
+			<id>urn:uuid:69427c23-8fe3-5e97-8f75-dc0f0dcd5aaf</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2020-09-17T21:27:53Z</updated>
+			<summary type="html">
+
+&lt;p&gt;A common technique to try to predict the future is to think about technology. We take new technology, such as AI, self-driving cars, neurotechnology, etc, and try to understand how society will be shaped once (if ever) they become industrialized. If we feel even more bold than that, we take a mere idea of a technology (rocket-based transportation on Earth, etc) and try to understand how humans will live once it appears for real.&lt;/p&gt;
+&lt;p&gt;I believe this approach is rather unproductive -- well, as if such exercise of predicting the future can be productive anyway. The first reason is that it&#39;s simply too hard to predict the future of technology. &lt;a href=&#34;https://youtu.be/X_m1mPtYzTk?t=47&#34;&gt;According to Neil DeGrasse Tyson&lt;/a&gt;, if you look at the archives of technology prediction in newspaper for the last century, predictions obviously become less and less accurate the further in the future they try to predict, and 50 years seems to be the threshold after which they are completely mistaken. So the horizon for our predictions of future technology is 50 years, give or take.&lt;/p&gt;
+&lt;p&gt;The second reason it&#39;s probably a bad idea to use technology to try to predict the future of society is because it&#39;s not the way innovation works. At the 1997 Worldwide Developer Conference, &lt;a href=&#34;https://youtu.be/oeqPrUmVz-o?t=105&#34;&gt;Steve Jobs was asked&lt;/a&gt; why Apple was dropping development of &lt;a href=&#34;https://en.wikipedia.org/wiki/OpenDoc&#34;&gt;OpenDoc&lt;/a&gt; even through OpenDoc was awesome technology. His answer was that innovation doesn&#39;t work by trying to find an application for a technology, but by trying to find the technology to solve a problem. You don&#39;t start with the technology, you start with a need.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;One of the things I always found is that you&#39;ve gotta start with the customer experience, and work backwards to the technology. You can&#39;t start with a technology and try to figure out where you&#39;re gonna try to sell it.&lt;/p&gt;
+&lt;p&gt;-- Steve Jobs, 1997&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;When we try to predict the future using technology as a compass, we&#39;re doing exactly the contrary Steve Jobs tells use to do here: we&#39;ve got all those funny new things like AI and self-driving cars, but we&#39;re not even sure what the hell they&#39;re good for, and we try so hard to make them fit into a model of the future so that we can make prediction about the future, but we&#39;re not even sure the future cares about that at all.&lt;/p&gt;
+&lt;p&gt;Of course, sometimes technology is so crazy predictions are rightfully made about an entire class of usage for it. An example would be Nikola Tesla, who, when he was working on wireless communication, &lt;a href=&#34;https://www.truthorfiction.com/did-nikola-tesla-describe-mobile-phones-in-1926/&#34;&gt;basically predicted&lt;/a&gt; cell phones and video-conferencing in 1926, shattering the 50 years limit to an (almost) entire century. Working from home because of Covid and making heavy usage of video-conferencing, I regularly think about this quote and it simply blows my mind that someone already had that in mind 94 years ago.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When wireless is perfectly applied the whole earth will be converted into a huge brain, which in fact it is, all things being particles of a real and rhythmic whole.&lt;/p&gt;
+&lt;p&gt;We shall be able to communicate with one another instantly, irrespective of distance. Not only this but through television and telephony we shall see and hear one another as perfectly as though we were face to face, despite intervening distances of thousands of miles; and the instruments through which we shall be able to do this will be amazingly simple compared with our present telephone.&lt;/p&gt;
+&lt;p&gt;A man will be able to carry one in his vest pocket.&lt;/p&gt;
+&lt;p&gt;-- Nikola Tesla, 1926&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Of course, those kind of examples are highly vulnerable to &lt;a href=&#34;https://en.wikipedia.org/wiki/Survivorship_bias&#34;&gt;Survivorship bias&lt;/a&gt;. Of course we remember the predictions that were correct and forget the ones that weren&#39;t. Who knows what else Nikola Tesla predicted that wasn&#39;t as accurate as that. Assuming enough people make predictions varied enough, of course some of them will have it right. Doesn&#39;t change the fact that there existed someone 94 years ago who was convinced about a prediction he made, and he just happened to be correct. Many people playing the lottery doesn&#39;t make the winner any less remarkable. In this case, winning is not random, there is an honest reasoning.&lt;/p&gt;
+&lt;p&gt;I think the reason we&#39;re making future predictions based on technology is because it&#39;s the only direction we know how to go in: it&#39;s always possible to imagine usages for a given technology, however it&#39;s often a billion-dollar problem to imagine a technology for an given idea. So, by lack of genius, we take the easy way, even thought it&#39;s doomed to be unproductive most of the time. The evolution of society is a continuous feedback loop between what is possible (technology) and what is imagined (ideas), and successful people are the ones who immediately spot when the technology becomes available for an incredible idea they have. Those who hop on any new tech are just salesmen.&lt;/p&gt;
+&lt;p&gt;Our obsession of using technology as the only available marker also inhibits us from making predictions too wild, which is a mistake. If I tell you we&#39;re going to be able to teleport in the future, you&#39;re gonna object by asking me to explain how that is going to be implemented, because you&#39;re focusing on technology again. But that is ridiculous, much of what we know about technology will be obsolete in 30 years, why would a technological explanation be relevant to this discussion. This is the third law of &lt;a href=&#34;https://en.wikipedia.org/wiki/Clarke%27s_three_laws&#34;&gt;Arthur C. Clarke laws&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Any sufficiently advanced technology is indistinguishable from magic.&lt;/p&gt;
+&lt;p&gt;-- Arthur C. Clarke&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This law is cute, but it isn&#39;t really helpful, at least not helpful to predict the future. In fact, it pretty much states that if we&#39;re using what makes sense today to predict the future, we&#39;re gonna &lt;em&gt;at least&lt;/em&gt; miss some innovations, because some of those are simply magic from today&#39;s standard. But it doesn&#39;t tell us &lt;em&gt;which&lt;/em&gt; innovations we&#39;re missing.&lt;/p&gt;
+&lt;p&gt;So, how do we make predictions? Well, the wise move is probably to simply stop making predictions. But I&#39;m not very wise. I want to try. My guess, which is rather arbitrary, but which has the quality of being very optimistic, would be this law:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Anything that is more practical will eventually be implemented.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This law predicts the entire future (you just have to dress a list of things that would be practical, and you decide how exhaustive you try to be), but it gives no guaranty as to &lt;em&gt;when&lt;/em&gt; the implementation will happen. Most importantly -- and that is consistent with all I&#39;ve written above -- this laws makes no assumption about what technology will be used for the implementation.&lt;/p&gt;
+&lt;p&gt;As I&#39;m writing this article before noon, I&#39;m remembering my fridge is almost empty and I&#39;m gonna need to go buy some groceries, or to order a delivery. I think it would be way more practical to just open my fridge and find a perfectly good dish there. My guess is that this one will happen sooner than teleportation.&lt;/p&gt;</summary>
+			
+				<category term="random"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>When do the digits of the Epoch time change?</title>
