@@ -3,8 +3,32 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2020-09-17T21:27:53Z</updated>
+	<updated>2020-10-12T14:13:41Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>How Covid Spreads</title>
+			<link href="http://foobuzz.github.io/covid-spread"/>
+			<id>urn:uuid:2f4e3ba7-e3d5-5693-bc42-a336ce7d6d32</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2020-10-12T14:13:41Z</updated>
+			<summary type="html">
+
+&lt;p&gt;&lt;a href=&#34;https://www.theatlantic.com/health/archive/2020/09/k-overlooked-variable-driving-pandemic/616548/&#34;&gt;Very informative article&lt;/a&gt; from The Atlantic. TL;DR:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The spread of the virus obeys the Pareto principle: something like 80% of the contaminations comes from 20% of the infected. In other words, if in average one infected person contaminates x other people, that x is the average between many 0s and a few big numbers. In other words, the virus spreads in clusters.&lt;/li&gt;
+&lt;li&gt;Such dispersion seems to be the result of properties of &lt;em&gt;events&lt;/em&gt; rather than properties of the infected people themselves (we talk about super-spreaders when we should talk about super-spreading events). Events to avoid are described by the 3 C&#39;s: &lt;strong&gt;C&lt;/strong&gt;rowds in &lt;strong&gt;C&lt;/strong&gt;losed spaces in &lt;strong&gt;C&lt;/strong&gt;lose contact.&lt;/li&gt;
+&lt;li&gt;Backward tracing is preferable to forward tracing. Forward tracing won&#39;t yield interesting findings in most cases because an infected person is unlikely to contaminate someone else. Backward tracing is crucial to identify clusters because an infected person likely belongs to a cluster.&lt;/li&gt;
+&lt;li&gt;Unreliable tests are valuable, as long as they yield &lt;strong&gt;no false positives&lt;/strong&gt; (false negatives are okay). If there is a suspicion of cluster, then everyone needs to be tested cheaply and rapidly. If there is &lt;em&gt;anyone&lt;/em&gt; who got the virus, then odds are that &lt;em&gt;many other people&lt;/em&gt; got it too. So the test only needs to find a single one of them to raise the alert (some false negatives are okay). However, the test should not yield false positives (or it will raise alerts everytime).&lt;/li&gt;
+&lt;li&gt;Japan understood all of this in February 2020 and contained the virus without any lockdown despite having some of the densest cities in the world.&lt;/li&gt;
+&lt;li&gt;Many of the regions most critically hit by the virus around the world might simply be bad luck of having had a big cluster in this specific region.&lt;/li&gt;
+&lt;/ul&gt;</summary>
+			
+				<category term="random"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>What if the future is all that is more practical</title>
@@ -61,17 +85,17 @@
 			<summary type="html">
 
 &lt;p&gt;&lt;strong&gt;Approximately&lt;/strong&gt;, using whole numbers of units commonly used for each time scale.&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;1599938520
-||||||||||- every second
-|||||||||- every 10 seconds
-||||||||- every 2 minutes
-|||||||- every 17 minutes
-||||||- every 3 hours
-|||||- every day
-||||- every 12 days
-|||- every 4 months
-||- every 3 years 
-|-every 32 years
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;1599938520&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;||||||||||- every second&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;|||||||||- every 10 seconds&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;||||||||- every 2 minutes&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;|||||||- every 17 minutes&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;||||||- every 3 hours&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;|||||- every day&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;||||- every 12 days&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;|||- every 4 months&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;||- every 3 years &lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;|-every 32 years&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary>
 			
 				<category term="random"></category>
@@ -235,14 +259,14 @@
 
 &lt;p&gt;My external hard drive is connected to my Raspberry Pi, which itself is connected to my TV via HDMI. I have a bunch of videos on my drive which I usually watch on the TV using &lt;a href=&#34;https://elinux.org/Omxplayer&#34;&gt;&lt;code&gt;omxplayer&lt;/code&gt;&lt;/a&gt;, but sometimes I want to be able to watch them on my laptop. I wanted a simple solution without having to make my Pi a full-fledged &lt;a href=&#34;https://en.wikipedia.org/wiki/Network-attached_storage&#34;&gt;NAS&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;My first attempt was to launch the built-in simple HTTP server of Python into my videos&#39; directory:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;python3 -m http.server
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;python3 -m http.server&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And then visit my Pi&#39;s local IP in my laptop&#39;s browser to get the file listing and let the browser open and read the videos. It works, but it&#39;s impossible to seek at arbitrary times inside the videos. Indeed, the server doesn&#39;t support the &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range&#34;&gt;&lt;code&gt;Range&lt;/code&gt; header&lt;/a&gt; that the browser sends when seeking at a specific part of a video.&lt;/p&gt;
 &lt;p&gt;I &lt;a href=&#34;https://stackoverflow.com/a/14618010&#34;&gt;found out&lt;/a&gt; that the Python &lt;a href=&#34;https://twistedmatrix.com&#34;&gt;Twisted project&lt;/a&gt; comes with a basic web server that is more powerful than &lt;code&gt;http.server&lt;/code&gt; and does support &lt;code&gt;Range&lt;/code&gt;s. In the end, the solution to my problem was as simple as:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;sudo apt-get install python-twisted-web
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;sudo apt-get install python-twisted-web&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;and then&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;twistd -no web --path=.
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;twistd -no web --path=.&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;It takes a little more time to start than &lt;code&gt;http.server&lt;/code&gt; but it can seek videos :)&lt;/p&gt;</summary>
 			
@@ -262,15 +286,15 @@
 
 &lt;p&gt;The fact that 1 + 1 = 2 is not an axiom of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Peano_axioms#Arithmetic&#34;&gt;Peano arithmetic&lt;/a&gt;, but it is fairly easy to demonstrate. The Peano axioms for natural integers are all based on the notion of &#34;successor&#34;. The only named integer is zero (0), and then there are &lt;a href=&#34;https://en.wikipedia.org/wiki/Peano_axioms#Formulation&#34;&gt;five axioms&lt;/a&gt; revolving around zero and successors of natural integers.&lt;/p&gt;
 &lt;p&gt;The Peano arithmetic introduces further axioms for various operations on integers. It defines two axioms for the addition. For any natural integers &lt;em&gt;a&lt;/em&gt; and &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;S&lt;/em&gt; the notation for the successor of a given integer:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;(1) a + 0 = a
-(2) a + S(b) = S(a + b)
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;(1) a + 0 = a&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;(2) a + S(b) = S(a + b)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Let &lt;em&gt;1 = S(0)&lt;/em&gt; and &lt;em&gt;2 = S(1)&lt;/em&gt;. Then:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;1 + 1
-= 1 + S(0)  (definition of 1)
-= S(1 + 0)  (axiom 2)
-= S(1)      (axiom 1)
-= 2         (definition of 2)
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;1 + 1&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;= 1 + S(0)  (definition of 1)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;= S(1 + 0)  (axiom 2)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;= S(1)      (axiom 1)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;= 2         (definition of 2)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The intuition behind the mechanics of axiom 2 is that adding &lt;em&gt;c&lt;/em&gt; to &lt;em&gt;a&lt;/em&gt; means taking &lt;em&gt;c&lt;/em&gt; times the successor of &lt;em&gt;a&lt;/em&gt; (that is, &lt;code&gt;S(S(S(S(...(a)))))&lt;/code&gt; with &lt;em&gt;c&lt;/em&gt; &lt;em&gt;S&lt;/em&gt; marks). In more informal terms, &lt;code&gt;a + S(b) = S(a + b)&lt;/code&gt; should be thought as &lt;code&gt;a + c = S(a + (c-1))&lt;/code&gt;. The right operand is &#34;decreased&#34; by prefixing the whole thing with the successor operator. Eventually it will reach zero and the number of time we needed to decrease it to reach zero is kept track by the number of time we marked the &lt;em&gt;S&lt;/em&gt; notation.&lt;/p&gt;</summary>
 			
@@ -359,8 +383,8 @@
 &lt;p&gt;For each shot, I took the picture in Aperture mode, with the lowest aperture available, to limit light and to have a depth of field as long as possible. My camera also has a built-in &#34;HDR mode&#34;, where it rapidly takes multiples shots, each with a different exposure, before blending them together. Since lot of shots contains harsh contrasts (e.g. shaded facades vs. bright sky), HDR mode came in handy, although it behaves badly with movement because of the delay between each exposure (the blending algorithm can then yield weird outputs). The final album contains either the HDR picture if exploitable, the Aperture one otherwise. I took some of the night-time pictures in Manual mode, as in any other mode the camera was trying too hard to get a &#34;normal&#34; exposure, which overblown artificial lights.&lt;/p&gt;
 &lt;h2&gt;Editing&lt;/h2&gt;
 &lt;p&gt;The first post-treatment that I applied to the videos was to stabilize them. Since I had no tripod, most of the videos contained a fair amount of micro-shaking, as well as some soft macro-movement. I stabilized the videos using ffmpeg and the &lt;code&gt;libvidstab&lt;/code&gt; filter, following &lt;a href=&#34;https://scottlinux.com/2016/09/17/video-stabilization-using-vidstab-and-ffmpeg-on-linux/&#34;&gt;this tutorial&lt;/a&gt;. Here is an example command line to stabilize a video:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;ffmpeg -i /home/valentin/Pictures/Midnight_Sorted/57/P1010379.MP4 -vf vidstabdetect -f null -
-ffmpeg -i /home/valentin/Pictures/Midnight_Sorted/57/P1010379.MP4 -vf vidstabtransform=smoothing=30:input=transforms.trf /home/valentin/Pictures/Midnight_Sorted/57/P1010379_stab.MP4
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;ffmpeg -i /home/valentin/Pictures/Midnight_Sorted/57/P1010379.MP4 -vf vidstabdetect -f null -&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;ffmpeg -i /home/valentin/Pictures/Midnight_Sorted/57/P1010379.MP4 -vf vidstabtransform=smoothing=30:input=transforms.trf /home/valentin/Pictures/Midnight_Sorted/57/P1010379_stab.MP4&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This eliminated the micro-shaking but left some smooth overall movement, which I don&#39;t find annoying so it&#39;s okay. One side effect I noticed from stabilization was a cropping of the videos, which was problematic for shot No. 41 of the UGC Danton theater, where part of the emblem &#34;UGC Danton&#34; was cut out of the frame, so I exempted this shot from stabilization. Another side effect was a sort of &#34;distortion&#34; effect on the whole picture, which can be noticed on shot No. 5 of the Moulin Rouge. I did not worked around this, but it is rather subtle and way better than shaking.&lt;/p&gt;
 &lt;p&gt;I put the shots together using &lt;a href=&#34;https://www.shotcut.org/&#34;&gt;Shotcut&lt;/a&gt;. Although I followed relatively closely the editing of the movie, my final edit is not a frame-perfect recreation.&lt;/p&gt;</summary>
@@ -409,13 +433,13 @@ ffmpeg -i /home/valentin/Pictures/Midnight_Sorted/57/P1010379.MP4 -vf vidstabtra
 			<summary type="html">
 
 &lt;p&gt;If I wanted to waste time and energy, I could create and promote the &#34;One Is Two Society&#34;, an organization defending the idea that mathematics is wrong and that 1 = 2. The main argument would be as follows:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;(1) Let have two equal integers: a = b
-(2) Multiply by a:               a² = ab
-(3) Substract b²:                a² - b² = ab - b²
-(4) Factor both sides:           (a - b)(a + b) = b(a - b)
-(5) Divide by (a - b)            a + b = b
-(6) Because a = b:               2b = b
-(7) Divide by b:                 2 = 1
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;(1) Let have two equal integers: a = b&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;(2) Multiply by a:               a² = ab&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;(3) Substract b²:                a² - b² = ab - b²&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;(4) Factor both sides:           (a - b)(a + b) = b(a - b)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;(5) Divide by (a - b)            a + b = b&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;(6) Because a = b:               2b = b&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;(7) Divide by b:                 2 = 1&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If I was advertising my society well enough, I think I would gather a fair number of members. In fact, I would gather anyone for whom the following criteria would be true:&lt;/p&gt;
 &lt;ol&gt;
@@ -548,29 +572,29 @@ sys 0m0.012s
 &lt;p&gt;Let&#39;s analyse the other 50%.&lt;/p&gt;
 &lt;h2&gt;Main time&lt;/h2&gt;
 &lt;p&gt;I now look at the listing of function calls, sorted by cumulative time, descending (I&#39;ve removed lines containing Python internal stuff):&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt; ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-      1    0.000    0.000    0.050    0.050 todo.py:3(&amp;lt;module&amp;gt;)
-      1    0.000    0.000    0.028    0.028 todocore.py:120(main)
-      1    0.000    0.000    0.021    0.022 todocore.py:36(&amp;lt;module&amp;gt;)
-      1    0.000    0.000    0.012    0.012 docopt.py:493(docopt)
-     35    0.000    0.000    0.010    0.000 re.py:277(_compile)
-      1    0.000    0.000    0.010    0.010 todo.py:527(feedback_todo)
-     29    0.000    0.000    0.010    0.000 todo.py:676(safe_print)
-      1    0.000    0.000    0.010    0.010 subprocess.py:356(&amp;lt;module&amp;gt;)
-     22    0.000    0.000    0.010    0.000 sre_compile.py:563(compile)
-     23    0.000    0.000    0.009    0.000 re.py:221(compile)
-      1    0.000    0.000    0.008    0.008 docopt.py:40(fix)
-      2    0.000    0.000    0.007    0.003 todo.py:595(get_basic_task_string)
-      2    0.000    0.000    0.007    0.003 todo.py:612(get_task_string_components)
-      1    0.000    0.000    0.006    0.006 configparser.py:119(&amp;lt;module&amp;gt;)
-      2    0.000    0.000    0.006    0.003 todo.py:683(get_datetime)
-   1660    0.001    0.000    0.006    0.000 docopt.py:34(__eq__)
-   42/1    0.001    0.000    0.006    0.006 docopt.py:45(fix_identities)
-     22    0.000    0.000    0.006    0.000 sre_parse.py:750(parse)
-  53/22    0.000    0.000    0.006    0.000 sre_parse.py:363(_parse_sub)
-      1    0.000    0.000    0.004    0.004 dbapi2.py:23(&amp;lt;module&amp;gt;)
-      1    0.000    0.000    0.002    0.002 datetime.py:5(&amp;lt;module&amp;gt;)
-  [...]
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt; ncalls  tottime  percall  cumtime  percall filename:lineno(function)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      1    0.000    0.000    0.050    0.050 todo.py:3(&amp;lt;module&amp;gt;)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      1    0.000    0.000    0.028    0.028 todocore.py:120(main)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      1    0.000    0.000    0.021    0.022 todocore.py:36(&amp;lt;module&amp;gt;)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      1    0.000    0.000    0.012    0.012 docopt.py:493(docopt)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;     35    0.000    0.000    0.010    0.000 re.py:277(_compile)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      1    0.000    0.000    0.010    0.010 todo.py:527(feedback_todo)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;     29    0.000    0.000    0.010    0.000 todo.py:676(safe_print)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      1    0.000    0.000    0.010    0.010 subprocess.py:356(&amp;lt;module&amp;gt;)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;     22    0.000    0.000    0.010    0.000 sre_compile.py:563(compile)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;     23    0.000    0.000    0.009    0.000 re.py:221(compile)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      1    0.000    0.000    0.008    0.008 docopt.py:40(fix)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      2    0.000    0.000    0.007    0.003 todo.py:595(get_basic_task_string)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      2    0.000    0.000    0.007    0.003 todo.py:612(get_task_string_components)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      1    0.000    0.000    0.006    0.006 configparser.py:119(&amp;lt;module&amp;gt;)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      2    0.000    0.000    0.006    0.003 todo.py:683(get_datetime)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;   1660    0.001    0.000    0.006    0.000 docopt.py:34(__eq__)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;   42/1    0.001    0.000    0.006    0.006 docopt.py:45(fix_identities)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;     22    0.000    0.000    0.006    0.000 sre_parse.py:750(parse)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;  53/22    0.000    0.000    0.006    0.000 sre_parse.py:363(_parse_sub)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      1    0.000    0.000    0.004    0.004 dbapi2.py:23(&amp;lt;module&amp;gt;)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;      1    0.000    0.000    0.002    0.002 datetime.py:5(&amp;lt;module&amp;gt;)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;  [...]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;A bit a guidance here:&lt;/p&gt;
 &lt;ul&gt;
@@ -581,18 +605,18 @@ sys 0m0.012s
 &lt;/ul&gt;
 &lt;p&gt;The important information here is that the &lt;code&gt;main&lt;/code&gt; function takes 28ms to execute. We are missing 22ms to be consistent with the overall 50ms execution time. Those 22ms are in the importation of &lt;code&gt;todocore.py&lt;/code&gt;, which is not satisfying, because &lt;code&gt;todocore.py&lt;/code&gt; does nothing. It imports libraries and defines functions. Well, turns out that in Python, importing libraries isn&#39;t nothing at all.&lt;/p&gt;
 &lt;p&gt;If we grep the previous listing with &lt;code&gt;&amp;lt;module&amp;gt;&lt;/code&gt; to filter imports only, then we end up with:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;    1    0.000    0.000    0.021    0.022 todocore.py:36(&amp;lt;module&amp;gt;)
-    1    0.000    0.000    0.010    0.010 subprocess.py:356(&amp;lt;module&amp;gt;)
-    1    0.000    0.000    0.006    0.006 configparser.py:119(&amp;lt;module&amp;gt;)
-    1    0.000    0.000    0.004    0.004 dbapi2.py:23(&amp;lt;module&amp;gt;)
-    1    0.000    0.000    0.002    0.002 datetime.py:5(&amp;lt;module&amp;gt;)
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;    1    0.000    0.000    0.021    0.022 todocore.py:36(&amp;lt;module&amp;gt;)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;    1    0.000    0.000    0.010    0.010 subprocess.py:356(&amp;lt;module&amp;gt;)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;    1    0.000    0.000    0.006    0.006 configparser.py:119(&amp;lt;module&amp;gt;)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;    1    0.000    0.000    0.004    0.004 dbapi2.py:23(&amp;lt;module&amp;gt;)&lt;/span&gt;
+&lt;span class=&#34;err&#34;&gt;    1    0.000    0.000    0.002    0.002 datetime.py:5(&amp;lt;module&amp;gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The first line is the root import of &lt;code&gt;todocore.py&lt;/code&gt; (22 ms) and the remaining lines are modules from the standard library, whose import&#39;s performances together sum up to the root 22 ms.&lt;/p&gt;
 &lt;p&gt;So, 75% of the execution time has nothing to do with my program. The first 50% is the interpreter starting up, and then 25% is due to importing stuff from the standard library. Any optimization that I can do on my code will be bounded under ~25% of the overall execution, that is 28 ms.&lt;/p&gt;
 &lt;p&gt;In fact, I found that imports can be somewhat optimized. In my case, there is one import that is different than the others: &lt;code&gt;subprocess&lt;/code&gt; is only actually used for a very specific use-case which is to open a text editor when the user wants to edit a task. In Python, you don&#39;t necessarily have to do imports at the top of the script, you can do them inside a function. This means that I could avoid to systematically import &lt;code&gt;subprocess&lt;/code&gt;, and only import it when necessary instead. This made me win 10 ms.&lt;/p&gt;
 &lt;h2&gt;Business Logic time&lt;/h2&gt;
 &lt;p&gt;Near the top of the listing, there is an important function call that takes quite some time:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;    1    0.000    0.000    0.012    0.012 docopt.py:493(docopt)
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;    1    0.000    0.000    0.012    0.012 docopt.py:493(docopt)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;code&gt;docopt&lt;/code&gt; is the function that parses the command-line arguments. It takes 12 ms out of 28 ms total in &lt;code&gt;main&lt;/code&gt;. The command-line in question being: &lt;code&gt;todo&lt;/code&gt;. In absolute terms, such performance is quite ridiculous.&lt;/p&gt;
 &lt;p&gt;So, finally, after the interpreter starting up, after the imports being done, after the command-line being parsed, my code, at last, executes in 16 ms.&lt;/p&gt;
@@ -625,13 +649,13 @@ sys 0m0.012s
 			<summary type="html">
 
 &lt;p&gt;Disable Bash history:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;unset HISTFILE
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;unset HISTFILE&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Encrypt:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;echo &#39;your string here&#39; | gpg -c | base64
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;echo &#39;your string here&#39; | gpg -c | base64&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Decrypt:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;echo &#39;encrypted here&#39; | base64 -d | gpg -d
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;echo &#39;encrypted here&#39; | base64 -d | gpg -d&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Both commands will open a graphical prompt for the password.&lt;/p&gt;</summary>
 			
@@ -789,7 +813,7 @@ fatal: cannot lock ref &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/pu
 &lt;p&gt;The reason the images were wrongly orientated is because my camera uses Exif data in order to encode the actual orientation of the image. Exif (Exchangeable image file format) is a collection of metadata such as GPS location, date and time, etc, about the picture that was taken, that is contained in the file, alongside the actual image data. The image is always stored in &lt;em&gt;landscape&lt;/em&gt; mode, and the orientation is solely encoded in the Exif data.&lt;/p&gt;
 &lt;p&gt;This is not new nor bizarre. In the old days, camera did not know whether a picture was taken in landscape orientation or in portrait orientation (or upside-down) and people had to manually rotate their images on their computer. Then came cameras with orientation detection, which were able to tell how they were orientated while taking the picture. However, instead of actually rotating the image (that is, the content), such cameras simply indicated the orientation via the Exif orientation tag. All modern cameras do that, and most modern software knows how to read Exif data in order to display the proper orientation. Except browsers.&lt;/p&gt;
 &lt;p&gt;Actually, browsers know too. If you directly open an image in a modern browser, the orientation is correct. It&#39;s only when the image is &lt;em&gt;embedded&lt;/em&gt; in a web page (via &lt;code&gt;img&lt;/code&gt;) that the orientation might be wrong. Fortunately, there is a way to tell the browser to use Exif data to display the correct orientation, thanks to the CSS &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/CSS/image-orientation&#34;&gt;&lt;code&gt;image-orientation&lt;/code&gt;&lt;/a&gt; property:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;nt&#34;&gt;image-orientation&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;from-image&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;/* Use EXIF data from the image */&lt;/span&gt;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;c&#34;&gt;image-orientation: from-image; /* Use EXIF data from the image */&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Unfortunately, as of today, this is still an experimental standard, and it only works in Firefox. &lt;a href=&#34;http://caniuse.com/#search=image-orientation&#34;&gt;No joke&lt;/a&gt;. iOS Safari is a special case, as it doesn&#39;t support the property, but doesn&#39;t need to as it honors Exif by default. Overall, &lt;strong&gt;there is currently no reliable pure HTML/CSS solution to properly orientate pictures in a web page according to Exif data.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Even if we accept the lack of support for &lt;code&gt;image-orientation&lt;/code&gt;, its specification itself is bizarre. By default, Exif orientation is ignored. Shouldn&#39;t &lt;code&gt;from-image&lt;/code&gt; be the default? To understand the current state of specification and of support, I&#39;ve searched and read the Firefox bug tracker, the Chromium bug tracker and the W3C mailing list. More precisely, I&#39;ve found the following threads quite interesting:&lt;/p&gt;
@@ -828,25 +852,25 @@ fatal: cannot lock ref &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/pu
 
 &lt;p&gt;The next version of &lt;a href=&#34;https://github.com/foobuzz/todo/&#34;&gt;my terminal-based ToDo application&lt;/a&gt; will include colors. This article is a synthesis of what I learned from implementing this feature.&lt;/p&gt;
 &lt;p&gt;In the terminal, color is coded via escape codes. Colors are just a specific feature of many existing &lt;a href=&#34;https://en.wikipedia.org/wiki/ANSI_escape_code&#34;&gt;ANSI escape codes&lt;/a&gt; that enable various actions and formatting for the terminal. An ANSI escape code is a sequence of ASCII characters in the following form:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;ESC[n1;n2;...L
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;ESC[n1;n2;...L&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;where &lt;code&gt;ESC&lt;/code&gt; is the ESCape ASCII character (#27), &lt;code&gt;L&lt;/code&gt; is a letter indicating what kind of formatting to turn on, and &lt;code&gt;n1&lt;/code&gt;, &lt;code&gt;n2&lt;/code&gt;,... are parameters for the given action/formatting. For example, the letter &lt;code&gt;A&lt;/code&gt; (resp. &lt;code&gt;B&lt;/code&gt;) is the code for moving the cursor up (resp. down), and its only parameter indicates how many cells the cursor should be moved. To get a demo, you can open a terminal and type:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;echo -e &#34;\e[5B&#34;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;echo -e &#34;\e[5B&#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The prompt for your next command should appear down the first one with a few spare lines. The &lt;code&gt;-e&lt;/code&gt; flag allow the interpretation of backslash escape, the &lt;code&gt;\e&lt;/code&gt; escape corresponding to the ESC character. The quotes are necessary for the whole ANSI escape code to be interpreted.&lt;/p&gt;
 &lt;p&gt;All graphical-related codes come with the letter &lt;code&gt;m&lt;/code&gt;, with the parameter(s) indicating what kind of formatting to apply. Since such escape code turns &#34;on&#34; the associated formatting for all text following, there&#39;s the special parameter &lt;code&gt;0&lt;/code&gt; (escape code &lt;code&gt;ESC[0m&lt;/code&gt;) which resets everything back to normal. Bash also resets everything when a command has terminated, so if you test escape codes with &lt;code&gt;echo&lt;/code&gt; as in the previous example, you probably won&#39;t have to use the reset escape code manually.&lt;/p&gt;
 &lt;p&gt;I wish the first example I could give would be parameter &lt;code&gt;5&lt;/code&gt; which enables blinking, but apparently it&#39;s not supported anymore by most terminals :-( (much like the HTML &lt;code&gt;&amp;lt;blink&amp;gt;&lt;/code&gt; element isn&#39;t supported anymore by browsers. Maybe &lt;code&gt;ESC[5m&lt;/code&gt; was &lt;a href=&#34;http://www.montulli.org/theoriginofthe%3Cblink%3Etag&#34;&gt;implemented by an engineer being drunk&lt;/a&gt; too.)&lt;/p&gt;
 &lt;p&gt;So, I&#39;ll directly get to colors. There&#39;s 9 different parameters reserved for foreground colors (color of the text). Parameters 30 through 37 encode the 8 primary colors: black, red, green, yellow, blue, magenta, cyan, white. So, for a green hello world, you would type:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;echo -e &#34;\e[32mHello, world!&#34;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;echo -e &#34;\e[32mHello, world!&#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;These colors correspond to the colors you obtain when you &#34;turn on&#34; the components of the RGB coordinates. For example, black is (0, 0, 0), red is (R, 0, 0), magenta is (R, 0, B), etc. Since there are 3 components there are 2^3 = 8 primary colors. For some reason escape codes [30-37] render dark flavors of the colors. For example, red is only RGB(205, 0, 0)&lt;sup&gt;[1]&lt;/sup&gt;. Yellow is the most obvious one, you can try it yourself:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;echo -e &#34;\e[33mSupposed to be yellow!&#34;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;echo -e &#34;\e[33mSupposed to be yellow!&#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;It turns out that if you mix colors with bold (parameter number 1), colors are pushed to their full intensity:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;echo -e &#34;\e[1;33mActually yellow!&#34;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;echo -e &#34;\e[1;33mActually yellow!&#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then there&#39;s the parameter number 38. This one awaits other parameters after itself. Either one, either three. In the case of three additional parameters, those parameters indicates the RGB coordinates of the color. So-called &#34;true colors&#34; are only supported by some advanced terminal emulators, but not by xterm&lt;sup&gt;[2]&lt;/sup&gt;. You can try it out with yellow again:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;echo -e &#34;\e[38;0;255;255mActually yellow!&#34;
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;echo -e &#34;\e[38;0;255;255mActually yellow!&#34;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;In the case of only one additional parameter, this parameter should be a number between 0 and 255 (included) corresponding to a color in the 256-colors palette. Now, what is &#34;the 256-colors palette&#34;. Well, while &lt;a href=&#34;https://en.wikipedia.org/wiki/8-bit_color&#34;&gt;there isn&#39;t one unique standard&lt;/a&gt; to store colors in only one byte, &lt;a href=&#34;https://en.wikipedia.org/wiki/Xterm&#34;&gt;xterm&lt;/a&gt; comes with its specific palette which you can find &lt;a href=&#34;http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html&#34;&gt;here&lt;/a&gt;. It seems that 256 colors are supported quite widely.&lt;/p&gt;
 &lt;p&gt;This is how this palette work:&lt;/p&gt;
@@ -982,7 +1006,7 @@ fatal: cannot lock ref &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/pu
 &lt;p&gt;There are 26! permutations. We can partition the set of permutations in 26 subsets. The first subset contains all permutations begining with &#39;a&#39;, the second one contains all permutations begining with &#39;b&#39;, and so on. It&#39;s trivial that all these subsets have the same size of 26! / 26 = 25! We can then decide that permutations belonging to the first set (the &#34;a...&#34; set) all have their index between 0 and 25!. The permutations belonging to the &#34;b...&#34; set all have their index between 25! and 2×25!, and so on, all the way up to the &#34;z...&#34; set whose permutations all have their index between 25×25! and 26!. Note that in these bounds given as examples, the upper bound is exclusive.&lt;/p&gt;
 &lt;p&gt;Once we&#39;ve identified to what set a permutation belongs to, we perform the same process inside this set, except that we&#39;ve removed the previous letter from the available letters. For example, inside the &#34;b...&#34; set, there would be the &#34;ba...&#34; set, with indexes between 25! and 25!+24!, then the &#34;bc...&#34; set with indexes between 25!+24! and 25!+2×24! (&lt;em&gt;note that we&#39;ve jumped from a to c since b is already consumed&lt;/em&gt;). We iterate over the letters of the permutation and go to the right subset at each iteration according to the letter we read. The final set is associated to only one possible index, which is the index of the permutation.&lt;/p&gt;
 &lt;p&gt;As you can see, finding the index of a given permutation is actually a simple computation. Let&#39;s dumb things down even more by considering that there are only three letters &#39;a&#39;, &#39;b&#39; and &#39;c&#39; in the [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;] order and we want the index of the &#39;bca&#39; permutation. This index is:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;1*2! + 1*1! + 0*0! = 2 + 1 + 0 = 3
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;1*2! + 1*1! + 0*0! = 2 + 1 + 0 = 3&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ol&gt;
 &lt;li&gt;We take the ordinal of &#39;b&#39; in [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;] which is 1. We get the first term &lt;code&gt;1*2!&lt;/code&gt;&lt;/li&gt;
@@ -992,31 +1016,31 @@ fatal: cannot lock ref &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/pu
 &lt;h2&gt;The factorial number system&lt;/h2&gt;
 &lt;p&gt;What&#39;s interesting here is that we have the decomposition of &lt;strong&gt;3&lt;/strong&gt; in the &lt;a href=&#34;https://en.wikipedia.org/wiki/Factorial_number_system&#34;&gt;factorial number system&lt;/a&gt;. The factorial number system is a system to write numbers where digits are coefficients of increasing factorial numbers instead of increasing powers. 3 is written 110 in &#34;factorial base&#34; because 3 = 1×2! + 1×1! + 0×0!&lt;/p&gt;
 &lt;p&gt;So how do you find the &#34;factorial base&#34; digits of an integer given in decimal base? Because that&#39;s gonna help us convert an integer to a permutation. Well, let&#39;s take 42. It&#39;s 13000 in factorial base. That&#39;s:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;1*4! + 3*3! + 0*2! + 0*1! + 0*0!
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;1*4! + 3*3! + 0*2! + 0*1! + 0*0!&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Let&#39;s write that explicitly:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;1*4*3*2*1 + 3*3*2*1 + 0*2*1 + 0*1 + 0
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;1*4*3*2*1 + 3*3*2*1 + 0*2*1 + 0*1 + 0&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We can factor 1 from the first 4 terms:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;1 * (1*4*3*2 + 3*3*2 + 0*2 + 0) + 0
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;1 * (1*4*3*2 + 3*3*2 + 0*2 + 0) + 0&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Inside the inner-most group, we can factor 2 on the first 3 terms:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;1 * (2 * (1*4*3 + 3*3 + 0) + 0) + 0
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;1 * (2 * (1*4*3 + 3*3 + 0) + 0) + 0&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Inside th inner-most group, we can factor 3 on the first 2 terms:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;1 * (2 * (3 * (1*4 + 3) + 0) + 0) + 0
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;1 * (2 * (3 * (1*4 + 3) + 0) + 0) + 0&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Remember that this number is 42. From the way we&#39;ve written it, it is now easy to understand how you can get its factoradic digits: if you divide 42 by 1 you end up with a remainder of 0 and a quotient of:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;2 * (3 * (1*4 + 3) + 0) + 0
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;2 * (3 * (1*4 + 3) + 0) + 0&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you divide this by 2, you end up with a remainder of 0 and a quotient of:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;3 * (1*4 + 3) + 0
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;3 * (1*4 + 3) + 0&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you divide this by 3, you end up with a remainder of 0 and a quotient of:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;1*4 + 3
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;1*4 + 3&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you divide this by 4, you end up with a remainder of 3 and a quotient of:&lt;/p&gt;
-&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;1
+&lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;err&#34;&gt;1&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you devide this by 5, you end up with a remainder of 1 and a quotient of 0.&lt;/p&gt;
 &lt;p&gt;You stop there, and look at the remainders that you&#39;ve accumulated: 0, 0, 0, 3 and 1. That&#39;s 3100 in reverse.&lt;/p&gt;
@@ -1315,7 +1339,7 @@ I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece
 
 &lt;span class=&#34;n&#34;&gt;DATETIME_STRING&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&#39;Mon Nov 23 20:06:13 CET 2015&#39;&lt;/span&gt;
 &lt;span class=&#34;n&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DATETIME_STRING&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;replace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&#39;CET&#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&#39;+0100&#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;dt&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;strptime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&#39;%a %b &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%d&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt; %H:%M:%S %z %Y&#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;dt&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;strptime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&#39;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%a&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt; %b &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%d&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt; %H:%M:%S %z %Y&#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now, we need the current time. There are two functions to get the current time: &lt;code&gt;now&lt;/code&gt; or &lt;code&gt;utcnow&lt;/code&gt;. The problem with &lt;code&gt;now&lt;/code&gt; is that it returns the current local time. So we would need to figure out what is the local timezone, which isn&#39;t straightforward (more on that later). &lt;code&gt;utcnow&lt;/code&gt; returns the UTC time, so we know the timezone by definition. Note that even if we know the timezone, &lt;code&gt;utcnow&lt;/code&gt; still returns a &lt;em&gt;naive&lt;/em&gt; object, so we&#39;ll have to manually set the timezone to UTC:&lt;/p&gt;
 &lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;n&#34;&gt;now&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utcnow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
@@ -1323,7 +1347,7 @@ I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;We can now subtract the two datetime objects to obtain a timedelta object, which has the fancy &lt;code&gt;seconds&lt;/code&gt; attribute:&lt;/p&gt;
 &lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;n&#34;&gt;delta&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;now&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dt&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;delta&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;seconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# Prints the timespan in seconds between dt and now&lt;/span&gt;
+&lt;span class=&#34;nb&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;delta&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;seconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# Prints the timespan in seconds between dt and now&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;Getting the local timezone&lt;/h2&gt;
 &lt;p&gt;In the last part, another strategy would have been to use the &lt;code&gt;now&lt;/code&gt; to obtain the local time and then set the local timezone to the datetime object obtained. But getting the local timezone isn&#39;t easy. I haven&#39;t found any function in the documentation doing that, and posts on the subject on StackOverflow advice using the &lt;code&gt;tzlocal&lt;/code&gt; module, which isn&#39;t present in the standard library.&lt;/p&gt;
@@ -1370,7 +1394,7 @@ I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece
 &lt;p&gt;Look at this:&lt;/p&gt;
 &lt;div class=&#34;codehilite&#34;&gt;&lt;pre class=&#34;source&#34;&gt;&lt;code&gt;&lt;span class=&#34;c1&#34;&gt;// This percentage of disk size is used to protect against calculating a too&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;// large database size on disks with tiny quota or available space.&lt;/span&gt;
-&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;DATABASE_TO_DISK_PERC&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;DATABASE_TO_DISK_PERC&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If there is not much space available on the disk, the history database can&#39;t take up more than 2% of this available space. My container has a size of 500 MB, but about 230 MB are already taken by other stuff (bookmarks, thumbnails, extensions, etc), so there&#39;s 270 MB actually available. So, the maximum size of the database was 5.4 MB. That&#39;s not much.&lt;/p&gt;
 &lt;p&gt;Then there&#39;s this:&lt;/p&gt;
@@ -1379,7 +1403,7 @@ I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece
 &lt;span class=&#34;c1&#34;&gt;// between number of unique URIs and database size among our users.&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;// Based on these values we evaluate how many unique URIs we can handle before&lt;/span&gt;
 &lt;span class=&#34;c1&#34;&gt;// starting expiring some.&lt;/span&gt;
-&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;URIENTRY_AVG_SIZE&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1600&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;URIENTRY_AVG_SIZE&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1600&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Firefox computes the maximum number of URIs it can hold in the database thanks to an average URI size, whose value is set to 1.6 KB. With 5.4 MB available, it means that you can store up to 3375 URIs. I don&#39;t know about you, but for me, that&#39;s about 15 days of browsing the web.&lt;/p&gt;
 &lt;p&gt;So, this is why my history was only available for 2 weeks.&lt;/p&gt;
