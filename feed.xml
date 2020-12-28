@@ -98,7 +98,7 @@
 &lt;span class=&#34;err&#34;&gt;|-every 32 years&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary>
 			
-				<category term="random"></category>
+				<category term="tech"></category>
 			
 		</entry>
 	
@@ -133,7 +133,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;What this means is that if you take the sequence 0.(9)n, then the number that is written &#34;0.999...&#34; or said to have &#34;an infinite amount of 9s after the decimal point&#34; is the smallest number that is greater than all terms of the sequence. For example, 3 is greater than all the terms of the sequence, so that&#39;s a candidate. Is it the smallest such number? Well, certainly not. 2 is greater than all terms of the sequence and it is lesser than 3. Can we find smaller? Sure. 1 is greater than all terms of the sequence. Is there something even smaller? Hmm... doesn&#39;t seem so. I think 1 is the smallest. This, of course, is only intuition so far, but &lt;a href=&#34;https://en.wikipedia.org/wiki/0.999...#Formal_proof&#34;&gt;the proof&lt;/a&gt; is easy enough to follow.&lt;/p&gt;</summary>
 			
-				<category term="random"></category>
+				<category term="science"></category>
 			
 		</entry>
 	
@@ -391,8 +391,6 @@
 			
 				<category term="movies"></category>
 			
-				<category term="random"></category>
-			
 		</entry>
 	
 		<entry>
@@ -418,7 +416,7 @@
 &lt;p&gt;Elon Musk says SpaceX could send a man to the Moon in two years if they wanted to. When asked about sending a man to the ISS, he says it acts like the &lt;a href=&#34;https://en.wikipedia.org/wiki/Zeno%27s_paradoxes#Arrow_paradox&#34;&gt;Arrow paradox&lt;/a&gt;: everytimes they&#39;re half-way launch, they still need to cover the second half.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://cdn.cnn.com/cnnnext/dam/assets/180907100732-elon-musk-smokes-marijuana-podcast-1-large-169.jpg&#34; style=&#34;text-align:center;&#34;/&gt;&lt;/p&gt;</summary>
 			
-				<category term="reading-notes"></category>
+				<category term="random"></category>
 			
 		</entry>
 	
@@ -471,7 +469,7 @@
 &lt;p&gt;Although in this article I defend the value that there is in trusting science, by no means I want to discourage the understanding of it, quite the contrary. Understanding how it works and why it works is the best way to further solidify trust you can put on it. However, it is a very time consuming process and we don&#39;t always have the interest or energy to do so, hence, in my opinion, the need to have a guideline to follow that one must be able to trust.&lt;/p&gt;
 &lt;p&gt;On a related note, there is a &lt;a href=&#34;https://www.quora.com/How-can-I-debate-climate-change-with-a-skeptic-without-resorting-to-emotion-and-hyperbole/answer/Richard-Muller-3&#34;&gt;Quora answer by physicist Richard Muller&lt;/a&gt; where he explains that global warming skeptics also are well equiped with ammunitions about the subject (certainly in a way more reasonable and less far-fetched way than flat-eathers, the subject being more subtle), and that you shouldn&#39;t get involved in a debate with them unless you know your stuff very well.&lt;/p&gt;</summary>
 			
-				<category term="science"></category>
+				<category term="random"></category>
 			
 		</entry>
 	
@@ -499,9 +497,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;What I like about this one is that Feynman doesn&#39;t try to proclaim being some sort of infallible rationale being, as it is often the case in the skepticism community, whose members often end up being quite arrogant to others. It&#39;s a very personal example where he illustrates how one can be tempted into reading &#34;signs&#34; on events which have a pretty logical explanatio, and how tricky it can be to actually find this explanation. I find it to be simply and humbly told.&lt;/p&gt;</summary>
 			
-				<category term="books"></category>
-			
-				<category term="science"></category>
+				<category term="random"></category>
 			
 		</entry>
 	
@@ -634,7 +630,7 @@ sys 0m0.012s
 &lt;/ol&gt;
 &lt;p&gt;No. 3 makes me wonder: when you do a Google Search, from your browser all the way to Google hardware, what is the percentage of it that is standard, and what is the percentage of it that is custom-made?&lt;/p&gt;</summary>
 			
-				<category term="programming"></category>
+				<category term="tech"></category>
 			
 		</entry>
 	
@@ -684,7 +680,7 @@ sys 0m0.012s
 &lt;p&gt;You shouldn&#39;t, however, use the query string method, for the following reason: if at the moment you&#39;re serving &lt;code&gt;theme.css?v=2&lt;/code&gt; anyone on the Internet issues a GET request to &lt;code&gt;theme.css?v=3&lt;/code&gt; then caches will associate the v3 to the content of the v2. When you will want to deploy a new version and will update the query string parameter, you&#39;ll see that the resource doesn&#39;t update. A malicious client could be even more vicious and query something like &lt;code&gt;theme.css?v=6&lt;/code&gt; when you&#39;re at &lt;code&gt;v=3&lt;/code&gt; to let you see how well the system works until a few days when, updating from &lt;code&gt;v=5&lt;/code&gt;, you try to deploy &lt;code&gt;v=6&lt;/code&gt; and witness the resource going back in time to its state as it was at &lt;code&gt;v=3&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Using a version number in the filename is much preferable, for the simple reason that if someone requests &lt;code&gt;theme.v2.css&lt;/code&gt; when you&#39;re serving &lt;code&gt;theme.v1.css&lt;/code&gt;, the server will respond with a 404 error and no content, which is of course not a cacheable response.&lt;/p&gt;</summary>
 			
-				<category term="programming"></category>
+				<category term="tech"></category>
 			
 		</entry>
 	
@@ -767,7 +763,7 @@ fatal: cannot lock ref &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/pu
 &lt;p&gt;The reason for this is that a git branch is simply a text file in the &lt;code&gt;.git/branches&lt;/code&gt; directory, containing the hash of the commit at the tip of the branch. When a branch&#39;s name contains a slash, git creates a subdirectory to store this file in. So the hash of the branch &lt;code&gt;feature/public-api&lt;/code&gt; is stored at &lt;code&gt;.git/branches/feature/public-api&lt;/code&gt;. If you try to add one more level to that, then git will try to create the &lt;code&gt;.git/branches/feature/public-api&lt;/code&gt; directory, which is impossible, because there&#39;s already a file with this name.&lt;/p&gt;
 &lt;p&gt;It&#39;s yet another &lt;a href=&#34;https://en.wikipedia.org/wiki/Leaky_abstraction&#34;&gt;leaky abstraction&lt;/a&gt; from git, once again for the purposes of performance and simplicity of implementation, which I can understand.&lt;/p&gt;</summary>
 			
-				<category term="programming"></category>
+				<category term="tech"></category>
 			
 		</entry>
 	
@@ -836,7 +832,7 @@ fatal: cannot lock ref &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/pu
 &lt;p&gt;I&#39;ve honestly no idea whether supporting Exif by default would cause more damage on the web than the damage the lack of support is currently causing, but the fact is that today, browsers can cause bad surprises to web developers and seem to be quite late on the Exif game. Apparently Apple didn&#39;t wonder much about legacy when they honored Exif by default on their iPhones apps, maybe browsers should follow the lead.&lt;/p&gt;
 &lt;p&gt;As of today, the only way for a site such as my photo gallery project to store and display pictures properly is to rotate the picture according to the Exif orientation tag upon acquiring it (server-side), get rid of the tag, and then display the picture without any additional CSS. The web is basically living in denial of the Exif orientation standard, while every other piece of software is dealing with it.&lt;/p&gt;</summary>
 			
-				<category term="programming"></category>
+				<category term="tech"></category>
 			
 		</entry>
 	
@@ -1062,7 +1058,7 @@ fatal: cannot lock ref &lt;span class=&#34;s1&#34;&gt;&#39;refs/heads/feature/pu
 &lt;/li&gt;
 &lt;/ul&gt;</summary>
 			
-				<category term="experiments"></category>
+				<category term="science"></category>
 			
 		</entry>
 	
@@ -1106,7 +1102,7 @@ I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece
 &lt;p&gt;I&#39;m really looking forward to the launch of the James-Webb Space Telescope in 2018. Those things are knowledge fuel.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;TL;DR: 10/10 would read again&lt;/strong&gt;&lt;/p&gt;</summary>
 			
-				<category term="books"></category>
+				<category term="random"></category>
 			
 		</entry>
 	
@@ -1239,7 +1235,7 @@ I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece
 &lt;figcaption&gt;&lt;strong&gt;Figure 2&lt;/strong&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;</summary>
 			
-				<category term="random"></category>
+				<category term="tech"></category>
 			
 		</entry>
 	
@@ -1302,7 +1298,7 @@ I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece
 &lt;p&gt;In the &lt;a href=&#34;https://www.reddit.com/r/blog/comments/2c63wg/how_reddit_works&#34;&gt;2014 thread&lt;/a&gt; about the Reddit official blogpost &lt;em&gt;How reddit works&lt;/em&gt;, when a user asked about the No Participation mode, the admin /u/cupcake1713 &lt;a href=&#34;https://www.reddit.com/r/blog/comments/2c63wg/how_reddit_works/cjcbsda?context=1&#34;&gt;clarified&lt;/a&gt; that it wasn&#39;t actually something from the Reddit staff and called it a &#34;crappy CSS hack&#34; (and stroke the &#34;crappy&#34; out later, probably by remorse after No Participation creator answered to her comment and said being a little bit affected that his idea was denigrated so much by the admins). She also pointed out that the admins realized quite recently (relatively to the date of her comment) that the NP stylesheet was hiding the &#34;report&#34; button on submissions (a button to report abuse), that this was a &#34;huge problem&#34; and that if the staff would have spotted this problem sooner they would have stop the spread of this thing. The no participation stylesheet is since fixed and doesn&#39;t hide the report button.&lt;/p&gt;
 &lt;p&gt;Since then, other subreddits have customized other subdomains for other purposes (cf. &lt;code&gt;sf&lt;/code&gt; on /r/teenagers for showing only self-posts). Last summer, admins said that they&#39;ll deploy better moderation tools by 2016. My bet is that it won&#39;t include any non-participation related stuff. It&#39;s too easy to override and it probably wouldn&#39;t scale well. I just want moderators to be able to add custom text boxes in the page without CSS so that the text is selectable. There&#39;s something deeply wrong with non-selectable text.&lt;/p&gt;</summary>
 			
-				<category term="reddit"></category>
+				<category term="random"></category>
 			
 		</entry>
 	
@@ -1368,7 +1364,7 @@ I&#39;ve read &lt;em&gt;Big Bang&lt;/em&gt; by Simon Singh. It&#39;s a big piece
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Well, to be perfectly honnest, I&#39;m still not absolutely convinced that this would work 100% of the time. Depending on the implementation of the &lt;code&gt;fromtimestamps&lt;/code&gt; methods, there may exist edge cases causing trouble some times. I don&#39;t know. At the end of the day, the true way to get the timezone is to look at the operating system&#39;s specific configuration file containing such information, which is set by the user when it installs the operating system. This is what the &lt;code&gt;tzlocal&lt;/code&gt; module does by the way. Python probably does it too when it does anything UTC.&lt;/p&gt;</summary>
 			
-				<category term="programming"></category>
+				<category term="tech"></category>
 			
 		</entry>
 	
