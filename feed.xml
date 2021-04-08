@@ -3,8 +3,29 @@
 	<title>foobuzz</title>
 	<link href="http://foobuzz.github.io" rel="alternate"></link>
 	<link href="http://foobuzz.github.io/feed" rel="self"></link>
-	<updated>2021-03-30T21:35:01Z</updated>
+	<updated>2021-04-08T19:46:44Z</updated>
 	<id>urn:uuid:f38f868c-f9e6-4401-8119-e4ef9777aee6</id>
+	
+		<entry>
+			<title>Covid and young vs old</title>
+			<link href="http://foobuzz.github.io/covid-tradeoff"/>
+			<id>urn:uuid:7aac9775-2354-58a8-bf55-45336a7ea284</id>
+			<author>
+				<name>Valentin</name>
+			</author>
+			<updated>2021-04-08T19:46:44Z</updated>
+			<summary type="html">
+
+&lt;p&gt;I think there is a growing idea in traditional and social media according to which, in the management of the COVID-19 crisis, we are making a trade-off which consists in saving old people&#39;s lives, at the cost of very strong restrictions on young people&#39;s lives. More precisely, the growing sentiment is that maybe we should reverse the trade-off: old people aren&#39;t long away from death anyway, and to give them a few more years, we&#39;re wasting foundational years of the younger generations. Maybe we should accept Covid as an inevitability for the oldest, and simply re-open for the young.&lt;/p&gt;
+&lt;p&gt;The problem with this very high-level, schematic view of the trade-off (&#34;save the olds, sacrifice the young&#34; vs &#34;free the young, sacrifice the olds&#34;) , is that it ignores one implementation detail in the way this trade-off is going to be made. As the saying goes, the devil lies in the details. I claim that this detail actually what forces the trade-off to the option we&#39;re using today, that is, lock down the young. To explain my idea, I will make a comparison to another health crisis that happened in my country (France) in 2003.&lt;/p&gt;
+&lt;p&gt;In 2003, France was hit by a &lt;a href=&#34;https://en.wikipedia.org/wiki/2003_European_heat_wave&#34;&gt;heatwave&lt;/a&gt; of an intensity we had never seen before. France is very ill-equipped to deal with heat. Basically, we don&#39;t have air-conditioning &#34;by default&#34; in our houses and buildings. The result is that many old people — particularly vulnerable to dehydration — died during this heatwave. More precisely, 14,802 people died in a few weeks. When you look at the graph of deaths as a function of time in France, for example to pinpoint the obvious statistical anomalies due to Covid in 2020, you can see another anomaly in 2003, a thin but scarily tall spike, which was caused by this heatwave. In modern terms, we could say that this was a Covid-level health disaster, although shorter in time (and therefore in total deaths).&lt;/p&gt;
+&lt;p&gt;When this crisis happened back in 2003, there was no disruption to society, no disruption in hospitals, no disruption in intensive care units. There only was the disarray of counting old people dying. How did that work out without disruption in comparison to today&#39;s very disruptive Covid crisis? It&#39;s very simple: &lt;a href=&#34;https://en.wikipedia.org/wiki/Terminal_dehydration&#34;&gt;terminal dehydration&lt;/a&gt; is usually not accompanied by very alarming symptoms. People dying from it eventually fall into unconsciousness before they heart stops. On the other hand, when people get sick of Covid, they have trouble breathing, so they call an ambulance. The ambulance goes to fetch them, and then they need to enter an intensive care unit to assist them with breathing. It is no more, no less, than this single little detail — the specific way the body is affected — which is responsible for the entire disruption to society.&lt;/p&gt;
+&lt;p&gt;If you really want to go with the other option of the trade-off (sacrificing the old), then you need to be okay with the idea that when someone will call emergency services and ask for help because she can&#39;t breath properly, you will answer: &#34;Sorry, but we are at capacity, so you are gonna die.&#34; If you are not okay with this, then you need keep the inbound flow of such patients under capacity, and the only reliable way to do that — pending massive vaccination —, are the series of society limitations that we know (whose specific implementations&#39; efficacy can be discussed).&lt;/p&gt;
+&lt;p&gt;It just happens that the people in first line — doctors — swear by the &lt;a href=&#34;https://en.wikipedia.org/wiki/Hippocratic_Oath&#34;&gt;Hippocratic Oath&lt;/a&gt;, which means that for them, unassisting a person in health-related peril is simply not an option. When society limitations were too light in the surprise of the first wave, several countries actually reached capacity for a few days or a few weeks, at which point a triage needed to be made to decide what patient would have a chance to make it or not. This was only a &lt;em&gt;glimpse&lt;/em&gt; of what the other option of the trade-off would look like, and it was enough to create a surge in &lt;a href=&#34;https://www.wsj.com/articles/covid-19-surge-leaves-doctors-nurses-reeling-from-burnout-11611612044&#34;&gt;burnouts from nurses and doctors&lt;/a&gt;. So, in the context of the Covid crisis, if you want to sacrifice the olds, you&#39;re not only fighting the olds, you&#39;re also fighting doctors&#39; health and principles, which make the fabric of our entire health system. This is simply not an acceptable option.&lt;/p&gt;</summary>
+			
+				<category term="random"></category>
+			
+		</entry>
 	
 		<entry>
 			<title>A more sophisticated model for introversion and extraversion</title>
